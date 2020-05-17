@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Material_Timebank_demo</string>
+    <string name="time_bank_app_name">Time_Bank</string>
+    <string name="time_bank_hint_username">用户名</string>
+    <string name="time_bank_hint_password">密码</string>
+    <string name="time_bank_button_next">登录</string>
+    <string name="time_bank_button_cancel">取消</string>
+</resources>
