@@ -10,13 +10,11 @@
         android:name="com.example.ecnutimebank.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
         android:id="@+id/navigation_requirements"
         android:name="com.example.ecnutimebank.ui.requirements.RequirementsFragment"
         android:label="Requirements"
         tools:layout="@layout/fragment_requirements" />
-
     <fragment
         android:id="@+id/navigation_publish"
         android:name="com.example.ecnutimebank.ui.publish.PublishFragment"
