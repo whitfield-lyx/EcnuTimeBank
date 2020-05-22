@@ -1,35 +1,113 @@
 package com.example.ecnutimebank.ui.requirements;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.Requirement;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-public class RequirementsFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener {
 
     private RequirementsViewModel requirementsViewModel;
+    private List<Requirement> requirements = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private SmartRefreshLayout refreshLayout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        requirementsViewModel =
-                ViewModelProviders.of(this).get(RequirementsViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_requirements, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        requirementsViewModel.getText().observe(this, new Observer<String>() {
+        setHasOptionsMenu(true);
+        return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        Toolbar toolbar = activity.findViewById(R.id.toolbar_requirements);
+        toolbar.setTitle("Requirements");
+        activity.setSupportActionBar(toolbar);
+        ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
+
+        recyclerView = view.findViewById(R.id.requirements_recycler_view);
+        adapter = new RequirementAdapter(requirements);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+        refreshLayout = view.findViewById(R.id.requirement_refresh_layout);
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setOnLoadMoreListener(this);
+
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.requirement_toolbar_menu, menu);
+        MenuItem search = menu.findItem(R.id.anime_search);
+        SearchView mSearchView = (SearchView) search.getActionView();
+        mSearchView.setSubmitButtonEnabled(true);
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public boolean onQueryTextSubmit(String query) {
+                Log.i("Requirements", query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
-        return root;
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        refreshLayout.finishLoadMore();
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        refreshLayout.finishRefresh();
     }
 }
