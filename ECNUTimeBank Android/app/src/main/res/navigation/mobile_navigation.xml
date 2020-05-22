@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.ecnutimebank.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_requirements"
+        android:name="com.example.ecnutimebank.ui.requirements.RequirementsFragment"
+        android:label="Requirements"
+        tools:layout="@layout/fragment_requirements" />
+
+    <fragment
+        android:id="@+id/navigation_publish"
+        android:name="com.example.ecnutimebank.ui.publish.PublishFragment"
+        android:label="Publish"
+        tools:layout="@layout/fragment_publish" />
+    <fragment
+        android:id="@+id/navigation_mine"
+        android:name="com.example.ecnutimebank.ui.mine.MineFragment"
+        android:label="Mine"
+        tools:layout="@layout/fragment_mine" />
+</navigation>
