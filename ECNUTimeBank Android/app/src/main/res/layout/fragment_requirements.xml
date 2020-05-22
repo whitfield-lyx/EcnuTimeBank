@@ -7,9 +7,4 @@
 
     <include layout="@layout/app_bar_requirements" />
 
-    <include
-        layout="@layout/content_requirements"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
-
 </LinearLayout>
