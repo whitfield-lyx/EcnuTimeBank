@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.ViewHolder> {
     private List<Requirement> requirements;
+    private OnItemClickListener onItemClickListener;
 
-    public RequirementAdapter(List<Requirement> requirements) {
+    public RequirementAdapter(List<Requirement> requirements, OnItemClickListener onItemClickListener) {
         this.requirements = requirements;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -29,6 +31,8 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.requirementId = "123";
+        holder.onItemClickListener = onItemClickListener;
         holder.requirementName.setText("Name");
         holder.requirementTime.setText("Tomorrow");
         holder.requirementPlace.setText("School");
@@ -41,6 +45,8 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        private String requirementId;
+        private OnItemClickListener onItemClickListener;
         private TextView requirementName;
         private TextView requirementPlace;
         private TextView requirementTime;
@@ -52,6 +58,17 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
             requirementPlace = itemView.findViewById(R.id.requirement_place);
             requirementTime = itemView.findViewById(R.id.requirement_time);
             requirementBonus = itemView.findViewById(R.id.requirement_bonus);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClicked(requirementId);
+                }
+            });
         }
     }
+
+    interface OnItemClickListener {
+        void onItemClicked(String id);
+    }
+
 }
