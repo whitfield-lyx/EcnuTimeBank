@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.requirements.RequirementDetailActivity"></activity>
         <activity android:name=".ui.publish.PublishDetailActivity"
             android:label="@string/title_activity_publish_detail">
         </activity>

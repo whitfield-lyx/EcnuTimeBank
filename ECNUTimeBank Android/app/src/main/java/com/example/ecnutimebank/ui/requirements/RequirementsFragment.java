@@ -1,5 +1,6 @@
 package com.example.ecnutimebank.ui.requirements;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener {
+public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener, RequirementAdapter.OnItemClickListener {
 
     private RequirementsViewModel requirementsViewModel;
     private List<Requirement> requirements = new ArrayList<>();
@@ -37,6 +38,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private SmartRefreshLayout refreshLayout;
+    private AppCompatActivity activity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity = (AppCompatActivity) getActivity();
         Toolbar toolbar = activity.findViewById(R.id.toolbar_requirements);
         toolbar.setTitle("Requirements");
         activity.setSupportActionBar(toolbar);
@@ -58,7 +60,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         }
 
         recyclerView = view.findViewById(R.id.requirements_recycler_view);
-        adapter = new RequirementAdapter(requirements);
+        adapter = new RequirementAdapter(requirements, this);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -109,5 +111,17 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
             e.printStackTrace();
         }
         refreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void onItemClicked(String id) {
+        Intent intent = new Intent(activity, RequirementDetailActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("name", "Name");
+        intent.putExtra("time", "Tomorrow");
+        intent.putExtra("money", "50");
+        intent.putExtra("place", "School");
+        intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+        startActivity(intent);
     }
 }
