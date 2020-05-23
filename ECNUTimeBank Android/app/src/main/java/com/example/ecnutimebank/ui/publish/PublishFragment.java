@@ -7,9 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -26,13 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PublishFragment extends Fragment {
-    private View viewContent;
+
     private TabLayout my_tablayout;
     private ViewPager my_viewpager;
     private int mode = TabLayout.MODE_FIXED;
-
     public static PublishFragment publishFragment;
-
     private PublishViewModel publishViewModel;
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -69,17 +64,17 @@ public class PublishFragment extends Fragment {
 
 
     public void initConentView(View viewContent) {
-        this.my_tablayout = (TabLayout) viewContent.findViewById(R.id.requirement_tabs);
-        this.my_viewpager = (ViewPager) viewContent.findViewById(R.id.requirement_content);
+        this.my_tablayout = viewContent.findViewById(R.id.requirement_tabs);
+        this.my_viewpager = viewContent.findViewById(R.id.requirement_content);
     }
 
     public void initData() {
         //创建一个viewpager的adapter
-        MyTabFragmentAdapter adapter = new MyTabFragmentAdapter(getFragmentManager());
+        PublishTabFragmentAdapter adapter = new PublishTabFragmentAdapter(getFragmentManager());
         List<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new AcceptedFragment());
         fragments.add(new PublishedFragment());
-        String[] titlesArr = {"已接收", "已发布"};
+        String[] titlesArr = {"已接受", "已发布"};
         adapter.setTitlesArr(titlesArr);
         adapter.setFragments(fragments);
 

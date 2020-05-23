@@ -8,14 +8,14 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
-public class MyTabFragmentAdapter extends FragmentStatePagerAdapter {
+public class PublishTabFragmentAdapter extends FragmentStatePagerAdapter {
 
     public static final String TAG = "MyTabFragmentAdapter";
 
     private String[] titleArray;
     private List<Fragment> listFragments;
 
-    public MyTabFragmentAdapter(FragmentManager fm) {
+    public PublishTabFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 
