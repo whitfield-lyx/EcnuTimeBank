@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_published_detail"
+            android:id="@+id/toolbar_employee_detail"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -21,5 +21,5 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_published_detail" />
+    <include layout="@layout/content_employee_detail" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

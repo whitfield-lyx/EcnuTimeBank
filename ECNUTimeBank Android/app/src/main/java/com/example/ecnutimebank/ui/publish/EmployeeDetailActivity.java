@@ -22,7 +22,7 @@ import com.example.ecnutimebank.entity.Employee;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PublishedDetailActivity extends AppCompatActivity implements PublishedDetailAdapter.OnItemClickListener {
+public class EmployeeDetailActivity extends AppCompatActivity implements EmployeeDetailAdapter.OnItemClickListener {
     private List<Employee> employees = new ArrayList<>();
 
     @Override
@@ -30,13 +30,13 @@ public class PublishedDetailActivity extends AppCompatActivity implements Publis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_published_detail);
 
-        RecyclerView recyclerView = findViewById(R.id.published_recycler_view);
-        PublishedDetailAdapter adapter = new PublishedDetailAdapter(employees, this);
+        RecyclerView recyclerView = findViewById(R.id.employee_recycler_view);
+        EmployeeDetailAdapter adapter = new EmployeeDetailAdapter(employees, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_published_detail);
+        Toolbar toolbar = findViewById(R.id.toolbar_employee_detail);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

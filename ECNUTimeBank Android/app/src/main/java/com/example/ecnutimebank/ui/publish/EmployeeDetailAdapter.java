@@ -18,11 +18,11 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PublishedDetailAdapter extends RecyclerView.Adapter<PublishedDetailAdapter.ViewHolder> {
+public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAdapter.ViewHolder> {
     private List<Employee> employees;
     private OnItemClickListener onItemClickListener;
 
-    public PublishedDetailAdapter(List<Employee> employees, OnItemClickListener onItemClickListener) {
+    public EmployeeDetailAdapter(List<Employee> employees, OnItemClickListener onItemClickListener) {
         this.employees = employees;
         this.onItemClickListener = onItemClickListener;
     }
@@ -30,15 +30,15 @@ public class PublishedDetailAdapter extends RecyclerView.Adapter<PublishedDetail
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_published_detail, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_employee_detail, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.employeeName.setText("Lisi");
-        holder.employeeGender.setText("Female");
-        holder.employeePhone.setText("5678984651");
+        holder.employeeName.setText("Name: Lisi");
+        holder.employeeGender.setText("Gender: Female");
+        holder.employeePhone.setText("Phone: 5678984651");
         holder.userId = "123";
         holder.onItemClickListener = onItemClickListener;
         holder.acceptBtn.setOnClickListener(new View.OnClickListener() {

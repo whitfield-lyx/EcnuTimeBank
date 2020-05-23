@@ -11,8 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.publish.PublishedDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.publish.PublishMoreDetailActivity"></activity>
+        <activity
+            android:name=".ui.publish.EmployeeDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.requirements.RequirementDetailActivity" />
         <activity
             android:name=".ui.publish.PublishDetailActivity"
