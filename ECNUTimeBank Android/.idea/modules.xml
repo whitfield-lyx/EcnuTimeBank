@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ECNUTimeBank Android-EcnuTimeBank.iml" filepath="$PROJECT_DIR$/ECNUTimeBank Android-EcnuTimeBank.iml" group="EcnuTimeBank" />
+      <module fileurl="file://$PROJECT_DIR$/app/ECNUTimeBank Android-app.iml" filepath="$PROJECT_DIR$/app/ECNUTimeBank Android-app.iml" group="EcnuTimeBank/app" />
       <module fileurl="file://$PROJECT_DIR$/EcnuTimeBank.iml" filepath="$PROJECT_DIR$/EcnuTimeBank.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
