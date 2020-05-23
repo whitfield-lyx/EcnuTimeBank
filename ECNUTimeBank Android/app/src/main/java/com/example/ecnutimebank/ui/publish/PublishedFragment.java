@@ -2,6 +2,7 @@ package com.example.ecnutimebank.ui.publish;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,8 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 
 public class PublishedFragment extends Fragment {
 
@@ -37,4 +40,22 @@ public class PublishedFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Button button = view.findViewById(R.id.btn_go_to_publish_detail);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PublishMoreDetailActivity.class);
+                intent.putExtra("id", "123");
+                intent.putExtra("name", "Name");
+                intent.putExtra("time", "Tomorrow");
+                intent.putExtra("money", "50");
+                intent.putExtra("place", "School");
+                intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+                startActivity(intent);
+            }
+        });
+        super.onViewCreated(view, savedInstanceState);
+    }
 }
