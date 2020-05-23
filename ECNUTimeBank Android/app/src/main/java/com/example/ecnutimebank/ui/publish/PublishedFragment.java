@@ -125,7 +125,7 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
 
     @Override
     public void onItemClicked(String id) {
-        Intent intent = new Intent(activity, RequirementDetailActivity.class);
+        Intent intent = new Intent(activity,PublishMoreDetailActivity.class);
         intent.putExtra("id", id);
         intent.putExtra("name", "Name");
         intent.putExtra("time", "Tomorrow");

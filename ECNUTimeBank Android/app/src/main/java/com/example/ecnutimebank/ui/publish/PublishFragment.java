@@ -74,7 +74,7 @@ public class PublishFragment extends Fragment {
         List<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new AcceptedFragment());
         fragments.add(new PublishedFragment());
-        String[] titlesArr = {"已接收", "已发布"};
+        String[] titlesArr = {"已接受", "已发布"};
         adapter.setTitlesArr(titlesArr);
         adapter.setFragments(fragments);
 
