@@ -10,13 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Requirement;
+import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
 
 import java.util.List;
 
 public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.ViewHolder> {
     private List<Requirement> requirements;
-
-    public PublishedAdapter (List<Requirement> requirements) {
+    private OnItemClickListener onItemClickListener;
+    public PublishedAdapter (List<Requirement> requirements, OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
         this.requirements = requirements;
     }
 
@@ -29,6 +31,8 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.requirementId = "123";
+        holder.onItemClickListener = onItemClickListener;
         holder.requirementName.setText("Name");
         holder.requirementTime.setText("Tomorrow");
         holder.requirementPlace.setText("School");
@@ -41,6 +45,8 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        private String requirementId;
+        private OnItemClickListener onItemClickListener;
         private TextView requirementName;
         private TextView requirementPlace;
         private TextView requirementTime;
@@ -52,6 +58,16 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.View
             requirementPlace = itemView.findViewById(R.id.requirement_place);
             requirementTime = itemView.findViewById(R.id.requirement_time);
             requirementBonus = itemView.findViewById(R.id.requirement_bonus);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClicked(requirementId);
+                }
+            });
         }
+    }
+
+    interface OnItemClickListener {
+        void onItemClicked(String id);
     }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import android.view.ViewGroup;
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Requirement;
 import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
+import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -33,7 +35,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PublishedFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener {
+public class PublishedFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener,PublishedAdapter.OnItemClickListener {
 
     private PublishedViewModel mViewModel;
     private List<Requirement> published_requirements = new ArrayList<>();
@@ -41,6 +43,7 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private SmartRefreshLayout refreshLayout;
+    private AppCompatActivity activity;
 
     public static PublishedFragment newInstance() {
         return new PublishedFragment();
@@ -49,8 +52,9 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Log.d("Published","create");
-        return inflater.inflate(R.layout.published_fragment, container, false);
+        View root = inflater.inflate(R.layout.published_fragment, container, false);
+        setHasOptionsMenu(true);
+        return root;
     }
 
     @Override
@@ -62,9 +66,9 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+        activity = (AppCompatActivity) getActivity();
         recyclerView = view.findViewById(R.id.published_requirements_recycler_view);
-        adapter = new PublishedAdapter(published_requirements);
+        adapter = new PublishedAdapter(published_requirements,this);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -114,5 +118,17 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
             e.printStackTrace();
         }
         refreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void onItemClicked(String id) {
+        Intent intent = new Intent(activity, RequirementDetailActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("name", "Name");
+        intent.putExtra("time", "Tomorrow");
+        intent.putExtra("money", "50");
+        intent.putExtra("place", "School");
+        intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+        startActivity(intent);
     }
 }

@@ -7,9 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -73,7 +70,7 @@ public class PublishFragment extends Fragment {
 
     public void initData() {
         //创建一个viewpager的adapter
-        MyTabFragmentAdapter adapter = new MyTabFragmentAdapter(getFragmentManager());
+        PublishTabFragmentAdapter adapter = new PublishTabFragmentAdapter(getFragmentManager());
         List<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new AcceptedFragment());
         fragments.add(new PublishedFragment());
