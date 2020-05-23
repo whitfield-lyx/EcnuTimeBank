@@ -26,13 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PublishFragment extends Fragment {
-    private View viewContent;
+
     private TabLayout my_tablayout;
     private ViewPager my_viewpager;
     private int mode = TabLayout.MODE_FIXED;
-
     public static PublishFragment publishFragment;
-
     private PublishViewModel publishViewModel;
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -69,8 +67,8 @@ public class PublishFragment extends Fragment {
 
 
     public void initConentView(View viewContent) {
-        this.my_tablayout = (TabLayout) viewContent.findViewById(R.id.requirement_tabs);
-        this.my_viewpager = (ViewPager) viewContent.findViewById(R.id.requirement_content);
+        this.my_tablayout = viewContent.findViewById(R.id.requirement_tabs);
+        this.my_viewpager = viewContent.findViewById(R.id.requirement_content);
     }
 
     public void initData() {

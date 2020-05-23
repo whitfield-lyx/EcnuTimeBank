@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name="com.example.ecnutimebank.BaseActivity"
-            android:label="base_activity" >
+            android:label="base_activity"
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
