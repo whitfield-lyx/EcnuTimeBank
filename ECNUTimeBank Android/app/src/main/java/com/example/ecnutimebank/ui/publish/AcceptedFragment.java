@@ -1,7 +1,6 @@
 package com.example.ecnutimebank.ui.publish;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -13,17 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Requirement;
-import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -49,7 +45,7 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.accepted_fragment, container, false);
+        View root = inflater.inflate(R.layout.fragment_accepted, container, false);
         setHasOptionsMenu(true);
         return root;
     }
