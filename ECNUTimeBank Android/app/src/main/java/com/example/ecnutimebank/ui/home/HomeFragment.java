@@ -1,5 +1,6 @@
 package com.example.ecnutimebank.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -32,6 +34,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private AdPlayBanner mAdPlayBanner;
+    private AppCompatActivity activity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        activity = (AppCompatActivity) getActivity();
 //        final TextView textView = root.findViewById(R.id.text_home);
 //        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -61,7 +65,9 @@ public class HomeFragment extends Fragment {
                 .setOnPageClickListener(new AdPlayBanner.OnPageClickListener() {
                     @Override
                     public void onPageClick(AdPageInfo info, int position) {
-                        Toast.makeText(getActivity(), "你点击了图片 " + info.getTitle() + "\n 跳转链接为：" + info.getClickUlr() + "\n 当前位置是：" + position + "\n 当前优先级是：" + info.getOrder(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(activity, HomePlaceDetailActivity.class);
+                        intent.putExtra("description", "这是一个设施的详细信息。");
+                        startActivity(intent);
                     }
                 })
                 .setAutoPlay(true)
