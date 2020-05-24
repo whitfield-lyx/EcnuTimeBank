@@ -74,7 +74,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.requirement_toolbar_menu, menu);
-        MenuItem search = menu.findItem(R.id.anime_search);
+        MenuItem search = menu.findItem(R.id.requirement_search);
         SearchView mSearchView = (SearchView) search.getActionView();
         mSearchView.setSubmitButtonEnabled(true);
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
