@@ -77,27 +77,6 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.requirement_toolbar_menu, menu);
-        MenuItem search = menu.findItem(R.id.anime_search);
-        SearchView mSearchView = (SearchView) search.getActionView();
-        mSearchView.setSubmitButtonEnabled(true);
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Log.i("Requirements", query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         try {
             Thread.sleep(1000);
