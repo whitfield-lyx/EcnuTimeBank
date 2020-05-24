@@ -12,10 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="37d661a6-ce30-4a40-9108-fd3722ce603c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/publish/AcceptedDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/publish/AcceptedDetailActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/publish/AcceptedFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/publish/AcceptedFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/publish/PublishedFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/publish/PublishedFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_accepted_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_accepted_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_published_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_published_detail.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/requirements/RequirementsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ecnutimebank/ui/requirements/RequirementsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_publish.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_publish.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
