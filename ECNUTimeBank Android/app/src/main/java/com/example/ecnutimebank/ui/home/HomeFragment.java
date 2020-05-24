@@ -20,6 +20,7 @@ import com.ryane.banner.AdPageInfo;
 import com.ryane.banner.AdPlayBanner;
 import com.ryane.banner.transformer.RotateDownTransformer;
 import com.ryane.banner.view.TitleView;
+import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private AdPlayBanner mAdPlayBanner;
+    private MarqueeView marqueeView;
     private AppCompatActivity activity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -98,6 +100,28 @@ public class HomeFragment extends Fragment {
                     }
                 })
                 .setUp();
+
+
+        marqueeView = view.findViewById(R.id.marqueeView);
+
+        List<String> info = new ArrayList<>();
+        info.add("11111111111111");
+        info.add("22222222222222");
+        info.add("33333333333333");
+        info.add("44444444444444");
+        info.add("55555555555555");
+        info.add("66666666666666");
+        marqueeView.startWithList(info);
+
+// 在代码里设置自己的动画
+        marqueeView.startWithList(info, R.anim.anim_bottom_in, R.anim.anim_top_out);
+        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, TextView textView) {
+                Toast.makeText(activity.getApplicationContext(),  textView.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
 
@@ -109,5 +133,16 @@ public class HomeFragment extends Fragment {
         }
         super.onDestroy();
 
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        marqueeView.startFlipping();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        marqueeView.stopFlipping();
     }
 }
