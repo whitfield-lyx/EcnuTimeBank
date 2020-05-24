@@ -21,5 +21,6 @@ public class Personal_Information extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 }
