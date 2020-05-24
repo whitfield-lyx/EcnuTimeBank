@@ -42,7 +42,6 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.fragment_requirements, container, false);
         setHasOptionsMenu(true);
         return root;

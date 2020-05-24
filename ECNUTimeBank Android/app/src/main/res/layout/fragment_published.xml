@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.publish.PublishedFragment">
+    android:paddingBottom="?attr/actionBarSize"
     tools:context=".ui.publish.PublishedFragment"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/requirement_refresh_layout"

@@ -1,9 +1,6 @@
 package com.example.ecnutimebank.ui.publish;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -15,19 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Requirement;
-import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
-import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -55,7 +47,7 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.published_fragment, container, false);
+        View root = inflater.inflate(R.layout.fragment_published, container, false);
         setHasOptionsMenu(true);
         return root;
     }
@@ -80,6 +72,11 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
         refreshLayout.setOnLoadMoreListener(this);
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
     }
 
     @Override
