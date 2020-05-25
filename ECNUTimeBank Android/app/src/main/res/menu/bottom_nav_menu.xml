@@ -12,6 +12,13 @@
         android:title="Requirements" />
 
     <item
+        android:id="@+id/navigation_new"
+        android:scaleType="centerCrop"
+        android:icon="@null"
+        android:title=""
+         />
+
+    <item
     android:id="@+id/navigation_publish"
     android:icon="@drawable/ic_notifications_black_24dp"
     android:title="Publish" />

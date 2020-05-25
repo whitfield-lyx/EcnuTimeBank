@@ -51,7 +51,7 @@ public class PublishFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FloatingActionButton btn_send = getActivity().findViewById(R.id.publish_button);
+       /* FloatingActionButton btn_send = getActivity().findViewById(R.id.publish_button);
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class PublishFragment extends Fragment {
                 Intent intent = new Intent(getActivity(),PublishDetailActivity.class);
                 startActivity(intent);
             }
-        });
+        }); 把悬浮的发布需求按钮移至底部导航栏*/
     }
 
 

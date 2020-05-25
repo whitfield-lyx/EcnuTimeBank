@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ecnutimebank.R;
 
-public class MyBank extends AppCompatActivity {
+public class IdentityAuthenticationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_bank);
-        ImageView backToMine = findViewById(R.id.MB_back);
+        setContentView(R.layout.activity_identity_authentication);
+        ImageView backToMine = findViewById(R.id.IA_back);
         backToMine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

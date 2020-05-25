@@ -45,22 +45,22 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.settings_imageView:
-                Intent intent1 = new Intent(getActivity().getApplicationContext(), Settings.class);
+                Intent intent1 = new Intent(getActivity().getApplicationContext(), SettingsActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.profile_imageView:
             case R.id.nickname_textView:
             case R.id.accountNumber_textView:
             case R.id.next_imageView:
-                Intent intent2 = new Intent(getActivity().getApplicationContext(), Personal_Information.class);
+                Intent intent2 = new Intent(getActivity().getApplicationContext(), PersonalInformationActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.identityAuthentication_textView:
-                Intent intent3 = new Intent(getActivity().getApplicationContext(),IdentityAuthentication.class);
+                Intent intent3 = new Intent(getActivity().getApplicationContext(), IdentityAuthenticationActivity.class);
                 startActivity(intent3);
                 break;
             case R.id.myBank_textView:
-                Intent intent4 = new Intent(getActivity().getApplicationContext(), MyBank.class);
+                Intent intent4 = new Intent(getActivity().getApplicationContext(), TimeBankActivity.class);
                 startActivity(intent4);
         }
     }
