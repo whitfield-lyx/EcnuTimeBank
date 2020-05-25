@@ -17,7 +17,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.mine.ProfileDetailActivity"/>
-        <activity android:name=".ui.publish.PublishMoreDetailActivity" />
         <activity
             android:name=".ui.mine.TimeBankActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
