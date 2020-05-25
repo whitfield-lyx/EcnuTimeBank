@@ -15,11 +15,19 @@
         android:name="com.example.ecnutimebank.ui.requirements.RequirementsFragment"
         android:label="Requirements"
         tools:layout="@layout/fragment_requirements" />
+
+    <activity
+        android:id="@+id/navigation_new"
+        android:name="com.example.ecnutimebank.ui.publish.PublishDetailActivity"
+        android:label="New"
+        tools:layout="@layout/activity_publish_detail" />
+
     <fragment
         android:id="@+id/navigation_publish"
         android:name="com.example.ecnutimebank.ui.publish.PublishFragment"
         android:label="Publish"
         tools:layout="@layout/fragment_publish" />
+
     <fragment
         android:id="@+id/navigation_mine"
         android:name="com.example.ecnutimebank.ui.mine.MineFragment"

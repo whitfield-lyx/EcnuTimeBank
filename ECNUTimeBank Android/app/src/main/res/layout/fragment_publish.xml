@@ -35,18 +35,6 @@
         app:layout_constraintTop_toBottomOf="@+id/requirement_tabs"
         tools:layout_editor_absoluteX="0dp" >
     </androidx.viewpager.widget.ViewPager>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/publish_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:fabCustomSize="60dp"
-        app:srcCompat="@drawable/ic_publish"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintVertical_bias="0.88"/>
+    
 
 </androidx.constraintlayout.widget.ConstraintLayout>
