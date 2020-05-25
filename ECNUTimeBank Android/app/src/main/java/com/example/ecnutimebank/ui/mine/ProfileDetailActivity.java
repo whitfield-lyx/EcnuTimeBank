@@ -8,7 +8,7 @@ import android.view.Menu;
 import com.example.ecnutimebank.R;
 
 
-public class Profile_detail extends AppCompatActivity {
+public class ProfileDetailActivity extends AppCompatActivity {
 
 
     @Override

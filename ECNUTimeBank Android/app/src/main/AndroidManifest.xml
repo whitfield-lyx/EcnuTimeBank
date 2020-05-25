@@ -16,19 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.mine.Profile_detail"/>
+        <activity android:name=".ui.mine.ProfileDetailActivity"/>
         <activity android:name=".ui.publish.PublishMoreDetailActivity" />
         <activity
-            android:name=".ui.mine.MyBank"
+            android:name=".ui.mine.TimeBankActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.mine.IdentityAuthentication"
+            android:name=".ui.mine.IdentityAuthenticationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.mine.Personal_Information"
+            android:name=".ui.mine.PersonalInformationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.mine.Settings"
+            android:name=".ui.mine.SettingsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".ui.home.HomePlaceDetailActivity" />
         <activity android:name=".ui.publish.AcceptedDetailActivity" />

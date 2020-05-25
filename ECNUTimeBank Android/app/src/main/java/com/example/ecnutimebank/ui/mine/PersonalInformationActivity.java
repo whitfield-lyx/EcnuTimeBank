@@ -7,19 +7,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ecnutimebank.R;
 
-public class Personal_Information extends AppCompatActivity implements View.OnClickListener {
+public class PersonalInformationActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal_info_layout);
+        setContentView(R.layout.activity_personal_info);
         initView();
     }
 
@@ -108,7 +107,7 @@ public class Personal_Information extends AppCompatActivity implements View.OnCl
             case R.id.MI_profile_imageView:
             case R.id.MI_profile_textView:
             case R.id.changeProfile_imageView:
-                Intent intent = new Intent(Personal_Information.this,Profile_detail.class);
+                Intent intent = new Intent(PersonalInformationActivity.this, ProfileDetailActivity.class);
                 startActivity(intent);
                 finish();
                 break;
