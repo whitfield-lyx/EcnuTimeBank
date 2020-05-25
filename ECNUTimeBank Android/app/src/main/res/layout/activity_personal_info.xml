@@ -44,18 +44,20 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="280dp"
                 android:id="@+id/MI_profile_imageView"
+                android:layout_marginRight="45dp"
                 android:src="@drawable/profile"
-                android:layout_marginLeft="280dp" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="45dp" />
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/arrow_right"
                 android:layout_marginTop="35dp"
-                android:layout_marginStart="370dp"
                 android:id="@+id/changeProfile_imageView"
-                android:layout_marginLeft="370dp" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -105,9 +107,9 @@
                 android:layout_height="30dp"
                 android:src="@drawable/arrow_right"
                 android:layout_marginTop="8dp"
-                android:layout_marginStart="375dp"
                 android:id="@+id/changeNickname_imageView"
-                android:layout_marginLeft="375dp" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -135,9 +137,9 @@
                 android:layout_height="30dp"
                 android:src="@drawable/arrow_right"
                 android:layout_marginTop="8dp"
-                android:layout_marginStart="375dp"
                 android:id="@+id/changeGender_imageView"
-                android:layout_marginLeft="375dp" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -165,9 +167,9 @@
                 android:layout_height="30dp"
                 android:src="@drawable/arrow_right"
                 android:layout_marginTop="8dp"
-                android:layout_marginStart="375dp"
                 android:id="@+id/changeAddress_imageView"
-                android:layout_marginLeft="375dp" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
