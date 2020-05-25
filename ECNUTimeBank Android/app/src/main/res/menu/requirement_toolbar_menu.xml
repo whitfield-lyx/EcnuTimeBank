@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/anime_search"
+        android:id="@+id/requirement_search"
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:showAsAction="collapseActionView|ifRoom"
         app:showAsAction="always" />
 
 </menu>
