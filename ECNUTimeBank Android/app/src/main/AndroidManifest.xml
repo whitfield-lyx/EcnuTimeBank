@@ -11,15 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.publish.PublishMoreDetailActivity"></activity>
-        <activity android:name=".ui.mine.MyBank"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".ui.mine.IdentityAuthentication"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".ui.mine.Personal_Information"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".ui.mine.Settings"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.mine.Profile_detail"/>
+        <activity android:name=".ui.publish.PublishMoreDetailActivity" />
+        <activity
+            android:name=".ui.mine.MyBank"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.mine.IdentityAuthentication"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.mine.Personal_Information"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.mine.Settings"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ui.publish.EmployeeDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
