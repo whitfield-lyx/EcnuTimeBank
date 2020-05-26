@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Requirement;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -39,6 +41,9 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     private RecyclerView.LayoutManager layoutManager;
     private SmartRefreshLayout refreshLayout;
     private AppCompatActivity activity;
+    private Toolbar toolbar;
+    private BottomNavigationViewEx navView;
+    private MenuItem currentItem;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,16 +53,21 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     }
 
     @Override
+    public void onDestroyView() {
+        currentItem.setEnabled(true);
+        super.onDestroyView();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         activity = (AppCompatActivity) getActivity();
-        Toolbar toolbar = activity.findViewById(R.id.toolbar_requirements);
+        toolbar = activity.findViewById(R.id.toolbar_requirements);
+        navView = activity.findViewById(R.id.nav_view);
+        currentItem = navView.getMenu().getItem(navView.getCurrentItem());
+        currentItem.setEnabled(false);
+        currentItem.setOnMenuItemClickListener(null);
         toolbar.setTitle("Requirements");
         activity.setSupportActionBar(toolbar);
-        ActionBar actionBar = activity.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(false);
-        }
-
         recyclerView = view.findViewById(R.id.requirements_recycler_view);
         adapter = new RequirementAdapter(requirements, this);
         layoutManager = new LinearLayoutManager(getContext());
