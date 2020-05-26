@@ -1,8 +1,12 @@
 package com.example.ecnutimebank;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.ecnutimebank.ui.publish.PublishDetailActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +16,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class BaseActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +31,12 @@ public class BaseActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
+        FloatingActionButton published_btn = findViewById(R.id.publish_button);
+        published_btn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(BaseActivity.this, PublishDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
 }
