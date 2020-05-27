@@ -43,14 +43,29 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/requirement_bonus"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="Money: 50"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_weight="3"/>
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/requirement_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="type1  type2"
+                android:textSize="24sp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/requirement_bonus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Money: 50"
+                android:textSize="24sp"
+                android:gravity="center"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>
