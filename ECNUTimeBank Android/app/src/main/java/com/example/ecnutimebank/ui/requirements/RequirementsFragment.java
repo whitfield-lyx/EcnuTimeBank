@@ -1,5 +1,6 @@
 package com.example.ecnutimebank.ui.requirements;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Requirement;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -20,11 +21,11 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -132,5 +133,31 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         intent.putExtra("place", "School");
         intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.requirement_filter:
+                showFilterDialog();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("CheckResult")
+    private void showFilterDialog() {
+        String [] contentArray = {"一","二","三","四","五"};
+        MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
+                .items(contentArray)//添加item内容数组
+                .title(R.string.filter_dialog_title)
+                .positiveText(R.string.filter_dialog_accept)
+                .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                .itemsCallbackMultiChoice(null, (dialog, which, text) -> {
+                    Log.w("Dialog", Arrays.toString(which));
+                    return true;
+                })
+                .build();
+        materialDialog.show();
     }
 }
