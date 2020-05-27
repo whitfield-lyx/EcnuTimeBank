@@ -15,6 +15,7 @@
         android:id="@+id/navigation_new"
         android:scaleType="centerCrop"
         android:icon="@null"
+        android:enabled="false"
         android:title=""
          />
 
