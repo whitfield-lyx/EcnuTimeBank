@@ -10,5 +10,7 @@
     <string name="accepted_requirement">已接受</string>
     <string name="title_activity_publish_detail">发布需求</string>
     <!-- Strings used for fragments for navigation -->
+    <string name="filter_dialog_title">Type Filter</string>
+    <string name="filter_dialog_accept">确认</string>
 
 </resources>
