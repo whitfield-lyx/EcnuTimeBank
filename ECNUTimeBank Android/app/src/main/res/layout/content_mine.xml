@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="?attr/actionBarSize"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/profile"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/profile_imageView"
+                android:layout_marginLeft="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NickName"
+                android:layout_toEndOf="@id/profile_imageView"
+                android:textSize="25sp"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:id="@+id/nickname_textView"
+                android:layout_toRightOf="@id/profile_imageView"
+                android:layout_marginLeft="20dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account Number"
+                android:layout_toEndOf="@id/profile_imageView"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:layout_marginTop="65dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/accountNumber_textView"
+                android:layout_toRightOf="@id/profile_imageView"
+                android:layout_marginLeft="20dp" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/arrow_right"
+                android:layout_marginTop="30dp"
+                android:id="@+id/next_imageView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:orientation="vertical"
+            android:background="@drawable/gray_background">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="      My Bank"
+                android:layout_marginTop="5dp"
+                android:textSize="25sp"
+                android:background="@drawable/white_background"
+                android:id="@+id/myBank_textView"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:textSize="25sp"
+                android:text="      Identity Authentication"
+                android:background="@drawable/white_background"
+                android:id="@+id/identityAuthentication_textView"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

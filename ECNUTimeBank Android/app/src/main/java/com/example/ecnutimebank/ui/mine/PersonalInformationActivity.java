@@ -3,13 +3,16 @@ package com.example.ecnutimebank.ui.mine;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
 import com.example.ecnutimebank.R;
 
@@ -20,6 +23,11 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
         initView();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Personal Information");
+        }
     }
 
     private void dialog_choose_gender(){
@@ -43,8 +51,17 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
         builder.create().show();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initView(){
-        ImageView backToAboutMe = findViewById(R.id.MI_backToAboutMe_imageView);
         TextView profile_text = findViewById(R.id.MI_profile_textView);
         ImageView profile_iv = findViewById(R.id.MI_profile_imageView);
         ImageView changeProfile = findViewById(R.id.changeProfile_imageView);
@@ -66,7 +83,6 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
         Nickname_text.setOnClickListener(this);
         nickname_text.setOnClickListener(this);
         changeNickname_iv.setOnClickListener(this);
-        backToAboutMe.setOnClickListener(this);
         profile_iv.setOnClickListener(this);
         profile_text.setOnClickListener(this);
         changeProfile.setOnClickListener(this);
@@ -87,7 +103,7 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
 
     private void dialog_change_address(){
         final EditText et = new EditText(this);
-        new AlertDialog.Builder(this).setTitle("Nickname")
+        new AlertDialog.Builder(this).setTitle("Address")
                 .setView(et)
                 .setPositiveButton("Commit", new DialogInterface.OnClickListener() {
                     @Override
@@ -101,15 +117,11 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.MI_backToAboutMe_imageView:
-                finish();
-                break;
             case R.id.MI_profile_imageView:
             case R.id.MI_profile_textView:
             case R.id.changeProfile_imageView:
                 Intent intent = new Intent(PersonalInformationActivity.this, ProfileDetailActivity.class);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.MI_Nickname_textView:
             case R.id.MI_nickname_textView:
