@@ -17,18 +17,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.mine.ProfileDetailActivity"/>
-        <activity
-            android:name=".ui.mine.TimeBankActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.mine.IdentityAuthenticationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.mine.PersonalInformationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.mine.SettingsActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.mine.TimeBankActivity" />
+        <activity android:name=".ui.mine.IdentityAuthenticationActivity" />
+        <activity android:name=".ui.mine.PersonalInformationActivity" />
+        <activity android:name=".ui.mine.SettingsActivity" />
         <activity android:name=".ui.home.HomePlaceDetailActivity" />
         <activity android:name=".ui.publish.AcceptedDetailActivity" />
         <activity android:name=".ui.publish.PublishMoreDetailActivity" />
