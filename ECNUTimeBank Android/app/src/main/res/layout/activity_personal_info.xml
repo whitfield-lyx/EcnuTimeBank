@@ -33,10 +33,10 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="45dp" />
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
                 android:src="@drawable/arrow_right"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="45dp"
                 android:id="@+id/changeProfile_imageView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
@@ -85,13 +85,15 @@
                 android:id="@+id/MI_nickname_textView"
                 android:layout_marginRight="42dp" />
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/arrow_right"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="5dp"
                 android:id="@+id/changeNickname_imageView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="5dp" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -114,14 +116,17 @@
                 android:gravity="right"
                 android:id="@+id/MI_gender_textView"
                 android:layout_marginRight="42dp" />
+
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/arrow_right"
-                android:layout_marginTop="8dp"
                 android:id="@+id/changeGender_imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/arrow_right" />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -145,13 +150,15 @@
                 android:id="@+id/MI_address_textView"
                 android:layout_marginRight="42dp" />
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/arrow_right"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="5dp"
                 android:id="@+id/changeAddress_imageView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="5dp" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
