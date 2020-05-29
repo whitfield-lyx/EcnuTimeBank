@@ -9,4 +9,10 @@
         android:showAsAction="collapseActionView|ifRoom"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/requirement_filter"
+        android:title="Filter"
+        android:icon="@drawable/filler"
+        app:showAsAction="collapseActionView|ifRoom" />
+
 </menu>

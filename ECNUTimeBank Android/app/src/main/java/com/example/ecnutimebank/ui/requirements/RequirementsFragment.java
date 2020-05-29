@@ -1,5 +1,6 @@
 package com.example.ecnutimebank.ui.requirements;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,19 +11,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Requirement;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -39,6 +42,9 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     private RecyclerView.LayoutManager layoutManager;
     private SmartRefreshLayout refreshLayout;
     private AppCompatActivity activity;
+    private Toolbar toolbar;
+    private BottomNavigationViewEx navView;
+    private MenuItem currentItem;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,16 +54,21 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     }
 
     @Override
+    public void onDestroyView() {
+        currentItem.setEnabled(true);
+        super.onDestroyView();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         activity = (AppCompatActivity) getActivity();
-        Toolbar toolbar = activity.findViewById(R.id.toolbar_requirements);
+        toolbar = activity.findViewById(R.id.toolbar_requirements);
+        navView = activity.findViewById(R.id.nav_view);
+        currentItem = navView.getMenu().getItem(navView.getCurrentItem());
+        currentItem.setEnabled(false);
+        currentItem.setOnMenuItemClickListener(null);
         toolbar.setTitle("Requirements");
         activity.setSupportActionBar(toolbar);
-        ActionBar actionBar = activity.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(false);
-        }
-
         recyclerView = view.findViewById(R.id.requirements_recycler_view);
         adapter = new RequirementAdapter(requirements, this);
         layoutManager = new LinearLayoutManager(getContext());
@@ -122,5 +133,31 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         intent.putExtra("place", "School");
         intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.requirement_filter:
+                showFilterDialog();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("CheckResult")
+    private void showFilterDialog() {
+        String [] contentArray = {"一","二","三","四","五"};
+        MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
+                .items(contentArray)//添加item内容数组
+                .title(R.string.filter_dialog_title)
+                .positiveText(R.string.filter_dialog_accept)
+                .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
+                .itemsCallbackMultiChoice(null, (dialog, which, text) -> {
+                    Log.w("Dialog", Arrays.toString(which));
+                    return true;
+                })
+                .build();
+        materialDialog.show();
     }
 }
