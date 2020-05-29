@@ -50,24 +50,37 @@
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelText="请填写您的姓名" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="需求内容"
-                app:met_floatingLabel="highlight"
-                app:met_floatingLabelText="请填写您的需求内容,例如:陪同聊天,代跑腿" />
+                android:textSize="18dp"
+                app:ms_padding_left="0dp"
+                app:ms_background_color="@color/colorGrayBackground"
+                app:ms_text_color="@color/colorGrayFont"
+
+                />
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="时间"
-                app:met_floatingLabel="normal" />
+                app:met_floatingLabel="normal"
+                app:met_floatingLabelText="请填写您要求服务的时间"/>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="地址"
-                app:met_floatingLabel="normal" />
+                app:met_floatingLabel="normal"
+                app:met_floatingLabelText="请填写您的地址供志愿者上门服务" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="需求描述"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="请描述你需求的详细内容" />
         </LinearLayout>
 
         <Button
