@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorLogoBackground"
+    tools:context=".ui.login.LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
@@ -132,5 +133,15 @@
         android:layout_marginTop="25dp"
         android:layout_alignRight="@id/cv"
         android:layout_marginRight="-20dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_above="@+id/cv"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-40dp"
+        android:layout_marginBottom="-40dp"
+        app:srcCompat="@mipmap/timebank_logo" />
 
 </RelativeLayout>
