@@ -5,4 +5,7 @@
     <color name="colorAccent">#F5DEB3</color>
     <color name="colorGrayFont">#B9B9B9</color>
     <color name="colorGrayBackground">#FAFAFA</color>
+    <color name="colorNavigatorFill">#FFE0B2</color>
+    <color name="colorContentStatic">#643923</color>
+    <color name="colorMainStyle">#FFA726</color>
 </resources>

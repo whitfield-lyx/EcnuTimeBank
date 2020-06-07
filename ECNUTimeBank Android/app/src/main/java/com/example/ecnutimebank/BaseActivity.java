@@ -20,9 +20,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(R.layout.activity_navigation_bar);
         //BottomNavigationView navView = findViewById(R.id.nav_view);
-        BottomNavigationViewEx navView = findViewById(R.id.nav_view);
+        BottomNavigationViewEx navView = findViewById(R.id.bottom_navigation_bar);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -31,7 +31,7 @@ public class BaseActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        FloatingActionButton published_btn = findViewById(R.id.publish_button);
+        FloatingActionButton published_btn = findViewById(R.id.fab);
         published_btn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(BaseActivity.this, PublishDetailActivity.class);
