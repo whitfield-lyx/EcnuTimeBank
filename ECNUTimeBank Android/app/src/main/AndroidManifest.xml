@@ -16,7 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.mine.ProfileDetailActivity"/>
+        <activity android:name=".ui.login.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.mine.ProfileDetailActivity" />
         <activity android:name=".ui.mine.TimeBankActivity" />
         <activity android:name=".ui.mine.IdentityAuthenticationActivity" />
         <activity android:name=".ui.mine.PersonalInformationActivity" />
@@ -34,13 +47,7 @@
         <activity
             android:name=".BaseActivity"
             android:label="base_activity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".MainActivity" />
     </application>
 
