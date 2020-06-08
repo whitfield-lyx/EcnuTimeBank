@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Home" />
-
+        android:title="首页"
+         />
     <item
         android:id="@+id/navigation_requirements"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Requirements" />
+        android:title="需求"
+         />
 
     <item
         android:id="@+id/navigation_new"
@@ -20,14 +22,16 @@
          />
 
     <item
-    android:id="@+id/navigation_publish"
-    android:icon="@drawable/ic_notifications_black_24dp"
-    android:title="Publish" />
+        android:id="@+id/navigation_publish"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="查看"
+         />
 
 <!--    todo 换掉底部导航栏第4个图标-->
     <item
         android:id="@+id/navigation_mine"
         android:icon="@drawable/ic_mine_black_24dp"
-        android:title="Mine" />
+        android:title="我的"
+         />
 
 </menu>

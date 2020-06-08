@@ -1,10 +1,14 @@
 package com.example.ecnutimebank;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.ecnutimebank.ui.home.HomeFragment;
 import com.example.ecnutimebank.ui.publish.PublishDetailActivity;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -14,6 +18,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.example.ecnutimebank.customcomponents.*;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -22,8 +27,9 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         //BottomNavigationView navView = findViewById(R.id.nav_view);
-        BottomNavigationViewEx navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
+        CustomBottomNavigationViewEx navView = findViewById(R.id.nav_view);
+        navView.enableAnimation(false);
+                // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
 //                R.id.navigation_home, R.id.navigation_requirements, R.id.navigation_publish, R.id.navigation_mine)
@@ -31,6 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
         FloatingActionButton published_btn = findViewById(R.id.publish_button);
         published_btn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
