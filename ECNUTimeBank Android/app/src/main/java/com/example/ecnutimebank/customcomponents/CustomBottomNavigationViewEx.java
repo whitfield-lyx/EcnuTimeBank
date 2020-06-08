@@ -1,15 +1,10 @@
 package com.example.ecnutimebank.customcomponents;
 
 import com.example.ecnutimebank.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.content.Context;
 import android.graphics.*;
+import android.util.AttributeSet;
 import androidx.core.content.ContextCompat;
 
 
