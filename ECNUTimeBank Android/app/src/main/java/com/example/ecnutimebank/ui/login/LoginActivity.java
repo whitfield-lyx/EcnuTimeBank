@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -66,14 +68,19 @@ public class LoginActivity extends AppCompatActivity {
                             public void onSuccess(Response<Result<User>> response) {
                                 Log.d("login", response.body().getMessage());
                                 if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                                    Explode explode = new Explode();
-                                    explode.setDuration(500);
-                                    getWindow().setExitTransition(explode);
-                                    getWindow().setEnterTransition(explode);
-                                    ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
-                                    Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
-                                    startActivity(i2, oc2.toBundle());
+                                    Log.d("login", "登陆成功!");
                                 }
+                                else{
+                                    failedLoginToast();
+                                    Log.d("login", "登陆失败 但还是先让你进去了吧!");
+                                }
+                                Explode explode = new Explode();
+                                explode.setDuration(500);
+                                getWindow().setExitTransition(explode);
+                                getWindow().setEnterTransition(explode);
+                                ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
+                                Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
+                                startActivity(i2, oc2.toBundle());
                             }
                         });
                 fab.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +106,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fab.setVisibility(View.VISIBLE);
+    }
+
+    private void failedLoginToast(){
+        Toast.makeText(this,"登陆失败,但还是让你先进去啦!",Toast.LENGTH_LONG);
     }
 }
 
