@@ -71,18 +71,17 @@ public class LoginActivity extends AppCompatActivity {
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
                 Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
                 startActivity(i2, oc2.toBundle());
-
-                //跳转至注册页
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-                    @Override
-                    public void onClick(View view) {
-                        getWindow().setExitTransition(null);
-                        getWindow().setEnterTransition(null);
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, fab, fab.getTransitionName());
-                        startActivity(new Intent(LoginActivity.this, RegisterActivity.class), options.toBundle());
-                    }
-                });
+            }
+        });
+        //跳转至注册页
+        fab.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View view) {
+                getWindow().setExitTransition(null);
+                getWindow().setEnterTransition(null);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, fab, fab.getTransitionName());
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class), options.toBundle());
             }
         });
     }
