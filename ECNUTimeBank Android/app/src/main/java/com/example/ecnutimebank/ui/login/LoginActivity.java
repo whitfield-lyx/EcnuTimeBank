@@ -1,22 +1,32 @@
 package com.example.ecnutimebank.ui.login;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityOptionsCompat;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityOptionsCompat;
 
 import com.example.ecnutimebank.BaseActivity;
+import com.example.ecnutimebank.entity.User;
+import com.example.ecnutimebank.helper.AppConst;
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.helper.JsonCallBack;
+import com.example.ecnutimebank.helper.Result;
+import com.example.ecnutimebank.helper.ResultCode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         setListener();
     }
     private void initView() {
+
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
         btGo = findViewById(R.id.bt_go);
@@ -46,15 +57,23 @@ public class LoginActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
+                final String telephone = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+
+               login(telephone,password);
+
+                //todo (开发阶段)目前不管怎么样都能登录
+                //跳转至首页
                 Explode explode = new Explode();
                 explode.setDuration(500);
                 getWindow().setExitTransition(explode);
                 getWindow().setEnterTransition(explode);
                 ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
-                Intent i2 = new Intent(LoginActivity.this,BaseActivity.class);
+                Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
                 startActivity(i2, oc2.toBundle());
             }
         });
+        //跳转至注册页
         fab.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -66,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -78,4 +96,29 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         fab.setVisibility(View.VISIBLE);
     }
+
+    private void failedLoginToast(){
+        Toast.makeText(this,"登陆失败,但还是让你先进去啦!",Toast.LENGTH_LONG);
+    }
+
+    private void login(String telephone,String password){
+        OkGo.<Result<User>>post(AppConst.User.login)
+                .tag(this)
+                .params("telephone", telephone)
+                .params("password", password)
+                .execute(new JsonCallBack<Result<User>>() {
+                    @Override
+                    public void onSuccess(Response<Result<User>> response) {
+                        Log.d("login", response.body().getMessage());
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            Log.d("login", "登陆成功!");
+                        }
+                        else{
+                            failedLoginToast();
+                            Log.d("login", "登陆失败 但还是先让你进去了吧!");
+                        }
+                    }
+                });
+    }
 }
+

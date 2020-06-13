@@ -1,24 +1,17 @@
 package com.example.ecnutimebank;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.ecnutimebank.ui.home.HomeFragment;
 import com.example.ecnutimebank.ui.publish.PublishDetailActivity;
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import com.example.ecnutimebank.customcomponents.*;
+import com.example.ecnutimebank.components.*;
 
 public class BaseActivity extends AppCompatActivity {
 

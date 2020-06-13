@@ -1,10 +1,12 @@
-package com.example.ecnutimebank.customcomponents;
+package com.example.ecnutimebank.components;
 
 import com.example.ecnutimebank.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
 import android.content.Context;
 import android.graphics.*;
 import android.util.AttributeSet;
+
 import androidx.core.content.ContextCompat;
 
 
