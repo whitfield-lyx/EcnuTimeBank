@@ -3,6 +3,7 @@ package com.example.ecnutimebank.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,14 +17,27 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.Requirement;
+import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
+import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 import com.ryane.banner.AdPageInfo;
 import com.ryane.banner.AdPlayBanner;
 import com.ryane.banner.transformer.RotateDownTransformer;
 import com.ryane.banner.view.TitleView;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.sunfusheng.marqueeview.MarqueeView;
+
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import static com.ryane.banner.AdPlayBanner.ImageLoaderType.FRESCO;
 import static com.ryane.banner.AdPlayBanner.ImageLoaderType.GLIDE;
@@ -31,12 +45,17 @@ import static com.ryane.banner.AdPlayBanner.ImageLoaderType.PICASSO;
 import static com.ryane.banner.AdPlayBanner.IndicatorType.POINT_INDICATOR;
 import static com.ryane.banner.view.TitleView.Gravity.PARENT_BOTTOM;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoadMoreListener, HomeAdapter.OnItemClickListener {
 
+    private List<Requirement> home_requirements = new ArrayList<>();
     private HomeViewModel homeViewModel;
     private AdPlayBanner mAdPlayBanner;
     private MarqueeView marqueeView;
     private AppCompatActivity activity;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -122,6 +141,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        recyclerView = view.findViewById(R.id.home_recycler_view);
+        adapter = new HomeAdapter(home_requirements, this);
+        StaggeredGridLayoutManager layoutManager = new
+                StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
         return view;
     }
 
@@ -145,4 +172,37 @@ public class HomeFragment extends Fragment {
         super.onStop();
         marqueeView.stopFlipping();
     }
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        refreshLayout.finishLoadMore();
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        refreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void onItemClicked(String id) {
+        Intent intent = new Intent(activity, RequirementDetailActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("name", "Name");
+        intent.putExtra("time", "Tomorrow");
+        intent.putExtra("money", "50");
+        intent.putExtra("place", "School");
+        intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+        startActivity(intent);
+    }
+
 }

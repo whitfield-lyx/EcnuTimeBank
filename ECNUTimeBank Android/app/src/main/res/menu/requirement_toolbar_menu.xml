@@ -6,13 +6,15 @@
         android:id="@+id/requirement_search"
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:searchIcon="@drawable/ic_search"
         android:showAsAction="collapseActionView|ifRoom"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/requirement_filter"
         android:title="Filter"
-        android:icon="@drawable/filler"
+        android:icon="@drawable/filter"
         app:showAsAction="collapseActionView|ifRoom" />
+
 
 </menu>

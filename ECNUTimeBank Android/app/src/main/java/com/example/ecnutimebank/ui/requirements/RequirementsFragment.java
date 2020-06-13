@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ecnutimebank.R;
@@ -69,6 +70,9 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         currentItem.setOnMenuItemClickListener(null);
         toolbar.setTitle("Requirements");
         activity.setSupportActionBar(toolbar);
+        if (activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         recyclerView = view.findViewById(R.id.requirements_recycler_view);
         adapter = new RequirementAdapter(requirements, this);
         layoutManager = new LinearLayoutManager(getContext());
@@ -87,6 +91,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         inflater.inflate(R.menu.requirement_toolbar_menu, menu);
         MenuItem search = menu.findItem(R.id.requirement_search);
         SearchView mSearchView = (SearchView) search.getActionView();
+
         mSearchView.setSubmitButtonEnabled(true);
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
