@@ -5,7 +5,10 @@ public class Requirement {
     String name;
     String time;
     String place;
+    String type_of_place;
     String describe;
+    String distance;
+    String area;
     int bonus;
 
     public Requirement() {
