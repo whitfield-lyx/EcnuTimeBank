@@ -146,7 +146,6 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
         adapter = new HomeAdapter(home_requirements, this);
         StaggeredGridLayoutManager layoutManager = new
                 StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -196,13 +195,7 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
 
     @Override
     public void onItemClicked(String id) {
-        Intent intent = new Intent(activity, RequirementDetailActivity.class);
-        intent.putExtra("id", id);
-        intent.putExtra("name", "Name");
-        intent.putExtra("time", "Tomorrow");
-        intent.putExtra("money", "50");
-        intent.putExtra("place", "School");
-        intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+        Intent intent = new Intent(activity, HomePlaceDetailActivity.class);
         startActivity(intent);
     }
 
