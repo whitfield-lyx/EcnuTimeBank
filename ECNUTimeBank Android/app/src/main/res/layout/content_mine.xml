@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NickName"
+                android:text="@string/nickname"
                 android:layout_toEndOf="@id/profile_imageView"
                 android:textSize="25sp"
                 android:layout_marginTop="25dp"
@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Account Number"
+                android:text="@string/telephone"
                 android:layout_toEndOf="@id/profile_imageView"
                 android:layout_marginStart="20dp"
                 android:textSize="20sp"
@@ -67,7 +67,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="      My Bank"
+                android:text="@string/timeBank"
                 android:layout_marginTop="5dp"
                 android:textSize="25sp"
                 android:background="@drawable/white_background"
@@ -77,7 +77,7 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
                 android:textSize="25sp"
-                android:text="      Identity Authentication"
+                android:text="@string/identity_authentication"
                 android:background="@drawable/white_background"
                 android:id="@+id/identityAuthentication_textView"/>
         </LinearLayout>

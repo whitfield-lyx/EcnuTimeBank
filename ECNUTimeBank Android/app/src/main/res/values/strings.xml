@@ -1,20 +1,23 @@
 <resources>
-    <string name="app_name">EcnuTimeBank</string>
+    <string name="app_name">华师大时间银行</string>
     <string name="title_activity_base">BaseActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">首页</string>
+    <string name="title_dashboard">广告</string>
+    <string name="title_notifications">通知</string>
+    <string name="title_activity_requirement_detail">订单详情</string>
+    <string name="title_activity_requirement_list">需求列表</string>
+    <string name="title_activity_my_requirement">我的需求</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="published_requirement">已发布</string>
     <string name="accepted_requirement">已接受</string>
     <string name="title_activity_publish_detail">发布需求</string>
-    <string name="filter_dialog_title">Type Filter</string>
+    <string name="filter_dialog_title">筛选</string>
     <string name="filter_dialog_accept">确认</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="login_success">login success</string>
+    <string name="login_success">登陆成功</string>
     <string name="login">登录</string>
-    <string name="Username">用户名/手机号</string>
+    <string name="Username">手机号</string>
     <string name="Password">密码</string>
     <string name="forgot_your_password">忘记密码 ?</string>
     <string name="go">Go!</string>
@@ -31,4 +34,10 @@
     <string name="type">类型</string>
     <string name="description">需求描述</string>
     <string name="publish_confirm">确认发布</string>
+
+    <!-- 个人信息页面 -->
+    <string name="nickname">用户名</string>
+    <string name="timeBank">我的时间银行</string>
+    <string name="identity_authentication">     身份认证</string>
+
 </resources>

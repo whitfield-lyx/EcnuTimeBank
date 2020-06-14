@@ -31,12 +31,13 @@
                 android:hint="Published_detail"
                 android:text="@string/published_hint"
                 android:textColor="@color/colorContentStatic"
-                android:textSize="32sp"></TextView>
+                android:textSize="32sp">
+            </TextView>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/name_text"
+                android:id="@+id/et_name"
                 android:hint="@string/name"
                 app:met_textColor="@color/colorContentStatic"
                 app:met_textColorHint="@color/colorContentStatic"
@@ -44,7 +45,7 @@
                 app:met_floatingLabelText="请填写您的姓名" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/time_text"
+                android:id="@+id/et_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/time"
@@ -54,7 +55,7 @@
                 app:met_floatingLabelText="请填写您要求服务的时间" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/tel_text"
+                android:id="@+id/et_tel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/telephone"
@@ -64,7 +65,7 @@
                 app:met_floatingLabelText="请填写您的手机号" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/address_text"
+                android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/address"
@@ -86,7 +87,7 @@
                 />
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/description_text"
+                android:id="@+id/et_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/description"
