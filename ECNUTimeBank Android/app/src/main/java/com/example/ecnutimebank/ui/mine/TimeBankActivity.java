@@ -78,4 +78,13 @@ public class TimeBankActivity extends AppCompatActivity {
             return tabs.get(position);
         }
     }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
