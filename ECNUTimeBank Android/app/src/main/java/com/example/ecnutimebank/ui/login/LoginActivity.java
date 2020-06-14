@@ -77,8 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                 boolean flag = verifyLoginTeleInfo(s.toString());
                 if(flag){
                     usernameInput.setErrorEnabled(false);
+                    btGo.setClickable(true);
                 }else {
                     usernameInput.setError(getString(R.string.username_input_error));
+                    btGo.setClickable(false);
                 }
             }
         });
@@ -102,8 +104,10 @@ public class LoginActivity extends AppCompatActivity {
                 boolean flag = verifyLoginPasswdInfo(s.toString());
                 if(flag){
                     passwdInput.setErrorEnabled(false);
+                    btGo.setClickable(true);
                 }else{
                     passwdInput.setError(getString(R.string.passwd_input_error));
+                    btGo.setClickable(false);
                 }
             }
         });

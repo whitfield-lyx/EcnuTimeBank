@@ -145,8 +145,10 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean flag = verifyRegisterUsernameInfo(s.toString());
                 if(flag){
                     usernameInput.setErrorEnabled(false);
+                    nextButton.setClickable(true);
                 }else {
                     usernameInput.setError(getString(R.string.username_input_error));
+                    nextButton.setClickable(false);
                 }
             }
         });
@@ -170,8 +172,10 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean flag = verifyRegisterPasswdInfo(s.toString());
                 if(flag){
                     passwdInput.setErrorEnabled(false);
+                    nextButton.setClickable(true);
                 }else{
                     passwdInput.setError(getString(R.string.passwd_input_error));
+                    nextButton.setClickable(false);
                 }
             }
         });
@@ -195,8 +199,10 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean flag = verifyRegisterPasswdInfo(s.toString());
                 if(flag){
                     usernameInput.setErrorEnabled(false);
+                    nextButton.setClickable(true);
                 }else {
                     usernameInput.setError(getString(R.string.passwd_input_error));
+                    nextButton.setClickable(false);
                 }
             }
         });
