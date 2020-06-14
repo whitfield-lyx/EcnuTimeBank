@@ -8,6 +8,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.transition.Explode;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -26,6 +29,7 @@ import com.example.ecnutimebank.helper.JsonCallBack;
 import com.example.ecnutimebank.helper.Result;
 import com.example.ecnutimebank.helper.ResultCode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
@@ -45,6 +49,9 @@ public class RegisterActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private CardView cvAdd;
     private Button nextButton;
+
+    private TextInputLayout usernameInput, passwdInput, repeatpasswdInput;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                 animateRevealClose();
             }
         });
+
     }
     private void userRegister() {
         //todo 检查输入格式
@@ -114,6 +122,84 @@ public class RegisterActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
         rePassword = findViewById(R.id.et_repeatpassword);
+
+        usernameInput = findViewById(R.id.username_input);
+        passwdInput = findViewById(R.id.passwd_input);
+        repeatpasswdInput = findViewById(R.id.repeatpasswd_input);
+        /*
+        设置用户名TextInputLayout监听
+         */
+        etUsername.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                boolean flag = verifyRegisterUsernameInfo(s.toString());
+                if(flag){
+                    usernameInput.setErrorEnabled(false);
+                }else {
+                    usernameInput.setError(getString(R.string.username_input_error));
+                }
+            }
+        });
+
+        /*
+        设置密码TextInputLayout监听
+         */
+        etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                boolean flag = verifyRegisterPasswdInfo(s.toString());
+                if(flag){
+                    passwdInput.setErrorEnabled(false);
+                }else{
+                    passwdInput.setError(getString(R.string.passwd_input_error));
+                }
+            }
+        });
+
+        /*
+        设置重复输入密码TextInputLayout监听
+         */
+        rePassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                boolean flag = verifyRegisterPasswdInfo(s.toString());
+                if(flag){
+                    usernameInput.setErrorEnabled(false);
+                }else {
+                    usernameInput.setError(getString(R.string.passwd_input_error));
+                }
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -197,5 +283,32 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         animateRevealClose();
+    }
+
+    /*
+        验证手机号码的输入格式
+    */
+    private boolean verifyRegisterUsernameInfo(String telephone){
+        if(TextUtils.isEmpty(telephone))
+            return false;
+        /*判断字符串是否符合手机号码格式
+         * 移动号段: 134,135,136,137,138,139,147,150,151,152,157,158,159,170,178,182,183,184,187,188
+         * 联通号段: 130,131,132,145,155,156,170,171,175,176,185,186
+         * 电信号段: 133,149,153,170,173,177,180,181,189
+         */
+        String telRegex = "^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$";// "[1]"代表下一位为数字可以是几，"[0-9]"代表可以为0-9中的一个，"[5,7,9]"表示可以是5,7,9中的任意一位,[^4]表示除4以外的任何一个,\\d{9}"代表后面是可以是0～9的数字，有9位。
+        return telephone.matches(telRegex);
+    }
+    /*
+    验证密码和重复输入密码的输入格式
+    */
+    private boolean verifyRegisterPasswdInfo(String passwd){
+        if(TextUtils.isEmpty(passwd))
+            return false;
+        /*
+        判断密码是否是由6~18位数字或字母组成
+         */
+        String regex = "^[a-zA-Z0-9]{6,18}$";
+        return passwd.matches(regex);
     }
 }
