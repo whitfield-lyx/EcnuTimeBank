@@ -15,7 +15,7 @@ public class AppConst {
     }
 
     public interface Order {
-
+        String publish_new_order = SERVER_ADDRESS+"/api/order";
     }
 
     public interface Faciliy{

@@ -21,6 +21,10 @@ public class Result<T> implements Serializable {
         this.code = code;
     }
 
+    public Result(T data) {
+        this.data = data;
+    }
+
     public Result(int code, T data) {
         this.code = code;
         this.data = data;

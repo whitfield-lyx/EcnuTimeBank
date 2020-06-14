@@ -9,4 +9,8 @@
     <color name="colorGrayBackground">#FAFAFA</color>
     <color name="colorLogoBackground">#FFF7E9</color>
     <color name="colorContentStatic">#643923</color>
+    <color name="colorSecondaryText">#BC7F5E</color>
+    <color name="colorMainText">#8E644D</color>
+    <color name="colorStoke">#D7D7D7</color>
+    <color name="colorItemBackground">#E6FDF8EF</color>
 </resources>
