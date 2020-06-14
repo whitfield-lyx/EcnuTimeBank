@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:text="      Text Size Setting"
+            android:text="@string/setTextSize"
             android:id="@+id/sizeSetting_textView"
             android:textSize="25sp"
             android:background="@drawable/white_background" />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="学号/工号"
+            android:text="@string/studentNumber"
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
@@ -21,13 +22,14 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/xhgh"
             android:layout_marginTop="30dp"
-            android:hint="Type Something here"
+            android:hint="@string/hint"
             android:inputType="text"
-            android:id="@+id/xuehao_gonghao"/>
+            android:id="@+id/xuehao_gonghao"
+            android:layout_toEndOf="@id/xhgh" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="数据库密码"
+            android:text="@string/databasePassword"
             android:textSize="20sp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
@@ -38,16 +40,17 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/pw"
             android:layout_marginTop="100dp"
-            android:hint="Type Something here"
+            android:hint="@string/hint"
             android:inputType="text"
             android:id="@+id/IA_password"
-            android:layout_toEndOf="@id/pw" />
+            android:layout_toEndOf="@id/pw"
+            tools:ignore="TextFields" />
     </RelativeLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Submit"
+        android:text="@string/submit"
         android:layout_marginTop="20dp"
         android:id="@+id/IA_submit"/>
 

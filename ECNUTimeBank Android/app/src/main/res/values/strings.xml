@@ -39,5 +39,18 @@
     <string name="nickname">用户名</string>
     <string name="timeBank">我的时间银行</string>
     <string name="identity_authentication">     身份认证</string>
+    <string name="accountNumber">账号</string>
+    <string name="identityAuthentication">资格认证</string>
+    <string name="exchangeCash">兑换</string>
+    <string name="myTime">我的时间券</string>
+    <string name="myBalance">余额</string>
+    <string name="setTextSize">Text Size Setting</string>
+    <string name="profile">   头像</string>
+    <string name="id_number">账号</string>
+    <string name="gender">性别</string>
+    <string name="studentNumber">学号/工号</string>
+    <string name="hint">Type Something here</string>
+    <string name="databasePassword">数据库密码</string>
+    <string name="submit">Submit</string>
 
 </resources>
