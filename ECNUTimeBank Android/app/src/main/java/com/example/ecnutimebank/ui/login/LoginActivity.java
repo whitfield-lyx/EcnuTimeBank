@@ -58,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.username_input);
         passwdInput = findViewById(R.id.passwd_input);
 
+        /*
+        设置用户名TextInputLayout监听
+         */
         etUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,6 +83,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        设置密码TextInputLayout监听
+         */
         etPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -170,6 +176,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+    /*
+    验证手机号码输入格式
+    */
     private boolean verifyLoginTeleInfo(String telephone){
         if(TextUtils.isEmpty(telephone))
             return false;
@@ -181,9 +190,15 @@ public class LoginActivity extends AppCompatActivity {
         String telRegex = "^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$";// "[1]"代表下一位为数字可以是几，"[0-9]"代表可以为0-9中的一个，"[5,7,9]"表示可以是5,7,9中的任意一位,[^4]表示除4以外的任何一个,\\d{9}"代表后面是可以是0～9的数字，有9位。
         return telephone.matches(telRegex);
     }
+    /*
+    验证密码输入格式
+    */
     private boolean verifyLoginPasswdInfo(String passwd){
         if(TextUtils.isEmpty(passwd))
             return false;
+        /*
+        判断密码是否是由6~18位数字或字母组成
+         */
         String regex = "^[a-zA-Z0-9]{6,18}$";
         return passwd.matches(regex);
     }
