@@ -43,7 +43,7 @@
                     android:paddingStart="50dp"
                     android:paddingEnd="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="50dp">
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/username_input"
                         android:textColorHint="#f0f7f4"
@@ -68,7 +68,7 @@
                     android:paddingEnd="30dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="50dp">
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/passwd_input"
                         android:textColorHint="#f0f7f4"
@@ -93,7 +93,7 @@
                     android:paddingEnd="30dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="50dp">
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/repeatpasswd_input"
                         android:textColorHint="#f0f7f4"

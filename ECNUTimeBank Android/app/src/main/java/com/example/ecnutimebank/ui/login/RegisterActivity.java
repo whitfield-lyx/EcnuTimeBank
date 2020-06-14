@@ -198,10 +198,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 boolean flag = verifyRegisterPasswdInfo(s.toString());
                 if(flag){
-                    usernameInput.setErrorEnabled(false);
+                    repeatpasswdInput.setErrorEnabled(false);
                     nextButton.setClickable(true);
                 }else {
-                    usernameInput.setError(getString(R.string.passwd_input_error));
+                    repeatpasswdInput.setError(getString(R.string.passwd_input_error));
                     nextButton.setClickable(false);
                 }
             }

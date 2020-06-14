@@ -23,6 +23,6 @@
     <string name="register">REGISTER</string>
 
     <string name="username_input_error">手机号无效</string>
-    <string name="passwd_input_error">密码格式不符（请输入6~18位数字或字母符号）</string>
+    <string name="passwd_input_error">密码无效(请输入6~18位数字或字母符号)</string>
 
 </resources>
