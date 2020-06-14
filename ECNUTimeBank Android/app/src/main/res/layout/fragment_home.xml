@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.ryane.banner.AdPlayBanner
-        android:id="@+id/place_banner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner">
+        <com.ryane.banner.AdPlayBanner
+            android:id="@+id/place_banner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+    </LinearLayout>
 
     <!--通知滚动条
     <com.sunfusheng.marqueeview.MarqueeView
@@ -23,12 +28,15 @@
         app:mvSingleLine="true"
         android:background="?attr/colorPrimary"/>
         -->
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:id="@+id/home_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    </LinearLayout>
 
 </LinearLayout>

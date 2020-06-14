@@ -23,6 +23,7 @@ import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 import com.ryane.banner.AdPageInfo;
 import com.ryane.banner.AdPlayBanner;
 import com.ryane.banner.transformer.RotateDownTransformer;
+import com.ryane.banner.transformer.ZoomOutPageTransformer;
 import com.ryane.banner.view.TitleView;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.sunfusheng.marqueeview.MarqueeView;
@@ -99,7 +100,7 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
                 //.addTitleView(new TitleView(getContext()).setPosition(PARENT_BOTTOM).setTitlePadding(5, 5, 5, 5).setTitleMargin(0, 0, 0, 25).setTitleSize(15).setViewBackground(0x55000000).setTitleColor(getResources().getColor(R.color.white)))
                 //.addTitleView(TitleView.getDefaultTitleView(getApplicationContext()))
                 .setBannerBackground(0xff565656)
-                .setPageTransformer(new RotateDownTransformer())
+                .setPageTransformer(new ZoomOutPageTransformer())
                 .setInfoList(dataTest)
                 // 设置不可以手动滑动
                 .setCanScroll(true)
