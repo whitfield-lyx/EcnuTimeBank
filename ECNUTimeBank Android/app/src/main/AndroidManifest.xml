@@ -18,7 +18,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.login.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/register"
+            >
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"
@@ -29,19 +31,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.mine.ProfileDetailActivity" />
-        <activity android:name=".ui.mine.TimeBankActivity" />
-        <activity android:name=".ui.mine.IdentityAuthenticationActivity" />
+        <activity android:name=".ui.mine.TimeBankActivity"
+            android:label="@string/timeBank"/>
+        <activity android:name=".ui.mine.IdentityAuthenticationActivity"
+            android:label="@string/identity_authentication"/>
         <activity android:name=".ui.mine.PersonalInformationActivity" />
         <activity android:name=".ui.mine.SettingsActivity" />
-        <activity android:name=".ui.home.HomePlaceDetailActivity" />
-        <activity android:name=".ui.publish.AcceptedDetailActivity" />
-        <activity android:name=".ui.publish.PublishMoreDetailActivity" />
+        <activity android:name=".ui.home.HomePlaceDetailActivity"
+            android:label="@string/title_facility"/>
+        <activity android:name=".ui.publish.AcceptedDetailActivity"
+            android:label="@string/title_activity_requirement_detail"/>
+        <activity android:name=".ui.publish.PublishMoreDetailActivity"
+            android:label="@string/title_activity_requirement_detail"/>
         <activity
             android:name=".ui.publish.EmployeeDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.requirements.RequirementDetailActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/titie_volunteer" />
+        <activity android:name=".ui.requirements.RequirementDetailActivity"
+            android:label="@string/title_activity_requirement_detail"/>
         <activity
             android:name=".ui.publish.PublishDetailActivity"
             android:label="@string/title_activity_publish_detail" />

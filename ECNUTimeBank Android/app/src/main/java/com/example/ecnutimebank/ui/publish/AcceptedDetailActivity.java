@@ -35,7 +35,7 @@ public class AcceptedDetailActivity extends AppCompatActivity implements View.On
         describe = findViewById(R.id.requirement_describe_content);
 
         cancelBtn = findViewById(R.id.requirement_cancel_btn);
-        cancelBtn.setText("Cancel");
+
 
         name.setText(intent.getStringExtra("name"));
         time.setText(intent.getStringExtra("time"));

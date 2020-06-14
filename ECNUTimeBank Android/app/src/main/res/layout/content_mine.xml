@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="150dp"
                 android:textSize="20sp"
-                android:text="Nickname"
+                android:text="@string/nickname"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:id="@+id/nickname_textView"/>
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="175dp"
                 android:textSize="20sp"
-                android:text="\@accountNumber"
+                android:text="@string/telephone"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:id="@+id/accountNumber_textView"/>
