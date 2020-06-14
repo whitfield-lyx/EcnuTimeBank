@@ -51,9 +51,12 @@
                 android:paddingLeft="50dp"
                 android:paddingRight="30dp">
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/username_input"
                     android:textColorHint="#c5c5c5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="11">
                     <EditText
                         android:textSize="18sp"
                         android:hint="@string/Username"
@@ -77,9 +80,11 @@
                 android:paddingRight="30dp"
                 android:paddingLeft="50dp">
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwd_input"
                     android:textColorHint="#c5c5c5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true">
                     <EditText
                         android:textSize="18sp"
                         android:hint="@string/Password"
