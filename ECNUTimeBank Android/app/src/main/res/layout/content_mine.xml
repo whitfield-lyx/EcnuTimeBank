@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="?attr/actionBarSize"
+    android:orientation="vertical"
     app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,71 +19,88 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:background="@drawable/gray_background">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/gray_background"
+                    android:id="@+id/background_profile"/>
+            </LinearLayout>
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/profile"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginBottom="20dp"
                 android:id="@+id/profile_imageView"
                 android:layout_marginLeft="20dp" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NickName"
-                android:layout_toEndOf="@id/profile_imageView"
-                android:textSize="25sp"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="20dp"
-                android:id="@+id/nickname_textView"
-                android:layout_toRightOf="@id/profile_imageView"
-                android:layout_marginLeft="20dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Account Number"
-                android:layout_toEndOf="@id/profile_imageView"
-                android:layout_marginStart="20dp"
+                android:layout_marginTop="150dp"
                 android:textSize="20sp"
-                android:layout_marginTop="65dp"
-                android:layout_marginBottom="20dp"
-                android:id="@+id/accountNumber_textView"
-                android:layout_toRightOf="@id/profile_imageView"
-                android:layout_marginLeft="20dp" />
+                android:text="Nickname"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:id="@+id/nickname_textView"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="175dp"
+                android:textSize="20sp"
+                android:text="\@accountNumber"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:id="@+id/accountNumber_textView"/>
+
             <ImageView
                 android:layout_width="30dp"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 android:src="@drawable/arrow_right"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="10dp"
-                android:id="@+id/next_imageView"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="145dp"
+                android:layout_marginEnd="10dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:id="@+id/next_imageView"/>
+
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="3dp"
             android:orientation="vertical"
-            android:background="@drawable/gray_background">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:text="      My Bank"
-                android:layout_marginTop="5dp"
-                android:textSize="25sp"
-                android:background="@drawable/white_background"
-                android:id="@+id/myBank_textView"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:textSize="25sp"
-                android:text="      Identity Authentication"
-                android:background="@drawable/white_background"
-                android:id="@+id/identityAuthentication_textView"/>
-        </LinearLayout>
+            android:background="@drawable/gray_background"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:textSize="25sp"
+            android:text="      资格认证"
+            android:background="@drawable/white_background"
+            android:id="@+id/identityAuthentication_textView"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="vertical"
+            android:background="@drawable/gray_background"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="      兑换"
+            android:layout_marginTop="5dp"
+            android:textSize="25sp"
+            android:background="@drawable/white_background"
+            android:id="@+id/myBank_textView"/>
+
     </LinearLayout>
 
 </LinearLayout>
