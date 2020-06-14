@@ -21,7 +21,7 @@ public class HomePlaceDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         description = findViewById(R.id.home_place_description);
-        description.setText("description" + intent.getStringExtra("description"));
+        description.setText(intent.getStringExtra("description"));
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

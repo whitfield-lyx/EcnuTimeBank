@@ -68,7 +68,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         currentItem = navView.getMenu().getItem(navView.getCurrentItem());
         currentItem.setEnabled(false);
         currentItem.setOnMenuItemClickListener(null);
-        toolbar.setTitle("Requirements");
+        toolbar.setTitle("需求列表");
         activity.setSupportActionBar(toolbar);
         if (activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="175dp"
                 android:textSize="20sp"
-                android:text="@string/accountNumber"
+                android:text="@string/telephone"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:id="@+id/accountNumber_textView"/>

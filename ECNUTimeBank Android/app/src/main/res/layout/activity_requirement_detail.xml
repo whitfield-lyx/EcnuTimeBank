@@ -77,7 +77,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="20dp"
-        android:text="requirement accept"
+        android:text="@string/accept_requirement"
         android:textColor="#ffffff"
         style="?android:attr/borderlessButtonStyle"
         android:background="@drawable/btn_accept"
