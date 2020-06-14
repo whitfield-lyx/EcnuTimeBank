@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
                 })
                 .setUp();
 
-
+   /*通知滚动条
         marqueeView = view.findViewById(R.id.marqueeView);
 
         List<String> info = new ArrayList<>();
@@ -140,7 +140,7 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
                 Toast.makeText(activity.getApplicationContext(),  textView.getText(), Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         recyclerView = view.findViewById(R.id.home_recycler_view);
         adapter = new HomeAdapter(home_requirements, this);
         StaggeredGridLayoutManager layoutManager = new
@@ -164,13 +164,13 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
     @Override
     public void onStart() {
         super.onStart();
-        marqueeView.startFlipping();
+        //marqueeView.startFlipping();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        marqueeView.stopFlipping();
+        //marqueeView.stopFlipping();
     }
 
     @Override

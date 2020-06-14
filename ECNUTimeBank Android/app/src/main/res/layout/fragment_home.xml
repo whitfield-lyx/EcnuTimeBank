@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 
+    <!--通知滚动条
     <com.sunfusheng.marqueeview.MarqueeView
         android:id="@+id/marqueeView"
         android:layout_width="match_parent"
@@ -21,6 +22,7 @@
         app:mvTextSize="14sp"
         app:mvSingleLine="true"
         android:background="?attr/colorPrimary"/>
+        -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginLeft="10dp"

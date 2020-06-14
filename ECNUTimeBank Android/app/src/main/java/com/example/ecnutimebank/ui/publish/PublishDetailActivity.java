@@ -23,7 +23,7 @@ public class PublishDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
         getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
 
-        MaterialSpinner spinner = (MaterialSpinner) findViewById(R.id.spinner);
+        MaterialSpinner spinner = (MaterialSpinner) findViewById(R.id.type_spinner);
         spinner.setItems("陪聊", "散步", "代买", "打扫", "其他");
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
