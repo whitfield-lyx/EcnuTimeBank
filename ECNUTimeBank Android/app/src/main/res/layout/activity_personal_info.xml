@@ -48,7 +48,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="@string/id_number"
+                android:text="@string/whitespace_telephone"
                 android:textSize="25sp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/white_background"
@@ -73,7 +73,7 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
                 android:textSize="25sp"
-                android:text="@string/nickname"
+                android:text="@string/whitespace_nickname"
                 android:background="@drawable/white_background"
                 android:id="@+id/MI_Nickname_textView"/>
             <TextView
@@ -85,7 +85,8 @@
                 android:text="nickname"
                 android:gravity="right"
                 android:id="@+id/MI_nickname_textView"
-                android:layout_marginRight="42dp" />
+                android:layout_marginRight="42dp"
+                tools:ignore="RtlHardcoded" />
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
