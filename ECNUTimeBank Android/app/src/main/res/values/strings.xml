@@ -34,16 +34,33 @@
     <string name="type">类型</string>
     <string name="description">需求描述</string>
     <string name="publish_confirm">确认发布</string>
-
-    <!-- 个人信息页面 -->
-    <string name="nickname">用户名</string>
-    <string name="timeBank">我的时间银行</string>
-    <string name="identity_authentication">     身份认证</string>
     <string name="titie_volunteer">志愿者</string>
     <string name="title_facility">设施详情</string>
     <string name="accept_requirement">接收订单</string>
     <string name="accept">接受</string>
     <string name="refuse">拒绝</string>
     <string name="cancel">取消</string>
+
+    <!-- 个人信息页面 -->
+    <string name="nickname">用户名</string>
+    <string name="whitespace_telephone">\t\t手机</string>
+    <string name="whitespace_nickname">\t\t用户名</string>
+    <string name="timeBank">我的时间银行</string>
+    <string name="identity_authentication">身份认证</string>
+    <string name="accountNumber">\t\t账号</string>
+    <string name="identityAuthentication">\t\t资格认证</string>
+    <string name="exchangeCash">\t\t时间券兑换</string>
+    <string name="myTime">我的时间券</string>
+    <string name="myBalance">余额</string>
+    <string name="setTextSize">\t\t调整字体大小</string>
+    <string name="profile">\t\t头像</string>
+    <string name="id_number">\t\t账号</string>
+    <string name="gender">\t\t性别</string>
+    <string name="studentNumber">学号/工号</string>
+    <string name="hint">在此输入</string>
+    <string name="databasePassword">数据库密码</string>
+    <string name="submit">提交</string>
+
+    
 
 </resources>

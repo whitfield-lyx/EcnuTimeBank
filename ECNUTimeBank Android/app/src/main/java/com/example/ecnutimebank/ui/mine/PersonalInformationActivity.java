@@ -26,7 +26,7 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Personal Information");
+            actionBar.setTitle("个人信息");
         }
     }
 
@@ -71,12 +71,6 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
         TextView Gender_text = findViewById(R.id.Gender_textView);
         TextView gender_text = findViewById(R.id.MI_gender_textView);
         ImageView changeGender_iv = findViewById(R.id.changeGender_imageView);
-        TextView Address_text = findViewById(R.id.Address_textView);
-        TextView address_text = findViewById(R.id.MI_address_textView);
-        ImageView changeAddress = findViewById(R.id.changeAddress_imageView);
-        Address_text.setOnClickListener(this);
-        address_text.setOnClickListener(this);
-        changeAddress.setOnClickListener(this);
         Gender_text.setOnClickListener(this);
         gender_text.setOnClickListener(this);
         changeGender_iv.setOnClickListener(this);
@@ -101,18 +95,6 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
                 }).setNegativeButton("Cancel",null).show();
     }
 
-    private void dialog_change_address(){
-        final EditText et = new EditText(this);
-        new AlertDialog.Builder(this).setTitle("Address")
-                .setView(et)
-                .setPositiveButton("Commit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //按下确定键后的事件
-                        /*  待实现  */
-                    }
-                }).setNegativeButton("Cancel",null).show();
-    }
 
     @Override
     public void onClick(View v) {
@@ -132,11 +114,6 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
             case R.id.MI_gender_textView:
             case R.id.changeGender_imageView:
                 dialog_choose_gender();
-                break;
-            case R.id.Address_textView:
-            case R.id.MI_address_textView:
-            case R.id.changeAddress_imageView:
-                dialog_change_address();
                 break;
         }
     }

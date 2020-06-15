@@ -50,7 +50,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         menuItem.setEnabled(false);
         menuItem.setOnMenuItemClickListener(null);
         appCompatActivity.setSupportActionBar(toolbar);
-        toolbar.setTitle("我的个人信息");
+        toolbar.setTitle("我的");
         initView(view);
 
         super.onViewCreated(view, savedInstanceState);

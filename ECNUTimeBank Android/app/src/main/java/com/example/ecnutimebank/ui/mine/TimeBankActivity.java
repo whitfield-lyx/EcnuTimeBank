@@ -34,7 +34,7 @@ public class TimeBankActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Time Bank");
+            actionBar.setTitle("我的时间券");
         }
         initData();
         initView();

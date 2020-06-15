@@ -23,7 +23,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Profile");
+            actionBar.setTitle("头像");
         }
     }
 
