@@ -51,4 +51,14 @@ public class Facility {
     public void setFacilityDescription(String facilityDescription) {
         this.facilityDescription = facilityDescription == null ? null : facilityDescription.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Facility{" +
+                "facilityId=" + facilityId +
+                ", facilityName='" + facilityName + '\'' +
+                ", facilityAddress='" + facilityAddress + '\'' +
+                ", facilityDescription='" + facilityDescription + '\'' +
+                '}';
+    }
 }

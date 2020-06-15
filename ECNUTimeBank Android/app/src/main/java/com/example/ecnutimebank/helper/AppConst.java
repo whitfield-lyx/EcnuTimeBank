@@ -18,7 +18,7 @@ public class AppConst {
         String publish_new_order = SERVER_ADDRESS+"/api/order";
     }
 
-    public interface Faciliy{
+    public interface Facility{
         String get_all_facility= SERVER_ADDRESS+"/api/facility"; //
         String get_facility= SERVER_ADDRESS+"/api/facility"; //+ /{facilityID}
         String select_facility_by_ID= SERVER_ADDRESS+"/api/facility";

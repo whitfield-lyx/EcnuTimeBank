@@ -2,6 +2,7 @@ package com.example.ecnutimebank.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.Facility;
 import com.example.ecnutimebank.entity.Requirement;
+import com.example.ecnutimebank.helper.AppConst;
 import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
 import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 import com.ryane.banner.AdPageInfo;
@@ -49,11 +52,11 @@ import static com.ryane.banner.view.TitleView.Gravity.PARENT_BOTTOM;
 public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoadMoreListener, HomeAdapter.OnItemClickListener {
 
     private List<Requirement> home_requirements = new ArrayList<>();
+    private List<Facility> facilityList = new ArrayList<>();
     private HomeViewModel homeViewModel;
     private AdPlayBanner mAdPlayBanner;
     private MarqueeView marqueeView;
     private AppCompatActivity activity;
-
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -61,18 +64,20 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         activity = (AppCompatActivity) getActivity();
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+
+        //观察者模式 读取Facility数据
+       homeViewModel.getFacilityData().observe(getViewLifecycleOwner(), new Observer<List<Facility>>() {
+           @Override
+           public void onChanged(List<Facility> facilities) {
+               Log.d("Facility", "onChanged: "+facilities.toString());
+           }
+       });
 
         List<AdPageInfo> dataTest = new ArrayList<>();
         AdPageInfo info1 = new AdPageInfo("华师大闵行校区", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590330696394&di=d6cc0e9ea89965a3785a91a257ae7410&imgtype=0&src=http%3A%2F%2Fstatic3.loupan.com%2Fnewsimg%2Fimage%2F2019%2F0613%2F1518513473890.jpg%3FimageView2%2F3%2Fw%2F800%2Fh%2F600%2Fq%2F75", "", 2);

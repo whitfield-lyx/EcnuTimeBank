@@ -152,4 +152,23 @@ public class Order {
     public void setOrderState(String orderState) {
         this.orderState = orderState == null ? null : orderState.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", orderTitle='" + orderTitle + '\'' +
+                ", orderPubleshedTime=" + orderPubleshedTime +
+                ", orderDescription='" + orderDescription + '\'' +
+                ", orderType='" + orderType + '\'' +
+                ", orderTime='" + orderTime + '\'' +
+                ", orderAddress='" + orderAddress + '\'' +
+                ", orderTelephone='" + orderTelephone + '\'' +
+                ", orderBonus=" + orderBonus +
+                ", orderPublisherId=" + orderPublisherId +
+                ", orderAccpetersId=" + orderAccpetersId +
+                ", orderEmployeeListId=" + orderEmployeeListId +
+                ", orderState='" + orderState + '\'' +
+                '}';
+    }
 }
