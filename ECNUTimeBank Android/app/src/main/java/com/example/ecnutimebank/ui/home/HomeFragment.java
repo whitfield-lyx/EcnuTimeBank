@@ -51,41 +51,52 @@ import static com.ryane.banner.view.TitleView.Gravity.PARENT_BOTTOM;
 
 public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoadMoreListener, HomeAdapter.OnItemClickListener {
 
-    private List<Requirement> home_requirements = new ArrayList<>();
+
     private List<Facility> facilityList = new ArrayList<>();
     private HomeViewModel homeViewModel;
     private AdPlayBanner mAdPlayBanner;
-    private MarqueeView marqueeView;
+    // 滚动文字条 private MarqueeView marqueeView;
     private AppCompatActivity activity;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private HomeAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         activity = (AppCompatActivity) getActivity();
 
         //观察者模式 读取Facility数据
-       homeViewModel.getFacilityData().observe(getViewLifecycleOwner(), new Observer<List<Facility>>() {
-           @Override
-           public void onChanged(List<Facility> facilities) {
-               Log.d("Facility", "onChanged: "+facilities.toString());
-           }
-       });
+        homeViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel.getFacilityData().observe(getViewLifecycleOwner(), new Observer<List<Facility>>() {
+            @Override
+            public void onChanged(@Nullable final List<Facility> newFacilityList) {
+                adapter.setFacilityList(newFacilityList);
+                adapter.notifyDataSetChanged();
+                Log.d("FacilityList", "onChange: "+newFacilityList.toString());
+            }
+        });
 
-       //设置滚动图片
+        //设置滚动图片
         mAdPlayBanner = view.findViewById(R.id.place_banner);
         initAdPlayer();
+        //初始化瀑布卡片
+        recyclerView = view.findViewById(R.id.home_recycler_view);
+        adapter = new HomeAdapter(facilityList, this);
+        StaggeredGridLayoutManager layoutManager = new
+                StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
 
-   /*通知滚动条
+
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+
+        return view;
+
+/*通知滚动条
         marqueeView = view.findViewById(R.id.marqueeView);
-
         List<String> info = new ArrayList<>();
         info.add("11111111111111");
         info.add("22222222222222");
@@ -94,7 +105,6 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
         info.add("55555555555555");
         info.add("66666666666666");
         marqueeView.startWithList(info);
-
 // 在代码里设置自己的动画
         marqueeView.startWithList(info, R.anim.anim_bottom_in, R.anim.anim_top_out);
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
@@ -104,14 +114,6 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
             }
         });
 */
-        recyclerView = view.findViewById(R.id.home_recycler_view);
-        adapter = new HomeAdapter(home_requirements, this);
-        StaggeredGridLayoutManager layoutManager = new
-                StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-
-        return view;
     }
 
     @Override

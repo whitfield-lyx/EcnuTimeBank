@@ -23,37 +23,17 @@ public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
     private MutableLiveData<List<Facility>> facilityData;
-    private List<Facility> facilityList;
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
+        initFacilityData();
     }
 
  // 单例模式
     public MutableLiveData<List<Facility>> getFacilityData() {
         if (facilityData == null) {
             facilityData = new MutableLiveData<>();
-            facilityList = new ArrayList<Facility>();
-            //Facility facilityexample = new Facility(1,"体育馆","中山北路3663","很棒的体育馆就是从来不开放");
-            //facilityList.add(facilityexample);
-            OkGo.<Result<List<Facility>>>get(AppConst.Facility.get_all_facility)
-                    .tag(this)
-                    .execute(new JsonCallBack<Result<List<Facility>>>() {
-                        @Override
-                        public void onSuccess(Response<Result<List<Facility>>> response) {
-                            Log.d("Facility", response.body().getMessage());
-                            if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                                Log.d("Facility", "设施获取成功!");
-                                facilityList.addAll(response.body().getData());
-                                Log.d("Facility",facilityList.toString());
-                            }
-                            else{
-                                Log.d("Facility", "设施获取失败!");
-                            }
-                        }
-                    });
-            facilityData.setValue(facilityList);
         }
         return facilityData;
     }
@@ -61,6 +41,55 @@ public class HomeViewModel extends ViewModel {
     public void setFacilityData(MutableLiveData<List<Facility>> facilityData) {
         this.facilityData = facilityData;
     }
+
+    public void initFacilityData(){
+        getFacilityData();
+        OkGo.<Result<List<Facility>>>get(AppConst.Facility.get_all_facility)
+                .tag(this)
+                .execute(new JsonCallBack<Result<List<Facility>>>() {
+                    @Override
+                    public void onSuccess(Response<Result<List<Facility>>> response) {
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            Log.d("Facility", "设施获取成功!");
+                            facilityData.postValue(response.body().getData());
+                        }
+                        else{
+                            Log.d("Facility", "设施获取失败!");
+                        }
+                    }
+                });
+    }
+   /* public void refreshFacilityList(){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        Thread.sleep(20000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    OkGo.<Result<List<Facility>>>get(AppConst.Facility.get_all_facility)
+                            .tag(this)
+                            .execute(new JsonCallBack<Result<List<Facility>>>() {
+                                @Override
+                                public void onSuccess(Response<Result<List<Facility>>> response) {
+                                    if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                                        Log.d("Facility", "设施获取成功!");
+                                        facilityList.addAll(response.body().getData());
+                                        Log.d("Facility",facilityList.toString());
+                                    }
+                                    else{
+                                        Log.d("Facility", "设施获取失败!");
+                                    }
+                                }
+                            });
+                    facilityData.postValue(facilityList);
+                }
+            }
+        }).start();
+    }*/
 
     public LiveData<String> getText() {
         return mText;
