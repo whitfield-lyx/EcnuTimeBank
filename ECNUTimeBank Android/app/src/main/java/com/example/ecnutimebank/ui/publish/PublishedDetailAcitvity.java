@@ -33,7 +33,7 @@ public class PublishedDetailAcitvity extends AppCompatActivity implements View.O
         place = findViewById(R.id.requirement_place_detail);
         money = findViewById(R.id.requirement_money_detail);
         describe = findViewById(R.id.requirement_describe_content);
-        volunteerBtn = findViewById(R.id.requirement_accept_btn);
+        volunteerBtn = findViewById(R.id.requirement_btn);
 
         name.setText(intent.getStringExtra("name"));
         time.setText(intent.getStringExtra("time"));

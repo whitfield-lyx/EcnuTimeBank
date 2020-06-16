@@ -16,4 +16,5 @@
     <color name="colorNavigationClicked">#EF6C00</color>
     <color name="colorDetailLine">#C1ADA2</color>
     <color name="colorDetailBackground">#FFF3E0</color>
+    <color name="colorCancelButton">#DD6161</color>
 </resources>

@@ -91,7 +91,6 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
         adapter.setOnItemClickListener(new HomeAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(int facility_id) {
-                Toast.makeText(getActivity(),"click "+facility_id,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(),HomePlaceDetailActivity.class);
                 intent.putExtra("facility_id",facility_id);
                 startActivity(intent);

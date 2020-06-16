@@ -241,7 +241,7 @@
         </LinearLayout>
     </ScrollView>
     <Button
-        android:id="@+id/requirement_accept_btn"
+        android:id="@+id/requirement_btn"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
