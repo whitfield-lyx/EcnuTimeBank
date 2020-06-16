@@ -38,7 +38,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener, RequirementAdapter.OnItemClickListener, Observer<List<Order>>{
+public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener,
+        RequirementAdapter.OnItemClickListener, Observer<List<Order>>, RequirementsViewModel.OnRequestDoneListener{
 
     private RequirementsViewModel requirementsViewModel;
     private List<Order> requirements = new ArrayList<>();
@@ -57,6 +58,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         setHasOptionsMenu(true);
         requirementsViewModel = ViewModelProviders.of(this).get(RequirementsViewModel.class);
         requirementsViewModel.getRequirementsList().observe(getViewLifecycleOwner(), this);
+        requirementsViewModel.setOnRequestDoneListener(this);
         return root;
     }
 
@@ -90,8 +92,6 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
 
-        requirementsViewModel.load10MoreRequirements();
-
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -119,22 +119,12 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        refreshLayout.finishLoadMore();
+        requirementsViewModel.load10MoreRequirements();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        refreshLayout.finishRefresh();
+        requirementsViewModel.refresh();
     }
 
     @Override
@@ -162,7 +152,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
 
     @SuppressLint("CheckResult")
     private void showFilterDialog() {
-        String [] contentArray = {"一","二","三","四","五"};
+        String[] contentArray = {"一", "二", "三", "四", "五"};
         MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
                 .items(contentArray)//添加item内容数组
                 .title(R.string.filter_dialog_title)
@@ -185,5 +175,15 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void onLoadMoreDone() {
+        refreshLayout.finishLoadMore();
+    }
+
+    @Override
+    public void onRefreshDone() {
+        refreshLayout.finishRefresh();
     }
 }
