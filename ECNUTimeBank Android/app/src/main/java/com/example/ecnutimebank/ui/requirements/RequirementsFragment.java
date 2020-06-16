@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.Order;
 import com.example.ecnutimebank.entity.Requirement;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -31,15 +32,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener, RequirementAdapter.OnItemClickListener {
+public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener, RequirementAdapter.OnItemClickListener, Observer<List<Order>>{
 
     private RequirementsViewModel requirementsViewModel;
-    private List<Requirement> requirements = new ArrayList<>();
+    private List<Order> requirements = new ArrayList<>();
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private RequirementAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private SmartRefreshLayout refreshLayout;
     private AppCompatActivity activity;
@@ -51,6 +55,8 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_requirements, container, false);
         setHasOptionsMenu(true);
+        requirementsViewModel = ViewModelProviders.of(this).get(RequirementsViewModel.class);
+        requirementsViewModel.getRequirementsList().observe(getViewLifecycleOwner(), this);
         return root;
     }
 
@@ -69,6 +75,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         currentItem.setEnabled(false);
         currentItem.setOnMenuItemClickListener(null);
         toolbar.setTitle("需求列表");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorSecondaryText));
         activity.setSupportActionBar(toolbar);
         if (activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -165,5 +172,16 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
                 })
                 .build();
         materialDialog.show();
+    }
+
+    @Override
+    public void onChanged(List<Order> orders) {
+        adapter.setData(orders);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

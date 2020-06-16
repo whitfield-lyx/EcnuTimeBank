@@ -9,15 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.Order;
 import com.example.ecnutimebank.entity.Requirement;
 import java.util.List;
 
 public class AcceptedAdapter extends RecyclerView.Adapter<AcceptedAdapter.ViewHolder> {
-    private List<Requirement> requirements;
+    private List<Requirement> orders;
     private OnItemClickListener onItemClickListener;
 
-    public AcceptedAdapter (List<Requirement> requirements,OnItemClickListener onItemClickListener) {
-        this.requirements = requirements;
+    public AcceptedAdapter (List<Requirement> orders, OnItemClickListener onItemClickListener) {
+        this.orders = orders;
         this.onItemClickListener = onItemClickListener;
     }
 

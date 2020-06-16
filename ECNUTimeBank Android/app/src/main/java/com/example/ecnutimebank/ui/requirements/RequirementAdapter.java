@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ecnutimebank.R;
-import com.example.ecnutimebank.entity.Requirement;
+import com.example.ecnutimebank.entity.Order;
 
 import java.util.List;
 
@@ -14,12 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.ViewHolder> {
-    private List<Requirement> requirements;
+    private List<Order> orders;
     private OnItemClickListener onItemClickListener;
 
-    public RequirementAdapter(List<Requirement> requirements, OnItemClickListener onItemClickListener) {
-        this.requirements = requirements;
+    public RequirementAdapter(List<Order> orders, OnItemClickListener onItemClickListener) {
+        this.orders = orders;
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setData(List<Order> orders) {
+        this.orders = orders;
     }
 
     @NonNull
