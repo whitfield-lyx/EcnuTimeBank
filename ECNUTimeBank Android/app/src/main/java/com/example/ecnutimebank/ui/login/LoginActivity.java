@@ -28,6 +28,7 @@ import com.example.ecnutimebank.helper.JsonCallBack;
 import com.example.ecnutimebank.helper.Result;
 import com.example.ecnutimebank.helper.ResultCode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -35,8 +36,8 @@ import com.lzy.okgo.model.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etUsername;
-    private EditText etPassword;
+    private TextInputEditText etUsername;
+    private TextInputEditText etPassword;
     private Button btGo;
     private CardView cv;
     private FloatingActionButton fab;
@@ -72,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
 
+            @SuppressLint("ResourceAsColor")
             @Override
             public void afterTextChanged(Editable s) {
                 boolean flag = verifyLoginTeleInfo(s.toString());
