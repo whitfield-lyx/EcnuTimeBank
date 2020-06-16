@@ -61,6 +61,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             holder.facility_type.setText("学校");
             holder.facility_distance.setText("500m");
             holder.facility_address.setText("普陀区");
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClicked(0);
+                    }
+                }
+            });
+
         }
 
 
