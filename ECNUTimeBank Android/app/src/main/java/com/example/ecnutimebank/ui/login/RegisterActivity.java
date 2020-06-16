@@ -78,6 +78,19 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
+
+    private void failedRegisterToast(){
+        Toast toast = Toast.makeText(this,"注册失败,请检查用户名和密码！",Toast.LENGTH_LONG);
+        toast.show();
+    }
+    private void successRegisterToast(){
+        Toast toast = Toast.makeText(this, "注册成功！", Toast.LENGTH_LONG);
+        toast.show();
+    }
+    private void RepasswdNotEqualToast(){
+        Toast toast = Toast.makeText(this, "请保证重复密码与密码一致！", Toast.LENGTH_LONG);
+        toast.show();
+    }
     private void userRegister() {
         //todo 检查输入格式
         String username = etUsername.getText().toString().trim();
@@ -85,7 +98,17 @@ public class RegisterActivity extends AppCompatActivity {
         String repeatPassword = rePassword.getText().toString().trim();
         User newUser = new User();
         newUser.setUserName(username);
-        if (username!=null&&password.equals(repeatPassword)) {
+        boolean flag = true;
+
+        if(!verifyRegisterUsernameInfo(username) || !verifyRegisterPasswdInfo(password)){
+            flag = false;
+            failedRegisterToast();
+        }
+        if(!password.equals(repeatPassword)){
+            flag = false;
+            RepasswdNotEqualToast();
+        }
+        if(flag){
             newUser.setUserPassword(password);
             HashMap params = new HashMap<>();
             params.put("userName",username);
@@ -101,17 +124,16 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onSuccess(Response<Result<User>> response) {
                             Log.d("register", response.body().getMessage());
                             if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                                Log.d("register", "注册成功!");
+                                successRegisterToast();
+//                                Log.d("register", "注册成功!");
                                 animateRevealClose();
                             }
                             else{
-                                Log.d("register", "注册失败!");
+                                failedRegisterToast();
+//                                Log.d("register", "注册失败!");
                             }
                         }
                     });
-        }
-        else{
-            Log.d("register", "您输入的密码不一致!");
         }
     }
 

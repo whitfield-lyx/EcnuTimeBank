@@ -1,5 +1,6 @@
 package com.example.ecnutimebank.ui.login;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
@@ -122,15 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString().trim();
 
                 login(telephone, password);
-                //todo (开发阶段)目前不管怎么样都能登录
-                //跳转至首页
-                Explode explode = new Explode();
-                explode.setDuration(500);
-                getWindow().setExitTransition(explode);
-                getWindow().setEnterTransition(explode);
-                ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
-                Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
-                startActivity(i2, oc2.toBundle());
+
             }
         });
         //跳转至注册页
@@ -157,27 +150,42 @@ public class LoginActivity extends AppCompatActivity {
         fab.setVisibility(View.VISIBLE);
     }
 
-    private void failedLoginToast(){
-        Toast.makeText(this,"登陆失败,但还是让你先进去啦!",Toast.LENGTH_LONG);
-    }
 
+    private void failedLoginToast(){
+        Toast toast = Toast.makeText(this,"登陆失败,请检查用户名和密码！",Toast.LENGTH_LONG);
+        toast.show();
+    }
+    private void successLoginToast(){
+        Toast toast = Toast.makeText(this, "登陆成功！", Toast.LENGTH_LONG);
+        toast.show();
+    }
     private void login(String telephone,String password){
         OkGo.<Result<User>>post(AppConst.User.login)
                 .tag(this)
                 .params("telephone", telephone)
                 .params("password", password)
                 .execute(new JsonCallBack<Result<User>>() {
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onSuccess(Response<Result<User>> response) {
                         Log.d("login", response.body().getMessage());
                         if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                            Log.d("login", "登陆成功!");
+                            successLoginToast();
+                            Explode explode = new Explode();
+                            explode.setDuration(500);
+                            getWindow().setExitTransition(explode);
+                            getWindow().setEnterTransition(explode);
+                            ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
+                            Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
+                            startActivity(i2, oc2.toBundle());
+//                            Log.d("login", "登陆成功!");
                         }
-                        else{
-                            failedLoginToast();
-                            Log.d("login", "登陆失败 但还是先让你进去了吧!");
-                        }
+//                        else{
+                        failedLoginToast();
+//                            Log.d("login", "登陆失败 但还是先让你进去了吧!");
+//                        }
                     }
+
                 });
     }
     /*
