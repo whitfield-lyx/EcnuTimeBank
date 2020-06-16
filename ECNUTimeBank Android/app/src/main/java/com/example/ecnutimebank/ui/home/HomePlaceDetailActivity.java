@@ -29,7 +29,7 @@ public class HomePlaceDetailActivity extends AppCompatActivity {
     private TextView facility_id;
     private TextView facility_name;
     private TextView facility_description;
-    private Facility curFacility = new Facility();
+    private Facility curFacility;
     int id = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class HomePlaceDetailActivity extends AppCompatActivity {
         initView();
     }
     private void initCurFacility() {
+        curFacility = new Facility();
         OkGo.<Result<Facility>>get(AppConst.Facility.get_facility+"/"+id)
                 .tag(this)
                 .execute(new JsonCallBack<Result<Facility>>() {
@@ -49,14 +50,17 @@ public class HomePlaceDetailActivity extends AppCompatActivity {
                         if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
                             curFacility = response.body().getData();
                             Log.d("Facility", "单个设施获取成功!"+curFacility.toString());
-                            facility_id.setText(Integer.toString(id));
-                            facility_name.setText(curFacility.getFacilityName());
-                            facility_description.setText(curFacility.getFacilityDescription());
+                            setViewData(curFacility);
                         } else {
                             Log.d("Facility", "单个设施获取失败!");
                         }
                     }
                 });
+    }
+    public void setViewData(Facility curFacility){
+        facility_id.setText(Integer.toString(id));
+        facility_name.setText(curFacility.getFacilityName());
+        facility_description.setText(curFacility.getFacilityDescription());
     }
     public void initView(){
         facility_id = findViewById(R.id.home_place_id);
