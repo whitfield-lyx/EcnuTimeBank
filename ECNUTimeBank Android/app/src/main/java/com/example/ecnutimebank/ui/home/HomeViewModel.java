@@ -60,37 +60,6 @@ public class HomeViewModel extends ViewModel {
             }
         }).start();
     }
-   /* public void refreshFacilityList(){
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    try {
-                        Thread.sleep(20000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    OkGo.<Result<List<Facility>>>get(AppConst.Facility.get_all_facility)
-                            .tag(this)
-                            .execute(new JsonCallBack<Result<List<Facility>>>() {
-                                @Override
-                                public void onSuccess(Response<Result<List<Facility>>> response) {
-                                    if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                                        Log.d("Facility", "设施获取成功!");
-                                        facilityList.addAll(response.body().getData());
-                                        Log.d("Facility",facilityList.toString());
-                                    }
-                                    else{
-                                        Log.d("Facility", "设施获取失败!");
-                                    }
-                                }
-                            });
-                    facilityData.postValue(facilityList);
-                }
-            }
-        }).start();
-    }*/
 
     //清理数据
     @Override

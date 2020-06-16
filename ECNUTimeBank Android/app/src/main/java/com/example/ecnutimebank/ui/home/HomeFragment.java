@@ -49,17 +49,16 @@ import static com.ryane.banner.AdPlayBanner.ImageLoaderType.PICASSO;
 import static com.ryane.banner.AdPlayBanner.IndicatorType.POINT_INDICATOR;
 import static com.ryane.banner.view.TitleView.Gravity.PARENT_BOTTOM;
 
-public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoadMoreListener, HomeAdapter.OnItemClickListener {
+public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoadMoreListener{
 
 
     private List<Facility> facilityList = new ArrayList<>();
     private HomeViewModel homeViewModel;
     private AdPlayBanner mAdPlayBanner;
-    // 滚动文字条 private MarqueeView marqueeView;
     private AppCompatActivity activity;
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -83,37 +82,23 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
         initAdPlayer();
         //初始化瀑布卡片
         recyclerView = view.findViewById(R.id.home_recycler_view);
-        adapter = new HomeAdapter(facilityList, this);
+        adapter = new HomeAdapter(facilityList);
         StaggeredGridLayoutManager layoutManager = new
                 StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-
-
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-
-        return view;
-
-/*通知滚动条
-        marqueeView = view.findViewById(R.id.marqueeView);
-        List<String> info = new ArrayList<>();
-        info.add("11111111111111");
-        info.add("22222222222222");
-        info.add("33333333333333");
-        info.add("44444444444444");
-        info.add("55555555555555");
-        info.add("66666666666666");
-        marqueeView.startWithList(info);
-// 在代码里设置自己的动画
-        marqueeView.startWithList(info, R.anim.anim_bottom_in, R.anim.anim_top_out);
-        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+        adapter.setOnItemClickListener(new HomeAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position, TextView textView) {
-                Toast.makeText(activity.getApplicationContext(),  textView.getText(), Toast.LENGTH_SHORT).show();
+            public void onItemClicked(int facility_id) {
+                Toast.makeText(getActivity(),"click "+facility_id,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),HomePlaceDetailActivity.class);
+                intent.putExtra("facility_id",facility_id);
+                startActivity(intent);
             }
         });
-*/
+        return view;
+
     }
 
     @Override
@@ -123,18 +108,15 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
             mAdPlayBanner.stop();
         }
         super.onDestroy();
-
     }
     @Override
     public void onStart() {
         super.onStart();
-        //marqueeView.startFlipping();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        //marqueeView.stopFlipping();
     }
 
     @Override
@@ -157,11 +139,6 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
         refreshLayout.finishRefresh();
     }
 
-    @Override
-    public void onItemClicked(String id) {
-        Intent intent = new Intent(activity, HomePlaceDetailActivity.class);
-        startActivity(intent);
-    }
 
     public void initAdPlayer(){
         List<AdPageInfo> dataTest = new ArrayList<>();
@@ -175,8 +152,8 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
                 .setOnPageClickListener(new AdPlayBanner.OnPageClickListener() {
                     @Override
                     public void onPageClick(AdPageInfo info, int position) {
-                        Intent intent = new Intent(activity, HomePlaceDetailActivity.class);
-                        intent.putExtra("description", "这是一个设施的详细信息。");
+                        Intent intent = new Intent(activity, HomeAdvertiseDetailActivity.class);
+                        intent.putExtra("description", "这是一个广告的详细信息。");
                         startActivity(intent);
                     }
                 })

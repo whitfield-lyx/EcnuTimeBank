@@ -8,12 +8,12 @@
     <string name="title_activity_requirement_list">需求列表</string>
     <string name="title_activity_my_requirement">我的需求</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="published_requirement">已发布</string>
     <string name="accepted_requirement">已接受</string>
     <string name="title_activity_publish_detail">发布需求</string>
     <string name="filter_dialog_title">筛选</string>
     <string name="filter_dialog_accept">确认</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="login_success">登陆成功</string>
     <string name="login">登录</string>
@@ -60,7 +60,7 @@
     <string name="hint">在此输入</string>
     <string name="databasePassword">数据库密码</string>
     <string name="submit">提交</string>
+    <string name="advertise">广告位招租啦!</string>
 
-    
 
 </resources>

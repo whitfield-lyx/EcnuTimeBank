@@ -27,6 +27,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         this.facilityList = facilityList;
         this.onItemClickListener = onItemClickListener;
     }
+    public HomeAdapter(List<Facility> facilityList) {
+        this.facilityList = facilityList;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,15 +42,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (facilityList != null&&facilityList.size()!=0) {
             Facility curFacility = facilityList.get(position);
-            holder.facility_id = String.valueOf(position+1);
+            holder.facility_id = curFacility.getFacilityId();
             holder.facility_name.setText(curFacility.getFacilityName());
             holder.facility_type.setText("学校");
             holder.facility_distance.setText("500m");
             holder.facility_address.setText(curFacility.getFacilityAddress());
-            holder.onItemClickListener = onItemClickListener;
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClicked(curFacility.getFacilityId());
+                    }
+                }
+            });
         } else {
-            holder.facility_id = String.valueOf(position+1);
-            holder.onItemClickListener = onItemClickListener;
+            holder.facility_id = 0;
             holder.facility_name.setText("华东师范大学");
             holder.facility_type.setText("学校");
             holder.facility_distance.setText("500m");
@@ -70,8 +80,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private String facility_id;
-        private OnItemClickListener onItemClickListener;
+        private int facility_id;
         private TextView facility_name;
         private TextView facility_type;
         private TextView facility_distance;
@@ -88,13 +97,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             ViewGroup.LayoutParams params = facility_image.getLayoutParams();
             params.height =  (int) (500 + Math.random() * 500) ;
             facility_image.setLayoutParams(params);
-            itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(facility_id));
         }
     }
 
     interface OnItemClickListener {
-        void onItemClicked(String id);
+        void onItemClicked (int facility_id);
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
 }
