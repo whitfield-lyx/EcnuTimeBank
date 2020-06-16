@@ -201,6 +201,7 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
         intent.putExtra("time", "Tomorrow");
         intent.putExtra("money", "50");
         intent.putExtra("place", "School");
+        intent.putExtra("contact", "Contact");
         intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
         startActivity(intent);
     }
