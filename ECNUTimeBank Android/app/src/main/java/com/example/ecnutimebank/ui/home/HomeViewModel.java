@@ -21,12 +21,9 @@ import java.util.List;
 //LiveData遵循观察者模式
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
     private MutableLiveData<List<Facility>> facilityData;
 
     public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
         initFacilityData();
     }
 
@@ -43,21 +40,25 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void initFacilityData(){
-        getFacilityData();
-        OkGo.<Result<List<Facility>>>get(AppConst.Facility.get_all_facility)
-                .tag(this)
-                .execute(new JsonCallBack<Result<List<Facility>>>() {
-                    @Override
-                    public void onSuccess(Response<Result<List<Facility>>> response) {
-                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                            Log.d("Facility", "设施获取成功!");
-                            facilityData.postValue(response.body().getData());
-                        }
-                        else{
-                            Log.d("Facility", "设施获取失败!");
-                        }
-                    }
-                });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getFacilityData();
+                OkGo.<Result<List<Facility>>>get(AppConst.Facility.get_all_facility)
+                        .tag(this)
+                        .execute(new JsonCallBack<Result<List<Facility>>>() {
+                            @Override
+                            public void onSuccess(Response<Result<List<Facility>>> response) {
+                                if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                                    Log.d("Facility", "设施获取成功!");
+                                    facilityData.postValue(response.body().getData());
+                                } else {
+                                    Log.d("Facility", "设施获取失败!");
+                                }
+                            }
+                        });
+            }
+        }).start();
     }
    /* public void refreshFacilityList(){
 
@@ -90,10 +91,6 @@ public class HomeViewModel extends ViewModel {
             }
         }).start();
     }*/
-
-    public LiveData<String> getText() {
-        return mText;
-    }
 
     //清理数据
     @Override
