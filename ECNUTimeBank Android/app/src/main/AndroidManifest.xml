@@ -19,11 +19,7 @@
         android:usesCleartextTraffic="true">
 
         <activity android:name=".ui.home.HomeAdvertiseDetailActivity"
-            android:label="@string/advertise">
-    
-        <activity android:name=".ui.login.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:label="@string/advertise"/>
         <activity
             android:name=".ui.login.RegisterActivity"
             android:label="@string/register"
