@@ -9,4 +9,12 @@
     <color name="colorGrayBackground">#FAFAFA</color>
     <color name="colorLogoBackground">#FFF7E9</color>
     <color name="colorContentStatic">#643923</color>
+    <color name="colorSecondaryText">#BC7F5E</color>
+    <color name="colorMainText">#8E644D</color>
+    <color name="colorStroke">#D7D7D7</color>
+    <color name="colorItemBackground">#E6FDF8EF</color>
+    <color name="colorNavigationClicked">#EF6C00</color>
+    <color name="colorDetailLine">#C1ADA2</color>
+    <color name="colorDetailBackground">#FFF3E0</color>
+    <color name="colorCancelButton">#DD6161</color>
 </resources>

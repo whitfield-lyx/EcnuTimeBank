@@ -21,7 +21,7 @@ public class IdentityAuthenticationActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("ID Authentication");
+            actionBar.setTitle("身份认证");
         }
     }
 

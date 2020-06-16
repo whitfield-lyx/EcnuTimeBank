@@ -106,6 +106,7 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
         intent.putExtra("money", "50");
         intent.putExtra("place", "School");
         intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+        intent.putExtra("contact", "Contact");
         startActivity(intent);
     }
 }

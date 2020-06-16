@@ -50,7 +50,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         menuItem.setEnabled(false);
         menuItem.setOnMenuItemClickListener(null);
         appCompatActivity.setSupportActionBar(toolbar);
-        toolbar.setTitle("Mine");
+        toolbar.setTitle("我的");
         initView(view);
 
         super.onViewCreated(view, savedInstanceState);
@@ -98,6 +98,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.profile_imageView:
+                Intent intent1 = new Intent(getActivity().getApplicationContext(),ProfileDetailActivity.class);
+                startActivity(intent1);
+                break;
             case R.id.nickname_textView:
             case R.id.accountNumber_textView:
             case R.id.next_imageView:

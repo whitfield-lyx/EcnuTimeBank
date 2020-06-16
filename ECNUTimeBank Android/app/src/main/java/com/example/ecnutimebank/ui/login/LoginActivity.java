@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         setListener();
     }
     private void initView() {
-
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
         btGo = findViewById(R.id.bt_go);
@@ -59,40 +58,29 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String telephone = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                OkGo.<Result<User>>post(AppConst.User.login)
-                        .tag(this)
-                        .params("telephone", telephone)
-                        .params("password", password)
-                        .execute(new JsonCallBack<Result<User>>() {
-                            @Override
-                            public void onSuccess(Response<Result<User>> response) {
-                                Log.d("login", response.body().getMessage());
-                                if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                                    Log.d("login", "登陆成功!");
-                                }
-                                else{
-                                    failedLoginToast();
-                                    Log.d("login", "登陆失败 但还是先让你进去了吧!");
-                                }
-                                Explode explode = new Explode();
-                                explode.setDuration(500);
-                                getWindow().setExitTransition(explode);
-                                getWindow().setEnterTransition(explode);
-                                ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
-                                Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
-                                startActivity(i2, oc2.toBundle());
-                            }
-                        });
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-                    @Override
-                    public void onClick(View view) {
-                        getWindow().setExitTransition(null);
-                        getWindow().setEnterTransition(null);
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, fab, fab.getTransitionName());
-                        startActivity(new Intent(LoginActivity.this, RegisterActivity.class), options.toBundle());
-                    }
-                });
+
+               login(telephone,password);
+
+                //todo (开发阶段)目前不管怎么样都能登录
+                //跳转至首页
+                Explode explode = new Explode();
+                explode.setDuration(500);
+                getWindow().setExitTransition(explode);
+                getWindow().setEnterTransition(explode);
+                ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
+                Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
+                startActivity(i2, oc2.toBundle());
+            }
+        });
+        //跳转至注册页
+        fab.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View view) {
+                getWindow().setExitTransition(null);
+                getWindow().setEnterTransition(null);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, fab, fab.getTransitionName());
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class), options.toBundle());
             }
         });
     }
@@ -110,6 +98,26 @@ public class LoginActivity extends AppCompatActivity {
 
     private void failedLoginToast(){
         Toast.makeText(this,"登陆失败,但还是让你先进去啦!",Toast.LENGTH_LONG);
+    }
+
+    private void login(String telephone,String password){
+        OkGo.<Result<User>>post(AppConst.User.login)
+                .tag(this)
+                .params("telephone", telephone)
+                .params("password", password)
+                .execute(new JsonCallBack<Result<User>>() {
+                    @Override
+                    public void onSuccess(Response<Result<User>> response) {
+                        Log.d("login", response.body().getMessage());
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            Log.d("login", "登陆成功!");
+                        }
+                        else{
+                            failedLoginToast();
+                            Log.d("login", "登陆失败 但还是先让你进去了吧!");
+                        }
+                    }
+                });
     }
 }
 

@@ -25,7 +25,7 @@ public class AcceptedDetailActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accepted_detail);
+        setContentView(R.layout.activity_requirement_detail);
 
         Intent intent = getIntent();
         name = findViewById(R.id.requirement_name_detail);
@@ -34,15 +34,17 @@ public class AcceptedDetailActivity extends AppCompatActivity implements View.On
         money = findViewById(R.id.requirement_money_detail);
         describe = findViewById(R.id.requirement_describe_content);
 
-        cancelBtn = findViewById(R.id.requirement_cancel_btn);
-        cancelBtn.setText("Cancel");
+        cancelBtn = findViewById(R.id.requirement_btn);
 
         name.setText(intent.getStringExtra("name"));
         time.setText(intent.getStringExtra("time"));
         place.setText(intent.getStringExtra("place"));
         money.setText(intent.getStringExtra("money"));
         describe.setText(intent.getStringExtra("describe"));
+
         cancelBtn.setOnClickListener(this);
+        cancelBtn.setText("取消订单");
+        cancelBtn.setBackground(getResources().getDrawable(R.drawable.btn_refuse));
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

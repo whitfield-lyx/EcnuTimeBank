@@ -15,11 +15,11 @@
             android:id="@+id/toolbar_requirements"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/colorPrimaryDark"
+            app:navigationIcon="@drawable/ic_list"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
     <include layout="@layout/content_requirements" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

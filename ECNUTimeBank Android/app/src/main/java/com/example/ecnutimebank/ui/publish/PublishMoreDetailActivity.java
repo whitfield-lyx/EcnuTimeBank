@@ -38,9 +38,9 @@ public class PublishMoreDetailActivity extends AppCompatActivity implements View
         place = findViewById(R.id.requirement_place_detail);
         money = findViewById(R.id.requirement_money_detail);
         describe = findViewById(R.id.requirement_describe_content);
-        detailBtn = findViewById(R.id.requirement_accept_btn);
+        detailBtn = findViewById(R.id.requirement_btn);
 
-        detailBtn.setText("See Employees");
+        detailBtn.setText("查看志愿者");
         detailBtn.setOnClickListener(this);
 
         name.setText("Name: " + intent.getStringExtra("name"));

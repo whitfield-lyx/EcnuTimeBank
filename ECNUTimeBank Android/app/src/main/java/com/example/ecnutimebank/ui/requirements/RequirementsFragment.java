@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.ecnutimebank.R;
@@ -67,8 +68,11 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         currentItem = navView.getMenu().getItem(navView.getCurrentItem());
         currentItem.setEnabled(false);
         currentItem.setOnMenuItemClickListener(null);
-        toolbar.setTitle("Requirements");
+        toolbar.setTitle("需求列表");
         activity.setSupportActionBar(toolbar);
+        if (activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         recyclerView = view.findViewById(R.id.requirements_recycler_view);
         adapter = new RequirementAdapter(requirements, this);
         layoutManager = new LinearLayoutManager(getContext());
@@ -87,6 +91,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         inflater.inflate(R.menu.requirement_toolbar_menu, menu);
         MenuItem search = menu.findItem(R.id.requirement_search);
         SearchView mSearchView = (SearchView) search.getActionView();
+
         mSearchView.setSubmitButtonEnabled(true);
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -131,6 +136,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         intent.putExtra("time", "Tomorrow");
         intent.putExtra("money", "50");
         intent.putExtra("place", "School");
+        intent.putExtra("contact", "Contact");
         intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
         startActivity(intent);
     }

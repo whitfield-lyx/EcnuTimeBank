@@ -3,103 +3,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:label="@string/title_activity_publish_detail"
-    tools:context=".ui.publish.PublishDetailActivity"
-    android:orientation="horizontal">
+    android:background="@color/colorLogoBackground"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.publish.PublishDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?colorPrimary"
-        android:orientation="vertical"
-        android:paddingBottom="16dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Published_detail"
-            android:text="填写您发布的内容"
-            android:textColor="@android:color/white"
-            android:textSize="32sp">
-        </TextView>
-
-    </LinearLayout>
-
         <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingLeft="48dp"
+            android:paddingLeft="16dp"
             android:paddingTop="16dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Published_detail"
+                android:text="@string/published_hint"
+                android:textColor="@color/colorContentStatic"
+                android:textSize="32sp">
+            </TextView>
+
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="姓名"
+                android:id="@+id/et_name"
+                android:hint="@string/name"
+                app:met_textColor="@color/colorContentStatic"
+                app:met_textColorHint="@color/colorContentStatic"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelText="请填写您的姓名" />
 
-            <com.jaredrummler.materialspinner.MaterialSpinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                app:ms_padding_left="0dp"
-                app:ms_background_color="@color/colorGrayBackground"
-                app:ms_text_color="@color/colorGrayFont"
-
-                />
-
             <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="时间"
+                android:hint="@string/time"
+                app:met_textColor="@color/colorContentStatic"
+                app:met_textColorHint="@color/colorContentStatic"
                 app:met_floatingLabel="normal"
-                app:met_floatingLabelText="请填写您要求服务的时间"/>
+                app:met_floatingLabelText="请填写您要求服务的时间" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_tel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="地址"
+                android:hint="@string/telephone"
+                app:met_textColor="@color/colorContentStatic"
+                app:met_textColorHint="@color/colorContentStatic"
+                app:met_floatingLabel="normal"
+                app:met_floatingLabelText="请填写您的手机号" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                app:met_textColor="@color/colorContentStatic"
+                app:met_textColorHint="@color/colorContentStatic"
                 app:met_floatingLabel="normal"
                 app:met_floatingLabelText="请填写您的地址供志愿者上门服务" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/type_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="需求描述"
+                android:textColor="@color/colorContentStatic"
+                android:textColorHint="@color/colorContentStatic"
+                android:hint="@string/type"
+                android:textSize="18dp"
+                app:ms_background_color="@color/colorLogoBackground"
+                app:ms_padding_left="0dp"
+                />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description"
+                app:met_textColor="@color/colorContentStatic"
+                app:met_textColorHint="@color/colorContentStatic"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelText="请描述你需求的详细内容" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/publish_finish_btn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginBottom="20dp"
-            android:text="确认发布"
-            android:textColor="#ffffff"
-            style="?android:attr/borderlessButtonStyle"
-            android:background="@drawable/btn_accept"
-            android:textSize="22sp"/>
-
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/publish_finish_btn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_accept"
+                android:text="@string/publish_confirm"
+                android:textColor="#ffffff"
+                android:textSize="24sp" />
+        </LinearLayout>
     </LinearLayout>
-
 </ScrollView>
 
 

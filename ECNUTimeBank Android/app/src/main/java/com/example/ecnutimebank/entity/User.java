@@ -95,4 +95,18 @@ public class User {
     public void setUserStudentId(String userStudentId) {
         this.userStudentId = userStudentId == null ? null : userStudentId.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userType='" + userType + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userTelephone='" + userTelephone + '\'' +
+                ", userGender='" + userGender + '\'' +
+                ", userBalance=" + userBalance +
+                ", userStudentId='" + userStudentId + '\'' +
+                '}';
+    }
 }

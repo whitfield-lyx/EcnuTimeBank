@@ -21,6 +21,7 @@ public class RequirementDetailActivity extends AppCompatActivity implements View
     private TextView money;
     private TextView describe;
     private Button acceptBtn;
+    private TextView contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +34,14 @@ public class RequirementDetailActivity extends AppCompatActivity implements View
         place = findViewById(R.id.requirement_place_detail);
         money = findViewById(R.id.requirement_money_detail);
         describe = findViewById(R.id.requirement_describe_content);
-        acceptBtn = findViewById(R.id.requirement_accept_btn);
+        contact = findViewById(R.id.requirement_contact_detail);
+        acceptBtn = findViewById(R.id.requirement_btn);
 
         name.setText("Name: " + intent.getStringExtra("name"));
         time.setText("Time: " + intent.getStringExtra("time"));
         place.setText("Place" + intent.getStringExtra("place"));
         money.setText("Money" + intent.getStringExtra("money"));
+        contact.setText("Contact" + intent.getStringExtra("contact"));
         describe.setText("Describe" + intent.getStringExtra("describe"));
         acceptBtn.setOnClickListener(this);
 

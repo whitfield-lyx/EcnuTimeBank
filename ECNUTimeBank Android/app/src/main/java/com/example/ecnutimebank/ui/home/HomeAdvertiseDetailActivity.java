@@ -1,29 +1,30 @@
-package com.example.ecnutimebank.ui.mine;
+package com.example.ecnutimebank.ui.home;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import com.example.ecnutimebank.R;
 
-import java.util.Objects;
-
-
-public class ProfileDetailActivity extends AppCompatActivity {
-
-
+public class HomeAdvertiseDetailActivity extends AppCompatActivity {
+    private TextView description;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.change_profile);
+        setContentView(R.layout.activity_home_advertise_detail);
+
+        Intent intent = getIntent();
+        description = findViewById(R.id.home_advertise_description);
+        description.setText(intent.getStringExtra("description"));
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("头像");
         }
     }
 
@@ -36,14 +37,5 @@ public class ProfileDetailActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.change_profile,menu);
-        return true;
-    }
-
-    /*Menu功能待实现*/
-
 }
 
