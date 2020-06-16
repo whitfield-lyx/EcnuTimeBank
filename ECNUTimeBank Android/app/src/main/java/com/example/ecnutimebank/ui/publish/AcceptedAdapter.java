@@ -32,10 +32,8 @@ public class AcceptedAdapter extends RecyclerView.Adapter<AcceptedAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.requirementId = "123";
         holder.onItemClickListener = onItemClickListener;
-        holder.requirementName.setText("Name");
-        holder.requirementTime.setText("Tomorrow");
-        holder.requirementPlace.setText("School");
-        holder.requirementBonus.setText("Money: " + 50);
+//        holder.requirementName.setText("Name");
+//        holder.requirementPlace.setText("School");
     }
 
     @Override
@@ -48,15 +46,11 @@ public class AcceptedAdapter extends RecyclerView.Adapter<AcceptedAdapter.ViewHo
         private OnItemClickListener onItemClickListener;
         private TextView requirementName;
         private TextView requirementPlace;
-        private TextView requirementTime;
-        private TextView requirementBonus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             requirementName = itemView.findViewById(R.id.requirement_name);
             requirementPlace = itemView.findViewById(R.id.requirement_place);
-            requirementTime = itemView.findViewById(R.id.requirement_time);
-            requirementBonus = itemView.findViewById(R.id.requirement_bonus);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

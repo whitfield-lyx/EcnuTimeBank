@@ -33,11 +33,9 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.requirementId = "123";
         holder.onItemClickListener = onItemClickListener;
-        holder.requirementName.setText("Name: zhangsan");
-        holder.requirementTime.setText("Time :Tomorrow");
-        holder.requirementPlace.setText("Place: School");
-        holder.requirementBonus.setText("Money: " + 50);
-        holder.requirementType.setText("Type1 Type2");
+//        holder.requirementName.setText("Name: zhangsan");
+//        holder.requirementPlace.setText("Place: School");
+//        holder.requirementType.setText("Type1 Type2");
     }
 
     @Override
@@ -50,17 +48,13 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
         private OnItemClickListener onItemClickListener;
         private TextView requirementName;
         private TextView requirementPlace;
-        private TextView requirementTime;
-        private TextView requirementBonus;
         private TextView requirementType;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             requirementName = itemView.findViewById(R.id.requirement_name);
             requirementPlace = itemView.findViewById(R.id.requirement_place);
-            requirementTime = itemView.findViewById(R.id.requirement_time);
-            requirementBonus = itemView.findViewById(R.id.requirement_bonus);
-            requirementType = itemView.findViewById(R.id.requirement_type);
+            requirementType = itemView.findViewById(R.id.requirement_date);
             itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(requirementId));
         }
     }
