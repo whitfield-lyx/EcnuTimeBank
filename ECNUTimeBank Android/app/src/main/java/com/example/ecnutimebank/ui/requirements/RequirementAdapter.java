@@ -35,16 +35,17 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.requirementId = "123";
+        Order order = orders.get(position);
+        holder.requirementId = String.valueOf(order.getOrderId());
         holder.onItemClickListener = onItemClickListener;
-//        holder.requirementName.setText("Name: zhangsan");
-//        holder.requirementPlace.setText("Place: School");
-//        holder.requirementType.setText("Type1 Type2");
+        holder.requirementName.setText(order.getOrderTitle());
+        holder.requirementPlace.setText(order.getOrderAddress());
+        holder.requirementDate.setText(order.getOrderTime());
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return orders.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,13 +53,13 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
         private OnItemClickListener onItemClickListener;
         private TextView requirementName;
         private TextView requirementPlace;
-        private TextView requirementType;
+        private TextView requirementDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             requirementName = itemView.findViewById(R.id.requirement_name);
             requirementPlace = itemView.findViewById(R.id.requirement_place);
-            requirementType = itemView.findViewById(R.id.requirement_date);
+            requirementDate = itemView.findViewById(R.id.requirement_date);
             itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(requirementId));
         }
     }

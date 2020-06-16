@@ -28,7 +28,7 @@ public class RequirementsViewModel extends ViewModel {
     }
 
     public void load10MoreRequirements() {
-        OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order + "/" + requirementsList.getValue().size())
+        OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order + "/offset/" + requirementsList.getValue().size())
                 .execute(new JsonCallBack<Result<List<Order>>>() {
                     @Override
                     public void onSuccess(Response<Result<List<Order>>> response) {

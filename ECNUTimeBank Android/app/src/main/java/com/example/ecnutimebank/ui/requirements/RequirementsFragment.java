@@ -90,6 +90,8 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
 
+        requirementsViewModel.load10MoreRequirements();
+
         super.onViewCreated(view, savedInstanceState);
     }
 
