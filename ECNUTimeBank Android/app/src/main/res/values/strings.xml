@@ -61,6 +61,6 @@
     <string name="databasePassword">数据库密码</string>
     <string name="submit">提交</string>
     <string name="advertise">广告位招租啦!</string>
-
+    <string name="acount_management"><u>管理我的用户</u></string>
 
 </resources>
