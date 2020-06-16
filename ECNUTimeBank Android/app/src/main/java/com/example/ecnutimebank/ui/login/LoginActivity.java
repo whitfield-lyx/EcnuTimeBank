@@ -122,9 +122,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String telephone = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-
                 login(telephone, password);
-
             }
         });
         //跳转至注册页
@@ -179,15 +177,14 @@ public class LoginActivity extends AppCompatActivity {
                             ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
                             Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
                             startActivity(i2, oc2.toBundle());
-//                            Log.d("login", "登陆成功!");
                         }
-//                        else{
-                        failedLoginToast();
-//                            Log.d("login", "登陆失败 但还是先让你进去了吧!");
-//                        }
+                        else{
+                            failedLoginToast();
+                        }
                     }
-
                 });
+        //todo 开发方便此处无论密码是否正确直接跳转 记得删除
+        startActivity(new Intent(LoginActivity.this, BaseActivity.class));
     }
     /*
     验证手机号码输入格式
