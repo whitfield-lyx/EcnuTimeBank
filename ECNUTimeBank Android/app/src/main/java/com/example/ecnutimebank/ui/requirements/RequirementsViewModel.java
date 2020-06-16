@@ -27,6 +27,7 @@ public class RequirementsViewModel extends ViewModel {
     public RequirementsViewModel() {
         requirementsList = new MutableLiveData<>();
         requirementsList.setValue(new ArrayList<>());
+//        todo 加载时间有点长 切出去之后会直接销毁 希望能保留下来 要么不释放内存 要么保存状态下次恢复
         load10MoreRequirements();
     }
 
