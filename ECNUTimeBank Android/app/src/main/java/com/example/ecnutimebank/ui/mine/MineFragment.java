@@ -23,6 +23,8 @@ import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,13 +46,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         appCompatActivity = (AppCompatActivity) getActivity();
-        Toolbar toolbar = appCompatActivity.findViewById(R.id.toolbar_mine);
         bottomNavigationViewEx=appCompatActivity.findViewById(R.id.nav_view);
         menuItem = bottomNavigationViewEx.getMenu().getItem(bottomNavigationViewEx.getCurrentItem());
         menuItem.setEnabled(false);
         menuItem.setOnMenuItemClickListener(null);
-        appCompatActivity.setSupportActionBar(toolbar);
-        toolbar.setTitle("我的");
         initView(view);
 
         super.onViewCreated(view, savedInstanceState);
@@ -62,48 +61,21 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
     }
 
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.mine_toolbar_menu,menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                Intent intent = new Intent(appCompatActivity,SettingsActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void initView(View view) {
-        ImageView profile = view.findViewById(R.id.profile_imageView);
-        ImageView next = view.findViewById(R.id.next_imageView);
-        TextView nickname = view.findViewById(R.id.nickname_textView);
-        TextView account_number = view.findViewById(R.id.accountNumber_textView);
+        CircleImageView circle = view.findViewById(R.id.profile_imageView);
         TextView my_bank = view.findViewById(R.id.myBank_textView);
         TextView identity_authentication = view.findViewById(R.id.identityAuthentication_textView);
-        nickname.setOnClickListener(this);
-        account_number.setOnClickListener(this);
+        ImageView img = view.findViewById(R.id.mine_settings);
         my_bank.setOnClickListener(this);
         identity_authentication.setOnClickListener(this);
-        profile.setOnClickListener(this);
-        next.setOnClickListener(this);
+        circle.setOnClickListener(this);
+        img.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.profile_imageView:
-                Intent intent1 = new Intent(getActivity().getApplicationContext(),ProfileDetailActivity.class);
-                startActivity(intent1);
-                break;
-            case R.id.nickname_textView:
-            case R.id.accountNumber_textView:
-            case R.id.next_imageView:
                 Intent intent2 = new Intent(getActivity().getApplicationContext(), PersonalInformationActivity.class);
                 startActivity(intent2);
                 break;
@@ -114,6 +86,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.myBank_textView:
                 Intent intent4 = new Intent(getActivity().getApplicationContext(), TimeBankActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.mine_settings:
+                Intent intent5 = new Intent(appCompatActivity,SettingsActivity.class);
+                startActivity(intent5);
+                break;
         }
     }
 }

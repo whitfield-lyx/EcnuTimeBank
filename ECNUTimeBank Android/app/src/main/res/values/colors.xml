@@ -18,4 +18,6 @@
     <color name="colorDetailBackground">#FFF3E0</color>
     <color name="colorCancelButton">#DD6161</color>
     <color name="colorError">#FEDFDF</color>
+    <color name="colorMangement">#287BDD</color>
+    <color name="colorPhoneNumber">#83492D</color>
 </resources>

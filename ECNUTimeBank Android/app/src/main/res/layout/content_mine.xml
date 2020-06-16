@@ -5,100 +5,130 @@
     android:layout_height="match_parent"
     android:paddingBottom="?attr/actionBarSize"
     android:orientation="vertical"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-
-
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    android:background="@color/colorDetailBackground">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="175dp"
                 android:orientation="vertical"
                 android:background="@drawable/gray_background">
                 <ImageView
+                    android:id="@+id/background_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/gray_background"
-                    android:id="@+id/background_profile"/>
+                    android:src="@drawable/gray_background" />
             </LinearLayout>
             <ImageView
+                android:id="@+id/mine_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/settings_icon"
+                android:tint="@color/colorContentStatic"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_imageView"
+                android:clickable="true"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/profile"
+                android:src="@drawable/mine_profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/colorStroke"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="125dp"
                 android:layout_marginBottom="20dp"
-                android:id="@+id/profile_imageView"
-                android:layout_marginLeft="20dp" />
-
+                android:layout_marginLeft="20dp"
+                android:elevation="1dp"/>
             <TextView
+                android:id="@+id/nickname_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
+                android:layout_below="@id/profile_imageView"
                 android:textSize="20sp"
                 android:text="@string/nickname"
+                android:textColor="@color/colorContentStatic"
                 android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:id="@+id/nickname_textView"/>
+                android:layout_marginStart="20dp" />
 
             <TextView
+                android:id="@+id/accountNumber_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="175dp"
-                android:textSize="20sp"
-                android:text="@string/telephone"
+                android:textSize="16sp"
+                android:text="手机号：13845674567"
+                android:layout_below="@id/nickname_textView"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
-                android:id="@+id/accountNumber_textView"/>
+                android:textColor="@color/colorPhoneNumber" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/arrow_right"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="145dp"
-                android:layout_marginEnd="10dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="10dp"
-                android:id="@+id/next_imageView"/>
+           <TextView
+                android:id="@+id/management"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@string/acount_management"
+                android:textColor="@color/colorMangement"
+                android:layout_below="@id/accountNumber_textView"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp" />
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:orientation="vertical"
-            android:background="@drawable/gray_background"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:textSize="25sp"
-            android:text="@string/identityAuthentication"
-            android:background="@drawable/white_background"
-            android:id="@+id/identityAuthentication_textView"/>
-        <LinearLayout
+        <View
+            android:id="@+id/line_mine"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:orientation="vertical"
-            android:background="@drawable/gray_background"/>
-        <TextView
+            android:background="@color/colorDetailLine"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:text="@string/exchangeCash"
-            android:layout_marginTop="5dp"
-            android:textSize="25sp"
-            android:background="@drawable/white_background"
-            android:id="@+id/myBank_textView"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/ic_verified_black"/>
+            <TextView
+                android:id="@+id/identityAuthentication_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:text="@string/identityAuthentication"
+                android:textColor="@color/colorContentStatic"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/ic_attach_money"/>
+            <TextView
+                android:id="@+id/myBank_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/exchangeCash"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorContentStatic" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
