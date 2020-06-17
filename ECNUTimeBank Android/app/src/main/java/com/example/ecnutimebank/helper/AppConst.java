@@ -11,9 +11,14 @@ public class AppConst {
         String delete_user = SERVER_ADDRESS+"/api/user"; //+ /{userID}
         String update_user = SERVER_ADDRESS+"/api/user/update"; //传整个User 若属性为null不会修改
     }
-    // todo
+
     public interface Order {
         String publish_new_order = SERVER_ADDRESS+"/api/order";
+        String get_10_more_order = SERVER_ADDRESS + "/api/order";
+        String get_10_more_order_by_type = SERVER_ADDRESS + "/api/order/type/"; // 示例 /api/order/type/0/offset/0
+        String get_10_more_accepted_order = SERVER_ADDRESS + "/api/order/accepted/"; // /api/order/accepted/userId/offset/0
+        String get_10_more_published_order = SERVER_ADDRESS + "/api/order/published/"; // /api/order/published/userId/offset/0
+        String[] type_name = new String[]{"全部", "陪聊", "散步", "代买", "打扫", "其他"};
     }
 
     public interface Facility{

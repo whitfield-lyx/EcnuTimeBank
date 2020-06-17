@@ -37,12 +37,12 @@ public class RequirementDetailActivity extends AppCompatActivity implements View
         contact = findViewById(R.id.requirement_contact_detail);
         acceptBtn = findViewById(R.id.requirement_btn);
 
-        name.setText("Name: " + intent.getStringExtra("name"));
-        time.setText("Time: " + intent.getStringExtra("time"));
-        place.setText("Place" + intent.getStringExtra("place"));
-        money.setText("Money" + intent.getStringExtra("money"));
-        contact.setText("Contact" + intent.getStringExtra("contact"));
-        describe.setText("Describe" + intent.getStringExtra("describe"));
+        name.setText(intent.getStringExtra("name"));
+        time.setText(intent.getStringExtra("time"));
+        place.setText(intent.getStringExtra("place"));
+        money.setText(intent.getStringExtra("money"));
+        contact.setText(intent.getStringExtra("contact"));
+        describe.setText(intent.getStringExtra("describe"));
         acceptBtn.setOnClickListener(this);
 
         ActionBar actionBar = getSupportActionBar();
