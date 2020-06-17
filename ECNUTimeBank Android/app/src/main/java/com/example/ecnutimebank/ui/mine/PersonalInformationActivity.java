@@ -1,8 +1,12 @@
 package com.example.ecnutimebank.ui.mine;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -15,40 +19,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.ui.login.LoginActivity;
 
 public class PersonalInformationActivity extends AppCompatActivity implements View.OnClickListener {
-
+    private SharedPreferences sp;
+    private TextView nickname_text;
+    private String newNickname;
+    private TextView gender_text;
+    private String newGender;
+    private String telephone;
+    private int curUserId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
+        initData();
         initView();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("个人信息");
         }
-    }
-
-    private void dialog_choose_gender(){
-        final String[] items ={"Male","Female"};
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
-        builder.setTitle("Gender"); //设置标题
-        builder.setSingleChoiceItems(items,0,new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //dialog.dismiss();
-                /* 待实现*/
-            }
-        });
-        builder.setPositiveButton("Commit",new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                /* 待实现*/
-            }
-        });
-        builder.create().show();
     }
 
     @Override
@@ -66,10 +57,10 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
         ImageView profile_iv = findViewById(R.id.MI_profile_imageView);
         ImageView changeProfile = findViewById(R.id.changeProfile_imageView);
         TextView Nickname_text = findViewById(R.id.MI_Nickname_textView);
-        TextView nickname_text = findViewById(R.id.MI_nickname_textView);
+        nickname_text = findViewById(R.id.MI_nickname_textView);
         ImageView changeNickname_iv = findViewById(R.id.changeNickname_imageView);
         TextView Gender_text = findViewById(R.id.Gender_textView);
-        TextView gender_text = findViewById(R.id.MI_gender_textView);
+        gender_text = findViewById(R.id.MI_gender_textView);
         ImageView changeGender_iv = findViewById(R.id.changeGender_imageView);
         Gender_text.setOnClickListener(this);
         gender_text.setOnClickListener(this);
@@ -80,21 +71,52 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
         profile_iv.setOnClickListener(this);
         profile_text.setOnClickListener(this);
         changeProfile.setOnClickListener(this);
+
+        TextView id_text = findViewById(R.id.MI_id_textView);
+        id_text.setText(telephone);
+
+        nickname_text.setText(newNickname);
     }
 
+    //修改昵称
     private void dialog_change_nickname(){
         final EditText et = new EditText(this);
         new AlertDialog.Builder(this).setTitle("Nickname")
                 .setView(et)
                 .setPositiveButton("Commit", new DialogInterface.OnClickListener() {
+                    @SuppressLint("CommitPrefEdits")
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //按下确定键后的事件
-                        /*  待实现  */
+                        newNickname = et.getText().toString();
+                        nickname_text.setText(newNickname);
+                        sp.edit().putString("userName", newNickname);
+                        sp.edit().apply();
                     }
                 }).setNegativeButton("Cancel",null).show();
     }
-
+    //修改性别
+    private void dialog_choose_gender(){
+        final String[] items ={"Male","Female"};
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
+        builder.setTitle("Gender"); //设置标题
+        builder.setSingleChoiceItems(items,0,new DialogInterface.OnClickListener() {
+            @SuppressLint("CommitPrefEdits")
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                newGender = items[which];
+                gender_text.setText(newGender);
+                sp.edit().putString("Gender", newGender);
+                sp.edit().apply();
+            }
+        });
+//        builder.setPositiveButton("Commit",new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+        builder.create().show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -116,6 +138,13 @@ public class PersonalInformationActivity extends AppCompatActivity implements Vi
                 dialog_choose_gender();
                 break;
         }
+    }
+
+    private void initData(){
+        sp = getSharedPreferences("user_info", Context.MODE_MULTI_PROCESS);
+        curUserId = sp.getInt("userId",0);
+        newNickname = sp.getString("userName","张三");
+        telephone = sp.getString("telephone","17333333333");
     }
 
 }
