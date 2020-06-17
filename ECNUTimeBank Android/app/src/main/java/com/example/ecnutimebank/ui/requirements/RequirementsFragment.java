@@ -163,8 +163,8 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
                 .title(R.string.filter_dialog_title)
                 .positiveText(R.string.filter_dialog_accept)
                 .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
-                .itemsCallbackMultiChoice(null, (dialog, which, text) -> {
-                    Log.w("Dialog", Arrays.toString(which));
+                .itemsCallbackSingleChoice(-1, (dialog, itemView, which, text) -> {
+                    Toast.makeText(getContext(), "" + which, Toast.LENGTH_SHORT).show();
                     return true;
                 })
                 .build();
