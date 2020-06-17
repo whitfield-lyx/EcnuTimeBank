@@ -68,6 +68,26 @@ public class RequirementsViewModel extends ViewModel {
                 });
     }
 
+    public void filter(String type) {
+        clearData();
+        OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_types + "/"+ type +"/offset/0")
+                .execute(new JsonCallBack<Result<List<Order>>>() {
+                    @Override
+                    public void onSuccess(Response<Result<List<Order>>> response) {
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            Log.i("RequirementsViewModel", "success to filter requirements");
+                            clearData();
+                            List<Order> list = requirementsList.getValue();
+                            list.addAll(response.body().getData());
+                            requirementsList.postValue(list);
+                            onRequestDoneListener.onFilterDone();
+                        } else {
+                            Log.e("RequirementsViewModel", "fail to filter requirements");
+                        }
+                    }
+                });
+    }
+
     private void clearData() {
         requirementsList.getValue().clear();
     }
@@ -87,6 +107,7 @@ public class RequirementsViewModel extends ViewModel {
     interface OnRequestDoneListener {
         void onLoadMoreDone();
         void onRefreshDone();
+        void onFilterDone();
     }
 
     @Override

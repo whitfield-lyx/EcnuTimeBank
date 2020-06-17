@@ -52,6 +52,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     private SmartRefreshLayout refreshLayout;
     private AppCompatActivity activity;
     private Toolbar toolbar;
+    private String name;
     private BottomNavigationViewEx navView;
     private MenuItem currentItem;
 
@@ -157,14 +158,15 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
 
     @SuppressLint("CheckResult")
     private void showFilterDialog() {
-        String[] contentArray = {"一", "二", "三", "四", "五"};
+        String[] contentArray = {"陪聊", "散步", "代买", "打扫", "其他"};
         MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
                 .items(contentArray)//添加item内容数组
                 .title(R.string.filter_dialog_title)
                 .positiveText(R.string.filter_dialog_accept)
                 .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
                 .itemsCallbackSingleChoice(-1, (dialog, itemView, which, text) -> {
-                    Toast.makeText(getContext(), "" + which, Toast.LENGTH_SHORT).show();
+                    name =contentArray[which];
+                    requirementsViewModel.filter(name);
                     return true;
                 })
                 .build();
@@ -190,5 +192,10 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     @Override
     public void onRefreshDone() {
         refreshLayout.finishRefresh();
+    }
+
+    @Override
+    public void onFilterDone() {
+
     }
 }
