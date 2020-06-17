@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ecnutimebank.R;
@@ -36,8 +37,8 @@ public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAd
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.employeeName.setText("Name: Lisi");
-        holder.employeeGender.setText("Gender: Female");
+        holder.employeeName.setText("Lisi");
+        holder.employeeGender.setText("Female");
         holder.employeePhone.setText("Phone: 5678984651");
         holder.userId = "123";
         holder.onItemClickListener = onItemClickListener;
@@ -66,8 +67,8 @@ public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAd
         private TextView employeeName;
         private TextView employeeGender;
         private TextView employeePhone;
-        private Button acceptBtn;
-        private Button refuseBtn;
+        private ImageButton acceptBtn;
+        private ImageButton refuseBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

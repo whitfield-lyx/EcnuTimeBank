@@ -32,10 +32,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/requirement_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
-
-
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/requirement_tabs"
         tools:layout_editor_absoluteX="0dp" >
     </androidx.viewpager.widget.ViewPager>

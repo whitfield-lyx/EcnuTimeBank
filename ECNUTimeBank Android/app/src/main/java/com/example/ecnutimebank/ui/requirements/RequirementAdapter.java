@@ -13,6 +13,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.ViewHolder> {
     private List<Requirement> requirements;
     private OnItemClickListener onItemClickListener;
@@ -25,7 +27,7 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_requirement, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_requirement_more_detail, parent, false);
         return new ViewHolder(view);
     }
 
@@ -35,9 +37,8 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
         holder.onItemClickListener = onItemClickListener;
         holder.requirementName.setText("Name: zhangsan");
         holder.requirementTime.setText("Time :Tomorrow");
-        holder.requirementPlace.setText("Place: School");
-        holder.requirementBonus.setText("Money: " + 50);
-        holder.requirementType.setText("Type1 Type2");
+        holder.requirementDis.setText("1.5公里");
+        holder.requirementArea.setText("普陀区");
     }
 
     @Override
@@ -49,18 +50,16 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
         private String requirementId;
         private OnItemClickListener onItemClickListener;
         private TextView requirementName;
-        private TextView requirementPlace;
         private TextView requirementTime;
-        private TextView requirementBonus;
-        private TextView requirementType;
+        private TextView requirementDis;
+        private TextView requirementArea;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            requirementName = itemView.findViewById(R.id.requirement_name);
-            requirementPlace = itemView.findViewById(R.id.requirement_place);
-            requirementTime = itemView.findViewById(R.id.requirement_time);
-            requirementBonus = itemView.findViewById(R.id.requirement_bonus);
-            requirementType = itemView.findViewById(R.id.requirement_type);
+            requirementName = itemView.findViewById(R.id.requirement_name_detail);
+            requirementTime = itemView.findViewById(R.id.requirement_time_detail);
+            requirementDis = itemView.findViewById(R.id.requirement_item_distance);
+            requirementArea = itemView.findViewById(R.id.requirement_item_area);
             itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(requirementId));
         }
     }

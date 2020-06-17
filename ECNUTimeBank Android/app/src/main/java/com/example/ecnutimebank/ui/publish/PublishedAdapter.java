@@ -35,8 +35,8 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.View
         holder.onItemClickListener = onItemClickListener;
         holder.requirementName.setText("Name");
         holder.requirementTime.setText("Tomorrow");
-        holder.requirementPlace.setText("School");
-        holder.requirementBonus.setText("Money: " + 50);
+        holder.requirementStatus.setText("已接受");
+
     }
 
     @Override
@@ -48,16 +48,14 @@ public class PublishedAdapter extends RecyclerView.Adapter<PublishedAdapter.View
         private String requirementId;
         private OnItemClickListener onItemClickListener;
         private TextView requirementName;
-        private TextView requirementPlace;
         private TextView requirementTime;
-        private TextView requirementBonus;
+        private TextView requirementStatus;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             requirementName = itemView.findViewById(R.id.requirement_name);
-            requirementPlace = itemView.findViewById(R.id.requirement_place);
             requirementTime = itemView.findViewById(R.id.requirement_time);
-            requirementBonus = itemView.findViewById(R.id.requirement_bonus);
+            requirementStatus = itemView.findViewById(R.id.requirement_status);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
