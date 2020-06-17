@@ -1,11 +1,12 @@
 package com.example.ecnutimebank.ui.mine;
 
 
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.ecnutimebank.R;
-import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -34,7 +32,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private MenuItem menuItem;
     private BottomNavigationViewEx bottomNavigationViewEx;
     private AppCompatActivity appCompatActivity;
-
+    private int curUserId ;
+    private TextView accountNumberText;
+    private TextView nickname;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         menuItem.setEnabled(false);
         menuItem.setOnMenuItemClickListener(null);
         initView(view);
-
+        initData();
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -66,11 +66,24 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         TextView my_bank = view.findViewById(R.id.myBank_textView);
         TextView identity_authentication = view.findViewById(R.id.identityAuthentication_textView);
         ImageView img = view.findViewById(R.id.mine_settings);
+        accountNumberText = view.findViewById(R.id.accountNumber_textView);
+        nickname=view.findViewById(R.id.nickname_textView);
+
         my_bank.setOnClickListener(this);
         identity_authentication.setOnClickListener(this);
         circle.setOnClickListener(this);
         img.setOnClickListener(this);
     }
+    private void initData(){
+        SharedPreferences sp =getActivity().getSharedPreferences("user_info",Context.MODE_PRIVATE);
+        curUserId = sp.getInt("userId",0);
+        String userName =sp.getString("userName","张三");
+        String telephone = sp.getString("telephone","17333333333");
+        nickname.setText(userName);
+        accountNumberText.setText(telephone);
+    }
+
+
 
     @Override
     public void onClick(View v) {

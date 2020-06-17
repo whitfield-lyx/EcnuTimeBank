@@ -2,7 +2,9 @@ package com.example.ecnutimebank.ui.login;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -170,10 +172,21 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("login", response.body().getMessage());
                         if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
                             successLoginToast();
+                            User curUser = response.body().getData();
+                            //存储登录信息
+                            SharedPreferences sp = getSharedPreferences("user_info", Context.MODE_PRIVATE);
+                            sp.edit()
+                                    .putInt("userId",curUser.getUserId())
+                                    .putString("userName",curUser.getUserName())
+                                    .putString("telephone", curUser.getUserTelephone())
+                                    .putString("password", curUser.getUserPassword())
+                                    .apply();
+                            //跳转动画
                             Explode explode = new Explode();
                             explode.setDuration(500);
                             getWindow().setExitTransition(explode);
                             getWindow().setEnterTransition(explode);
+                            //跳转首页
                             ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
                             Intent i2 = new Intent(LoginActivity.this, BaseActivity.class);
                             startActivity(i2, oc2.toBundle());
