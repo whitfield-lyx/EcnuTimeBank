@@ -1,9 +1,12 @@
 package com.example.ecnutimebank.ui.mine;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -14,7 +17,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.User;
+import com.example.ecnutimebank.helper.AppConst;
+import com.example.ecnutimebank.helper.JsonCallBack;
+import com.example.ecnutimebank.helper.Result;
+import com.example.ecnutimebank.helper.ResultCode;
 import com.google.android.material.tabs.TabLayout;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +33,7 @@ public class TimeBankActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TextView balanceTextView;
     private FragmentPagerAdapter pagerAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private List<String> tabs = new ArrayList<>();
@@ -45,11 +56,31 @@ public class TimeBankActivity extends AppCompatActivity {
         tabs.add("历史");
         fragments.add(new ExchangeCashFragment(this,tabs.get(0)));
         fragments.add(new ExchangeCashFragment(this,tabs.get(1)));
+        SharedPreferences sp = getSharedPreferences("user_info", Context.MODE_MULTI_PROCESS);
+        int curUserId = sp.getInt("userId",0);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkGo.<Result<User>>get(AppConst.User.get_user+"/"+curUserId)
+                        .tag(this)
+                        .execute(new JsonCallBack<Result<User>>() {
+                            @Override
+                            public void onSuccess(Response<Result<User>> response) {
+                                if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                                    User curUser = response.body().getData();
+                                    double balance = curUser.getUserBalance();
+                                    balanceTextView.setText("$"+balance);
+                                }
+                            }
+                        });
+            }
+        }).start();
     }
 
     private void initView() {
         tabLayout = (TabLayout) findViewById(R.id.exchange_tabs);
         viewPager = (ViewPager) findViewById(R.id.exchangeCash_viewPaper);
+        balanceTextView = findViewById(R.id.balance_text_view);
         //设置TabLayout的模式
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         viewPager.setAdapter(new TabAdapter(getSupportFragmentManager()));
@@ -87,4 +118,5 @@ public class TimeBankActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
