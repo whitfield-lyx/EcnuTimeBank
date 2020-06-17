@@ -50,7 +50,6 @@ public class HomeViewModel extends ViewModel {
                             @Override
                             public void onSuccess(Response<Result<List<Facility>>> response) {
                                 if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                                    Log.d("Facility", "设施获取成功!");
                                     facilityData.postValue(response.body().getData());
                                 } else {
                                     Log.d("Facility", "设施获取失败!");

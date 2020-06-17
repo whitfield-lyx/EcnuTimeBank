@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="6dp"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
@@ -47,20 +47,24 @@
                 android:paddingEnd="30dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:paddingLeft="50dp"
                 android:paddingRight="30dp">
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/username_input"
                     android:textColorHint="#c5c5c5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:boxBackgroundMode="outline"
+                    app:counterMaxLength="11">
+                    <com.google.android.material.textfield.TextInputEditText
                         android:textSize="18sp"
                         android:hint="@string/Username"
                         android:textColor="#2fa881"
                         android:id="@+id/et_username"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:inputType="textPersonName"
                         android:background="@drawable/selector_bg_edit"
                         android:textCursorDrawable="@drawable/bg_input_cursor"
@@ -69,6 +73,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:paddingStart="50dp"
                 android:paddingEnd="30dp"
                 android:orientation="horizontal"
@@ -77,10 +82,13 @@
                 android:paddingRight="30dp"
                 android:paddingLeft="50dp">
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwd_input"
                     android:textColorHint="#c5c5c5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true"
+                    app:boxBackgroundMode="outline">
+                    <com.google.android.material.textfield.TextInputEditText
                         android:textSize="18sp"
                         android:hint="@string/Password"
                         android:textColor="#2fa881"
@@ -95,7 +103,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
             <RelativeLayout
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
@@ -118,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/forgot_your_password"
+                android:layout_marginBottom="10dp"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -127,7 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fabSize="normal"
-        android:src="@drawable/plus"
+        app:srcCompat="@drawable/plus"
         android:transitionName="loginFab"
         android:layout_alignTop="@id/cv"
         android:layout_marginTop="25dp"

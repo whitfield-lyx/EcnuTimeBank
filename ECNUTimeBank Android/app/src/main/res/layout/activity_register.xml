@@ -11,14 +11,14 @@
         android:layout_centerInParent="true"
         android:paddingTop="70dp"
         android:layout_width="320dp"
-        android:layout_height="400dp">
+        android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_add"
             app:cardBackgroundColor="#2ea67f"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="6dp"
             app:cardElevation="3dp"
             app:cardUseCompatPadding="true"
@@ -27,34 +27,34 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <TextView
                     android:layout_marginTop="50dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
                     android:text="@string/register"
                     android:textColor="#fff"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    />
+                    android:layout_marginLeft="50dp" />
                 <LinearLayout
                     android:layout_marginTop="10dp"
-                    android:paddingStart="50dp"
-                    android:paddingEnd="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="wrap_content"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="50dp">
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/username_input"
                         android:textColorHint="#f0f7f4"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundMode="outline">
+                        <com.google.android.material.textfield.TextInputEditText
                             android:textSize="16sp"
                             android:hint="@string/Username"
                             android:textColor="#f0f7f4"
                             android:id="@+id/et_username"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:inputType="textPersonName"
                             android:background="@drawable/selector_bg_edit_2"
                             android:textCursorDrawable="@drawable/bg_input_cursor_2"
@@ -63,23 +63,25 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
                 <LinearLayout
-                    android:paddingStart="50dp"
-                    android:paddingEnd="30dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="outline"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="50dp">
                     <com.google.android.material.textfield.TextInputLayout
-
+                        android:id="@+id/passwd_input"
                         android:textColorHint="#f0f7f4"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundMode="outline">
+                        <com.google.android.material.textfield.TextInputEditText
                             android:textSize="16sp"
                             android:hint="@string/Password"
                             android:textColor="#f0f7f4"
                             android:id="@+id/et_password"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:inputType="textPassword"
                             android:background="@drawable/selector_bg_edit_2"
                             android:textCursorDrawable="@drawable/bg_input_cursor_2"
@@ -88,23 +90,24 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
                 <LinearLayout
-                    android:paddingStart="50dp"
-                    android:paddingEnd="30dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp">
+                    android:layout_height="wrap_content"
+                    android:paddingRight="30dp"
+                    android:paddingLeft="50dp">
                     <com.google.android.material.textfield.TextInputLayout
-
+                        android:id="@+id/repeatpasswd_input"
                         android:textColorHint="#f0f7f4"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <EditText
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundMode="outline">
+                        <com.google.android.material.textfield.TextInputEditText
                             android:textSize="16sp"
                             android:textColor="#f0f7f4"
                             android:hint="@string/repeat_password"
                             android:id="@+id/et_repeatpassword"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:inputType="textPassword"
                             android:background="@drawable/selector_bg_edit_2"
                             android:textCursorDrawable="@drawable/bg_input_cursor_2"
@@ -120,6 +123,7 @@
                     android:stateListAnimator="@drawable/state_list_animator_z"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/next"
                     android:textColor="#2fa881"
                     >

@@ -1,11 +1,12 @@
 package com.example.ecnutimebank.ui.mine;
 
 
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.ecnutimebank.R;
-import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
+import com.example.ecnutimebank.entity.User;
+import com.example.ecnutimebank.helper.AppConst;
+import com.example.ecnutimebank.helper.JsonCallBack;
+import com.example.ecnutimebank.helper.Result;
+import com.example.ecnutimebank.helper.ResultCode;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -32,7 +39,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private MenuItem menuItem;
     private BottomNavigationViewEx bottomNavigationViewEx;
     private AppCompatActivity appCompatActivity;
-
+    private int curUserId ;
+    private TextView accountNumberText;
+    private TextView nickname;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,15 +53,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         appCompatActivity = (AppCompatActivity) getActivity();
-        Toolbar toolbar = appCompatActivity.findViewById(R.id.toolbar_mine);
         bottomNavigationViewEx=appCompatActivity.findViewById(R.id.nav_view);
         menuItem = bottomNavigationViewEx.getMenu().getItem(bottomNavigationViewEx.getCurrentItem());
         menuItem.setEnabled(false);
         menuItem.setOnMenuItemClickListener(null);
-        appCompatActivity.setSupportActionBar(toolbar);
-        toolbar.setTitle("我的");
         initView(view);
-
+        initData();
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -63,47 +69,54 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.mine_toolbar_menu,menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                Intent intent = new Intent(appCompatActivity,SettingsActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void initView(View view) {
-        ImageView profile = view.findViewById(R.id.profile_imageView);
-        ImageView next = view.findViewById(R.id.next_imageView);
-        TextView nickname = view.findViewById(R.id.nickname_textView);
-        TextView account_number = view.findViewById(R.id.accountNumber_textView);
+        CircleImageView circle = view.findViewById(R.id.profile_imageView);
         TextView my_bank = view.findViewById(R.id.myBank_textView);
         TextView identity_authentication = view.findViewById(R.id.identityAuthentication_textView);
-        nickname.setOnClickListener(this);
-        account_number.setOnClickListener(this);
+        ImageView img = view.findViewById(R.id.mine_settings);
+        accountNumberText = view.findViewById(R.id.accountNumber_textView);
+        nickname=view.findViewById(R.id.nickname_textView);
+
         my_bank.setOnClickListener(this);
         identity_authentication.setOnClickListener(this);
-        profile.setOnClickListener(this);
-        next.setOnClickListener(this);
+        circle.setOnClickListener(this);
+        img.setOnClickListener(this);
     }
+    private void initData(){
+        SharedPreferences sp = getActivity().getSharedPreferences("user_info",Context.MODE_MULTI_PROCESS);
+        curUserId = sp.getInt("userId",0);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkGo.<Result<User>>get(AppConst.User.get_user+"/"+curUserId)
+                        .tag(this)
+                        .execute(new JsonCallBack<Result<User>>() {
+                            @Override
+                            public void onSuccess(Response<Result<User>> response) {
+                                if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                                    User curUser = response.body().getData();
+                                    String newNickname = curUser.getUserName();
+                                    String telephone = curUser.getUserTelephone();
+                                    nickname.setText(newNickname);
+                                    accountNumberText.setText(telephone);
+                                }
+                            }
+                        });
+            }
+        }).start();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.profile_imageView:
-                Intent intent1 = new Intent(getActivity().getApplicationContext(),ProfileDetailActivity.class);
-                startActivity(intent1);
-                break;
-            case R.id.nickname_textView:
-            case R.id.accountNumber_textView:
-            case R.id.next_imageView:
                 Intent intent2 = new Intent(getActivity().getApplicationContext(), PersonalInformationActivity.class);
                 startActivity(intent2);
                 break;
@@ -114,6 +127,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.myBank_textView:
                 Intent intent4 = new Intent(getActivity().getApplicationContext(), TimeBankActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.mine_settings:
+                Intent intent5 = new Intent(appCompatActivity,SettingsActivity.class);
+                startActivity(intent5);
+                break;
         }
     }
 }

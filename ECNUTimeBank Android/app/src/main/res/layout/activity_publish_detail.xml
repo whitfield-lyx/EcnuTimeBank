@@ -37,6 +37,16 @@
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/et_title"
+                android:hint="@string/title"
+                app:met_textColor="@color/colorContentStatic"
+                app:met_textColorHint="@color/colorContentStatic"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelText="请填写需求的标题" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/et_name"
                 android:hint="@string/name"
                 app:met_textColor="@color/colorContentStatic"

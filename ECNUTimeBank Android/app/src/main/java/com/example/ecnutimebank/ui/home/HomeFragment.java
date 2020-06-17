@@ -73,7 +73,6 @@ public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoad
             public void onChanged(@Nullable final List<Facility> newFacilityList) {
                 adapter.setFacilityList(newFacilityList);
                 adapter.notifyDataSetChanged();
-                Log.d("FacilityList", "onChange: "+newFacilityList.toString());
             }
         });
 
