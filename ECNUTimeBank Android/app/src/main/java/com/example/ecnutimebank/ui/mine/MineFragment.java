@@ -75,7 +75,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         img.setOnClickListener(this);
     }
     private void initData(){
-        SharedPreferences sp =getActivity().getSharedPreferences("user_info",Context.MODE_PRIVATE);
+        SharedPreferences sp = getActivity().getSharedPreferences("user_info",Context.MODE_MULTI_PROCESS);
         curUserId = sp.getInt("userId",0);
         String userName =sp.getString("userName","张三");
         String telephone = sp.getString("telephone","17333333333");
