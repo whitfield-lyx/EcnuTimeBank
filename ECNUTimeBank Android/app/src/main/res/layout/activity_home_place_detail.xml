@@ -1,4 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDetailBackground"
+    tools:context=".ui.requirements.RequirementDetailActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/requirement_top_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/home_place_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:maxLines="1"
+                    android:text="设施名称"
+                    android:textSize="24sp"
+                    android:textColor="@color/colorContentStatic" />
+                <TextView
+                    android:id="@+id/home_place_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:maxLines="1"
+                    android:text="学校"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_below="@id/home_place_name"/>
+
+                <TextView
+                    android:id="@+id/home_place_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设施ID"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorSecondaryText"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignBottom="@id/home_place_name"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+                    <View
+                        android:id="@+id/line_home"
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorDetailLine" />
+                    <View
+                        android:id="@+id/line_home_1"
+                        android:layout_width="355dp"
+                        android:layout_height="1dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorDetailLine"
+                        android:layout_alignRight="@id/line_home"
+                        android:layout_alignBottom="@id/line_home"/>
+                    <TextView
+                        android:id="@+id/home_place_time_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="营业时间"
+                        android:textColor="@color/colorContentStatic"
+                        android:textSize="24dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_alignLeft="@id/line_home_1"
+                        android:layout_below="@id/line_home_1" />
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/requirement_time_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_toLeftOf="@id/home_place_time_title"
+                        android:paddingRight="10dp"
+                        app:srcCompat="@drawable/ic_date_range_24dp" />
+                    <TextView
+                        android:id="@+id/requirement_time_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="工作日 10:00-12:00"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorContentStatic"
+                        android:layout_alignLeft="@id/home_place_time_title"
+                        android:layout_below="@id/home_place_time_title"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp">
+                    <View
+                        android:id="@+id/line_nav"
+                        android:layout_width="355dp"
+                        android:layout_height="1dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorDetailLine" />
+                    <TextView
+                        android:id="@+id/home_place_nav_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="位置"
+                        android:textSize="24dp"
+                        android:layout_marginTop="10dp"
+                        android:paddingBottom="5dp"
+                        android:maxLines="1"
+                        android:textColor="@color/colorContentStatic"
+                        android:layout_alignLeft="@id/line_nav"
+                        android:layout_below="@id/line_nav" />
+                    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/requirement_location_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/line_nav"
+                        android:layout_toLeftOf="@id/home_place_nav_title"
+                        android:paddingRight="10dp"
+                        app:srcCompat="@drawable/ic_location_24px"/>
+                    <TextView
+                        android:id="@+id/home_place_nav"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="华东师范大学一村"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorContentStatic"
+                        android:layout_alignLeft="@id/home_place_nav_title"
+                        android:layout_below="@id/home_place_nav_title"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="50dp">
+                    <View
+                        android:id="@+id/line_detail"
+                        android:layout_width="355dp"
+                        android:layout_height="1dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/colorDetailLine" />
+                    <TextView
+                        android:id="@+id/home_place_description_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="详情"
+                        android:textSize="24dp"
+                        android:maxLines="1"
+                        android:textColor="@color/colorContentStatic"
+                        android:layout_alignLeft="@id/line_detail"
+                        android:layout_marginTop="10dp"/>
+                    <TextView
+                        android:id="@+id/home_place_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="aababababababasdfadfoasdofiajsdpoiajsdfpoiajsdfpoij"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorContentStatic"
+                        android:layout_alignLeft="@id/line_detail"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@+id/home_place_description_title"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -22,13 +228,6 @@
         android:textSize="22sp" />
 
     <TextView
-        android:id="@+id/home_place_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="设施名称"
-        android:textSize="22sp" />
-
-    <TextView
         android:id="@+id/home_place_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,4 +237,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</LinearLayout>-->
