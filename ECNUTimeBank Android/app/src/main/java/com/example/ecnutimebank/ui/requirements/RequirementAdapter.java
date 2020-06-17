@@ -33,6 +33,10 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
         return new ViewHolder(view);
     }
 
+    public List<Order> getData() {
+        return orders;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Order order = orders.get(position);
