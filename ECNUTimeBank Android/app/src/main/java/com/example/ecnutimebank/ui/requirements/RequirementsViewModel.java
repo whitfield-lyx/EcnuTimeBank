@@ -2,19 +2,16 @@ package com.example.ecnutimebank.ui.requirements;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.ecnutimebank.entity.Order;
-import com.example.ecnutimebank.entity.Requirement;
 import com.example.ecnutimebank.helper.AppConst;
 import com.example.ecnutimebank.helper.JsonCallBack;
 import com.example.ecnutimebank.helper.Result;
 import com.example.ecnutimebank.helper.ResultCode;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,27 +65,52 @@ public class RequirementsViewModel extends ViewModel {
                 });
     }
 
-    public void filter(String type) {
-        clearData();
-        OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_types + "/"+ type +"/offset/0")
-                .execute(new JsonCallBack<Result<List<Order>>>() {
-                    @Override
-                    public void onSuccess(Response<Result<List<Order>>> response) {
-                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                            Log.i("RequirementsViewModel", "success to filter requirements");
-                            clearData();
-                            List<Order> list = requirementsList.getValue();
-                            list.addAll(response.body().getData());
-                            requirementsList.postValue(list);
-                            onRequestDoneListener.onFilterDone();
-                        } else {
-                            Log.e("RequirementsViewModel", "fail to filter requirements");
+    public void load10MoreRequirementsByFilter(int type) {
+        if (type <= 0) {
+            load10MoreRequirements();
+        } else {
+            OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_type + AppConst.Order.type_name[type] +"/offset/" + requirementsList.getValue().size())
+                    .execute(new JsonCallBack<Result<List<Order>>>() {
+                        @Override
+                        public void onSuccess(Response<Result<List<Order>>> response) {
+                            if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                                Log.i("RequirementsViewModel", "success to filter requirements by type " + type);
+                                List<Order> list = requirementsList.getValue();
+                                list.addAll(response.body().getData());
+                                requirementsList.postValue(list);
+                                onRequestDoneListener.onLoadMoreDone();
+                            } else {
+                                Log.e("RequirementsViewModel", "fail to filter requirements");
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 
-    private void clearData() {
+    public void refreshByFilter(int type) {
+        if (type <= 0) {
+            refresh();
+        } else {
+            clearData();
+            OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_type + AppConst.Order.type_name[type] +"/offset/" + requirementsList.getValue().size())
+                    .execute(new JsonCallBack<Result<List<Order>>>() {
+                        @Override
+                        public void onSuccess(Response<Result<List<Order>>> response) {
+                            if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                                Log.i("RequirementsViewModel", "success to filter requirements by type " + type);
+                                List<Order> list = requirementsList.getValue();
+                                list.addAll(response.body().getData());
+                                requirementsList.postValue(list);
+                                onRequestDoneListener.onRefreshDone();
+                            } else {
+                                Log.e("RequirementsViewModel", "fail to filter requirements");
+                            }
+                        }
+                    });
+        }
+    }
+
+    public void clearData() {
         requirementsList.getValue().clear();
     }
 

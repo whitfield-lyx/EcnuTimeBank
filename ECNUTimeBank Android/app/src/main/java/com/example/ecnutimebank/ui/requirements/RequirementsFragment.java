@@ -2,7 +2,6 @@ package com.example.ecnutimebank.ui.requirements;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,22 +10,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.ecnutimebank.App;
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Order;
-import com.example.ecnutimebank.entity.Requirement;
+import com.example.ecnutimebank.helper.AppConst;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -36,13 +33,12 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RequirementsFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener,
-        RequirementAdapter.OnItemClickListener, Observer<List<Order>>, RequirementsViewModel.OnRequestDoneListener{
+        RequirementAdapter.OnItemClickListener, Observer<List<Order>>, RequirementsViewModel.OnRequestDoneListener {
 
     private RequirementsViewModel requirementsViewModel;
     private List<Order> requirements = new ArrayList<>();
@@ -55,6 +51,7 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     private String name;
     private BottomNavigationViewEx navView;
     private MenuItem currentItem;
+    private int selectedItem = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -125,24 +122,33 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        requirementsViewModel.load10MoreRequirements();
+        if (selectedItem <= 0) {
+            requirementsViewModel.load10MoreRequirements();
+        } else {
+            requirementsViewModel.load10MoreRequirementsByFilter(selectedItem);
+        }
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        requirementsViewModel.refresh();
+        if (selectedItem <= 0) {
+            requirementsViewModel.refresh();
+        } else {
+            requirementsViewModel.refreshByFilter(selectedItem);
+        }
     }
 
     @Override
-    public void onItemClicked(String id) {
+    public void onItemClicked(int position) {
         Intent intent = new Intent(activity, RequirementDetailActivity.class);
-        intent.putExtra("id", id);
-        intent.putExtra("name", "Name");
-        intent.putExtra("time", "Tomorrow");
-        intent.putExtra("money", "50");
-        intent.putExtra("place", "School");
-        intent.putExtra("contact", "Contact");
-        intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+        Order order = adapter.getData().get(position);
+        intent.putExtra("id", order.getOrderId());
+        intent.putExtra("name", order.getOrderTitle());
+        intent.putExtra("time", order.getOrderTime());
+        intent.putExtra("money", order.getOrderBonus());
+        intent.putExtra("place", order.getOrderAddress());
+        intent.putExtra("contact", order.getOrderTelephone());
+        intent.putExtra("describe", order.getOrderDescription());
         startActivity(intent);
     }
 
@@ -158,15 +164,17 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
 
     @SuppressLint("CheckResult")
     private void showFilterDialog() {
-        String[] contentArray = {"陪聊", "散步", "代买", "打扫", "其他"};
+        String[] contentArray = AppConst.Order.type_name;
         MaterialDialog materialDialog = new MaterialDialog.Builder(getContext())
                 .items(contentArray)//添加item内容数组
                 .title(R.string.filter_dialog_title)
                 .positiveText(R.string.filter_dialog_accept)
                 .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
-                .itemsCallbackSingleChoice(-1, (dialog, itemView, which, text) -> {
-                    name =contentArray[which];
-                    requirementsViewModel.filter(name);
+                .itemsCallbackSingleChoice(selectedItem, (dialog, itemView, which, text) -> {
+                    selectedItem = which;
+                    Toast.makeText(getContext(), "" + selectedItem, Toast.LENGTH_SHORT).show();
+                    requirementsViewModel.clearData();
+                    requirementsViewModel.load10MoreRequirementsByFilter(selectedItem);
                     return true;
                 })
                 .build();

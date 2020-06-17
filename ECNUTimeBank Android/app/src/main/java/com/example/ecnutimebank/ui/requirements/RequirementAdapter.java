@@ -40,7 +40,7 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Order order = orders.get(position);
-        holder.requirementId = String.valueOf(order.getOrderId());
+        holder.position = position;
         holder.onItemClickListener = onItemClickListener;
         holder.requirementName.setText(order.getOrderTitle());
         holder.requirementPlace.setText(order.getOrderAddress());
@@ -53,7 +53,7 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private String requirementId;
+        private int position;
         private OnItemClickListener onItemClickListener;
         private TextView requirementName;
         private TextView requirementPlace;
@@ -64,12 +64,12 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
             requirementName = itemView.findViewById(R.id.requirement_name);
             requirementPlace = itemView.findViewById(R.id.requirement_place);
             requirementDate = itemView.findViewById(R.id.requirement_date);
-            itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(requirementId));
+            itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(position));
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClicked(String id);
+        void onItemClicked(int position);
     }
 
 }

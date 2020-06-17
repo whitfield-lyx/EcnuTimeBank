@@ -89,14 +89,15 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
     }
 
     @Override
-    public void onItemClicked(String id) {
+    public void onItemClicked(int position) {
         Intent intent = new Intent(activity, PublishMoreDetailActivity.class);
-        intent.putExtra("id", id);
-        intent.putExtra("name", "Name");
-        intent.putExtra("time", "Tomorrow");
-        intent.putExtra("money", "50");
-        intent.putExtra("place", "School");
-        intent.putExtra("describe", "123456789987654321234567898765432156879531354687653");
+        Order order = adapter.getData().get(position);
+        intent.putExtra("id", order.getOrderId());
+        intent.putExtra("name", order.getOrderTitle());
+        intent.putExtra("time", order.getOrderTime());
+        intent.putExtra("money", order.getOrderBonus());
+        intent.putExtra("place", order.getOrderAddress());
+        intent.putExtra("describe", order.getOrderDescription());
         startActivity(intent);
     }
 

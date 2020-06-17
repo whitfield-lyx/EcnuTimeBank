@@ -43,11 +43,11 @@ public class PublishMoreDetailActivity extends AppCompatActivity implements View
         detailBtn.setText("查看志愿者");
         detailBtn.setOnClickListener(this);
 
-        name.setText("Name: " + intent.getStringExtra("name"));
-        time.setText("Time: " + intent.getStringExtra("time"));
-        place.setText("Place" + intent.getStringExtra("place"));
-        money.setText("Money" + intent.getStringExtra("money"));
-        describe.setText("Describe" + intent.getStringExtra("describe"));
+        name.setText(intent.getStringExtra("name"));
+        time.setText(intent.getStringExtra("time"));
+        place.setText(intent.getStringExtra("place"));
+        money.setText(intent.getStringExtra("money"));
+        describe.setText(intent.getStringExtra("describe"));
     }
 
     @Override
