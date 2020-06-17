@@ -68,7 +68,7 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
         }
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClicked(String id);
     }
 

@@ -16,6 +16,8 @@ public class AppConst {
         String publish_new_order = SERVER_ADDRESS+"/api/order";
         String get_10_more_order = SERVER_ADDRESS + "/api/order";
         String get_10_more_order_by_types = SERVER_ADDRESS + "/api/order/type"; // 示例 /api/order/type/type1/offset/0
+        String get_10_more_accepted_order = SERVER_ADDRESS + "/api/order/accepted/"; // /api/order/accepted/userId/offset/0
+        String get_10_more_published_order = SERVER_ADDRESS + "/api/order/published/"; // /api/order/published/userId/offset/0
     }
 
     public interface Facility{
