@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
@@ -99,7 +100,10 @@ public class PublishDetailActivity extends AppCompatActivity {
 
     private void publish(String title,String name,String time,String telephone,String address,String description,String type){
 
+        SharedPreferences userinfo = getSharedPreferences("user_info",MODE_PRIVATE);
+        int cueUserId=userinfo.getInt("userId",0);
         HashMap params = new HashMap<>();
+        params.put("orderPublisherId",cueUserId);
         params.put("orderTitle",title);
         params.put("orderTime",time);
         params.put("orderType",type);
