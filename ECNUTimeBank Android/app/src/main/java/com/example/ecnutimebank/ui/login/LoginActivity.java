@@ -174,7 +174,7 @@ public class LoginActivity extends AppCompatActivity {
                             successLoginToast();
                             User curUser = response.body().getData();
                             //存储登录信息
-                            SharedPreferences sp = getSharedPreferences("user_info", Context.MODE_PRIVATE);
+                            SharedPreferences sp = getSharedPreferences("user_info", Context.MODE_MULTI_PROCESS);
                             sp.edit()
                                     .putInt("userId",curUser.getUserId())
                                     .putString("userName",curUser.getUserName())

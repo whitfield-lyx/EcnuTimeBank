@@ -19,7 +19,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.User;
+import com.example.ecnutimebank.helper.AppConst;
+import com.example.ecnutimebank.helper.JsonCallBack;
+import com.example.ecnutimebank.helper.Result;
+import com.example.ecnutimebank.helper.ResultCode;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -61,6 +68,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
     }
 
+
     private void initView(View view) {
         CircleImageView circle = view.findViewById(R.id.profile_imageView);
         TextView my_bank = view.findViewById(R.id.myBank_textView);
@@ -77,12 +85,32 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private void initData(){
         SharedPreferences sp = getActivity().getSharedPreferences("user_info",Context.MODE_MULTI_PROCESS);
         curUserId = sp.getInt("userId",0);
-        String userName =sp.getString("userName","张三");
-        String telephone = sp.getString("telephone","17333333333");
-        nickname.setText(userName);
-        accountNumberText.setText(telephone);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkGo.<Result<User>>get(AppConst.User.get_user+"/"+curUserId)
+                        .tag(this)
+                        .execute(new JsonCallBack<Result<User>>() {
+                            @Override
+                            public void onSuccess(Response<Result<User>> response) {
+                                if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                                    User curUser = response.body().getData();
+                                    String newNickname = curUser.getUserName();
+                                    String telephone = curUser.getUserTelephone();
+                                    nickname.setText(newNickname);
+                                    accountNumberText.setText(telephone);
+                                }
+                            }
+                        });
+            }
+        }).start();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
 
 
     @Override

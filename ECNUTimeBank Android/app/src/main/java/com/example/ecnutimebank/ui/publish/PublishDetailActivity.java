@@ -100,7 +100,7 @@ public class PublishDetailActivity extends AppCompatActivity {
 
     private void publish(String title,String name,String time,String telephone,String address,String description,String type){
 
-        SharedPreferences userinfo = getSharedPreferences("user_info",MODE_PRIVATE);
+        SharedPreferences userinfo = getSharedPreferences("user_info",MODE_MULTI_PROCESS);
         int cueUserId=userinfo.getInt("userId",0);
         HashMap params = new HashMap<>();
         params.put("orderPublisherId",cueUserId);
