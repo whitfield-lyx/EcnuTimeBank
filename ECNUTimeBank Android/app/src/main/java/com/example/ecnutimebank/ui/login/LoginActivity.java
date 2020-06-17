@@ -192,6 +192,8 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(i2, oc2.toBundle());
                         }
                         else{
+                            SharedPreferences sp = getSharedPreferences("user_info", Context.MODE_MULTI_PROCESS);
+                            sp.edit().clear().apply();
                             failedLoginToast();
                         }
                     }
