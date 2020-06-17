@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.ecnutimebank.R;
-import com.example.ecnutimebank.entity.Requirement;
+import com.example.ecnutimebank.entity.Order;
 
 import java.util.List;
 
@@ -14,12 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.ViewHolder> {
-    private List<Requirement> requirements;
+    private List<Order> orders;
     private OnItemClickListener onItemClickListener;
 
-    public RequirementAdapter(List<Requirement> requirements, OnItemClickListener onItemClickListener) {
-        this.requirements = requirements;
+    public RequirementAdapter(List<Order> orders, OnItemClickListener onItemClickListener) {
+        this.orders = orders;
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public void setData(List<Order> orders) {
+        this.orders = orders;
     }
 
     @NonNull
@@ -29,44 +33,43 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
         return new ViewHolder(view);
     }
 
+    public List<Order> getData() {
+        return orders;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.requirementId = "123";
+        Order order = orders.get(position);
+        holder.position = position;
         holder.onItemClickListener = onItemClickListener;
-        holder.requirementName.setText("Name: zhangsan");
-        holder.requirementTime.setText("Time :Tomorrow");
-        holder.requirementPlace.setText("Place: School");
-        holder.requirementBonus.setText("Money: " + 50);
-        holder.requirementType.setText("Type1 Type2");
+        holder.requirementName.setText(order.getOrderTitle());
+        holder.requirementPlace.setText(order.getOrderAddress());
+        holder.requirementDate.setText(order.getOrderTime());
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return orders.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private String requirementId;
+        private int position;
         private OnItemClickListener onItemClickListener;
         private TextView requirementName;
         private TextView requirementPlace;
-        private TextView requirementTime;
-        private TextView requirementBonus;
-        private TextView requirementType;
+        private TextView requirementDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             requirementName = itemView.findViewById(R.id.requirement_name);
             requirementPlace = itemView.findViewById(R.id.requirement_place);
-            requirementTime = itemView.findViewById(R.id.requirement_time);
-            requirementBonus = itemView.findViewById(R.id.requirement_bonus);
-            requirementType = itemView.findViewById(R.id.requirement_type);
-            itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(requirementId));
+            requirementDate = itemView.findViewById(R.id.requirement_date);
+            itemView.setOnClickListener(view -> onItemClickListener.onItemClicked(position));
         }
     }
 
-    interface OnItemClickListener {
-        void onItemClicked(String id);
+    public interface OnItemClickListener {
+        void onItemClicked(int position);
     }
 
 }

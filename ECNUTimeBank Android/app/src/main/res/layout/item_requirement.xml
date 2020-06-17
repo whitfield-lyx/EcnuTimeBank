@@ -1,69 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="8dp">
+    android:orientation="vertical"
+    android:elevation="10dp"
+    app:cardCornerRadius="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/requirement_image"
+            android:layout_width="25dp"
+            android:layout_height="125dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/media" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="3"
+            android:background="@color/colorDetailBackground"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/requirement_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="24sp"
-                android:gravity="center"/>
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="看望老人"
+                android:textColor="@color/colorMainText"
+                android:textSize="32sp" />
+
             <TextView
-                android:id="@+id/requirement_time"
+                android:id="@+id/requirement_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Time"
-                android:textSize="24sp"
-                android:gravity="center"/>
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="2020年6月19日"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="24sp" />
+
             <TextView
                 android:id="@+id/requirement_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Place"
-                android:textSize="24sp"
-                android:gravity="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/requirement_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="type1  type2"
-                android:textSize="24sp"
-                android:gravity="center"/>
-            <TextView
-                android:id="@+id/requirement_bonus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Money: 50"
-                android:textSize="24sp"
-                android:gravity="center"/>
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:text="1.2km-普陀区"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
