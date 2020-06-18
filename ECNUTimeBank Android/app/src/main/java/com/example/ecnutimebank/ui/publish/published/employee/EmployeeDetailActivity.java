@@ -54,22 +54,15 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
         new Thread(new Runnable() {
             @Override
             public void run() {
-                OkGo.<Result<List<VolunteerFor>>>get(AppConst.User.get_volunteer+"/"+curOrderId)
+                OkGo.<Result<List<User>>>get(AppConst.User.get_volunteer+"/"+curOrderId)
                         .tag(this)
-                        .execute(new JsonCallBack<Result<List<VolunteerFor>>>() {
+                        .execute(new JsonCallBack<Result<List<User>>>() {
                             @Override
-                            public void onSuccess(Response<Result<List<VolunteerFor>>> response) {
+                            public void onSuccess(Response<Result<List<User>>> response) {
                                 if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
-                                    List<VolunteerFor> data = response.body().getData();
-                                    for (VolunteerFor datum : data) {
-//                                        todo 获取用户详细信息 这里暂时只有userId
-                                        User user = new User();
-                                        user.setUserId(datum.getVolunteerId());
-                                        volunteers.add(user);
-                                    }
+                                    volunteers=response.body().getData();
                                     adapter.setVolunteers(volunteers);
                                     adapter.notifyDataSetChanged();
-                                    Log.d("Adapter info", adapter.getData().toString());
                                 } else {
                                     Log.e("volunteer", "志愿者获取失败");
                                 }
@@ -96,7 +89,6 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
 
     @Override
     public void onAccept(Integer id) {
-        Log.e("Debug!!!!!", "" + id);
         OkGo.<Result<Order>>put(AppConst.Order.confirm_order)
                 .tag(this)
                 .params("orderId", curOrderId)
@@ -117,6 +109,8 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            Toast.makeText(this, "选取志愿者" + id, Toast.LENGTH_SHORT).show();
+            initData();
             finish();
         }
     }
@@ -142,6 +136,8 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            Toast.makeText(this, "refused" + id, Toast.LENGTH_SHORT).show();
+            initData();
             finish();
         }
     }
