@@ -30,6 +30,10 @@ public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAd
         this.onItemClickListener = onItemClickListener;
     }
 
+    public List<User> getData() {
+        return volunteers;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,18 +50,18 @@ public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAd
             holder.employeePhone.setText(employee.getUserTelephone());
             holder.userId = employee.getUserId();
             holder.onItemClickListener = onItemClickListener;
-            holder.acceptBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onItemClickListener.onAccept(holder.userId);
-                }
-            });
-            holder.refuseBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onItemClickListener.onRefuse(holder.userId);
-                }
-            });
+//            holder.acceptBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    onItemClickListener.onAccept(holder.userId);
+//                }
+//            });
+//            holder.refuseBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    onItemClickListener.onRefuse(holder.userId);
+//                }
+//            });
         }
     }
 
@@ -82,6 +86,18 @@ public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAd
             employeePhone = itemView.findViewById(R.id.employee_phone);
             acceptBtn = itemView.findViewById(R.id.accept_employee_btn);
             refuseBtn = itemView.findViewById(R.id.refuse_employee_btn);
+            acceptBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onAccept(userId);
+                }
+            });
+            refuseBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onRefuse(userId);
+                }
+            });
         }
     }
 
