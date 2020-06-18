@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.entity.Order;
+import com.example.ecnutimebank.helper.AppConst;
+import com.example.ecnutimebank.helper.JsonCallBack;
+import com.example.ecnutimebank.helper.Result;
+import com.example.ecnutimebank.helper.ResultCode;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class AcceptedDetailActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView name;
@@ -54,7 +67,25 @@ public class AcceptedDetailActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this, "取消成功", Toast.LENGTH_SHORT).show();
+        Intent intent = getIntent();
+        int curOrderId = intent.getIntExtra("id",0);
+        HashMap params = new HashMap<>();
+        params.put("orderId",curOrderId);
+        params.put("orderAccpetersId",0);
+        JSONObject jsonObject = new JSONObject(params);
+        OkGo.<Result<Order>>put(AppConst.Order.update_order)
+                .tag(this)
+                .upJson(jsonObject)
+                .execute(new JsonCallBack<Result<Order>>() {
+                    @Override
+                    public void onSuccess(Response<Result<Order>> response) {
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            Log.i("AcceptedDetailActivity", "取消订单成功");
+                        } else {
+                            Log.e("AcceptedDetailActivity", "取消订单失败");
+                        }
+                    }
+                });
         try {
             Thread.sleep(400);
         } catch (InterruptedException e) {
