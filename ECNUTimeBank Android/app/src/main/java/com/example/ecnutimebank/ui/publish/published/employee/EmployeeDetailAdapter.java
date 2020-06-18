@@ -2,17 +2,18 @@
  * @author K.makise on 2020/5/23
  */
 
-package com.example.ecnutimebank.ui.publish;
+package com.example.ecnutimebank.ui.publish.published.employee;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Employee;
+import com.example.ecnutimebank.entity.User;
 
 import java.util.List;
 
@@ -20,11 +21,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAdapter.ViewHolder> {
-    private List<Employee> employees;
+    private List<User> volunteers;
     private OnItemClickListener onItemClickListener;
 
-    public EmployeeDetailAdapter(List<Employee> employees, OnItemClickListener onItemClickListener) {
-        this.employees = employees;
+    public void setVolunteers(List<User> volunteers) {
+        this.volunteers = volunteers;
+    }
+    public EmployeeDetailAdapter(List<User> volunteers, OnItemClickListener onItemClickListener) {
+        this.volunteers = volunteers;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -37,32 +41,35 @@ public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAd
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.employeeName.setText("Lisi");
-        holder.employeeGender.setText("Female");
-        holder.employeePhone.setText("Phone: 5678984651");
-        holder.userId = "123";
-        holder.onItemClickListener = onItemClickListener;
-        holder.acceptBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onItemClickListener.onAccept(holder.userId);
-            }
-        });
-        holder.refuseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onItemClickListener.onRefuse(holder.userId);
-            }
-        });
+        if (volunteers!=null) {
+            User employee = volunteers.get(position);
+            holder.employeeName.setText(employee.getUserName());
+            holder.employeeGender.setText(employee.getUserGender());
+            holder.employeePhone.setText(employee.getUserTelephone());
+            holder.userId = employee.getUserId();
+            holder.onItemClickListener = onItemClickListener;
+            holder.acceptBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onAccept(holder.userId);
+                }
+            });
+            holder.refuseBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onRefuse(holder.userId);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return volunteers.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private String userId;
+        private Integer userId;
         private OnItemClickListener onItemClickListener;
         private TextView employeeName;
         private TextView employeeGender;
@@ -81,9 +88,8 @@ public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAd
     }
 
     interface OnItemClickListener {
-        void onAccept(String id);
-
-        void onRefuse(String id);
+        void onAccept(Integer id);
+        void onRefuse(Integer id);
     }
 
 }

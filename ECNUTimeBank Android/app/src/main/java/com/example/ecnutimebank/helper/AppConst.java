@@ -10,6 +10,7 @@ public class AppConst {
         String select_user_by_condition= SERVER_ADDRESS+"/api/user/search";
         String delete_user = SERVER_ADDRESS+"/api/user"; //+ /{userID}
         String update_user = SERVER_ADDRESS+"/api/user/update"; //传整个User 若属性为null不会修改
+        String get_volunteer = SERVER_ADDRESS+"/api/volunteerFor"; // + /{orderId}
     }
 
     public interface Order {
@@ -21,6 +22,7 @@ public class AppConst {
         String[] type_name = new String[]{"全部", "陪聊", "散步", "代买", "打扫", "其他"};
         String update_order = SERVER_ADDRESS+"/api/order";
     }
+
 
     public interface Facility{
         String get_all_facility= SERVER_ADDRESS+"/api/facility"; //

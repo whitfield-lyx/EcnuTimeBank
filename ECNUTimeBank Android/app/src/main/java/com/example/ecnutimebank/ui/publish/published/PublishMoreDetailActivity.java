@@ -1,4 +1,4 @@
-package com.example.ecnutimebank.ui.publish;
+package com.example.ecnutimebank.ui.publish.published;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ecnutimebank.R;
+import com.example.ecnutimebank.ui.publish.published.employee.EmployeeDetailActivity;
 
 public class PublishMoreDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView name;
@@ -52,7 +53,11 @@ public class PublishMoreDetailActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(this, EmployeeDetailActivity.class));
+        Intent preIntent = getIntent();
+        int curOrderId = preIntent.getIntExtra("id",0);
+        Intent intent = new Intent(this, EmployeeDetailActivity.class);
+        intent.putExtra("orderId",curOrderId);
+        startActivity(intent);
     }
 
     @Override

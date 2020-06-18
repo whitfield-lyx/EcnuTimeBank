@@ -1,4 +1,4 @@
-package com.example.ecnutimebank.ui.publish;
+package com.example.ecnutimebank.ui.publish.published;
 
 import android.util.Log;
 
@@ -10,7 +10,6 @@ import com.example.ecnutimebank.helper.AppConst;
 import com.example.ecnutimebank.helper.JsonCallBack;
 import com.example.ecnutimebank.helper.Result;
 import com.example.ecnutimebank.helper.ResultCode;
-import com.example.ecnutimebank.ui.requirements.RequirementsViewModel;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 

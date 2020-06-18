@@ -82,7 +82,6 @@ public class RequirementDetailActivity extends AppCompatActivity implements View
                     .tag(this)
                     .upJson(jsonObject)
                     .execute(new JsonCallBack<Result<VolunteerFor>>() {
-                        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                         @Override
                         public void onSuccess(Response<Result<VolunteerFor>> response) {
                             Log.d("register", response.body().getMessage());

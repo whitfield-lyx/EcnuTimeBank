@@ -1,30 +1,21 @@
 package com.example.ecnutimebank.ui.publish;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.transition.Explode;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.ecnutimebank.BaseActivity;
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Order;
-import com.example.ecnutimebank.entity.User;
 import com.example.ecnutimebank.helper.AppConst;
 import com.example.ecnutimebank.helper.JsonCallBack;
 import com.example.ecnutimebank.helper.Result;
 import com.example.ecnutimebank.helper.ResultCode;
-import com.example.ecnutimebank.ui.login.LoginActivity;
-import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -32,10 +23,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.json.JSONObject;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 public class PublishDetailActivity extends AppCompatActivity {
 

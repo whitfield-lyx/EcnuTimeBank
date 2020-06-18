@@ -45,13 +45,13 @@
             android:name=".ui.home.HomePlaceDetailActivity"
             android:label="@string/title_facility" />
         <activity
-            android:name=".ui.publish.AcceptedDetailActivity"
+            android:name=".ui.publish.accepted.AcceptedDetailActivity"
             android:label="@string/title_activity_requirement_detail" />
         <activity
-            android:name=".ui.publish.PublishMoreDetailActivity"
+            android:name=".ui.publish.published.PublishMoreDetailActivity"
             android:label="@string/title_activity_requirement_detail" />
         <activity
-            android:name=".ui.publish.EmployeeDetailActivity"
+            android:name=".ui.publish.published.employee.EmployeeDetailActivity"
             android:label="@string/titie_volunteer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

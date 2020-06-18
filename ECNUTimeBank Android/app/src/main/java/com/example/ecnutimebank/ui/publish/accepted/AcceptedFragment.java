@@ -1,49 +1,43 @@
-package com.example.ecnutimebank.ui.publish;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+package com.example.ecnutimebank.ui.publish.accepted;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Order;
-import com.example.ecnutimebank.entity.Requirement;
+import com.example.ecnutimebank.ui.publish.published.PublishedFragment;
 import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class PublishedFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener,
-        RequirementAdapter.OnItemClickListener, PublishedViewModel.OnRequestDoneListener, Observer<List<Order>> {
+public class AcceptedFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener, RequirementAdapter.OnItemClickListener,
+        AcceptedViewModel.OnRequestDoneListener, Observer<List<Order>> {
 
-    private List<Order> published_requirements = new ArrayList<>();
+    private AcceptedViewModel acceptedViewModel;
+    private List<Order> accepted_requirements = new ArrayList<>();
     private RecyclerView recyclerView;
     private RequirementAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private SmartRefreshLayout refreshLayout;
     private AppCompatActivity activity;
-    private PublishedViewModel publishedViewModel;
 
     public static PublishedFragment newInstance() {
         return new PublishedFragment();
@@ -52,10 +46,10 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_published, container, false);
-        publishedViewModel = ViewModelProviders.of(this).get(PublishedViewModel.class);
-        publishedViewModel.getRequirementsList().observe(getViewLifecycleOwner(), this);
-        publishedViewModel.setOnRequestDoneListener(this);
+        View root = inflater.inflate(R.layout.fragment_accepted, container, false);
+        acceptedViewModel = ViewModelProviders.of(this).get(AcceptedViewModel.class);
+        acceptedViewModel.setOnRequestDoneListener(this);
+        acceptedViewModel.getRequirementsList().observe(getViewLifecycleOwner(), this);
         setHasOptionsMenu(true);
         return root;
     }
@@ -63,8 +57,8 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         activity = (AppCompatActivity) getActivity();
-        recyclerView = view.findViewById(R.id.published_requirements_recycler_view);
-        adapter = new RequirementAdapter(published_requirements, this);
+        recyclerView = view.findViewById(R.id.accepted_requirements_recycler_view);
+        adapter = new RequirementAdapter(accepted_requirements,this);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -72,25 +66,34 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
 
-//        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
-        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+        acceptedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
 
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        refreshLayout.finishLoadMore();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        publishedViewModel.refresh(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        refreshLayout.finishRefresh();
     }
 
     @Override
     public void onItemClicked(int position) {
-        Intent intent = new Intent(activity, PublishMoreDetailActivity.class);
+        Intent intent = new Intent(activity, AcceptedDetailActivity.class);
         Order order = adapter.getData().get(position);
         intent.putExtra("id", order.getOrderId());
         intent.putExtra("name", order.getOrderTitle());

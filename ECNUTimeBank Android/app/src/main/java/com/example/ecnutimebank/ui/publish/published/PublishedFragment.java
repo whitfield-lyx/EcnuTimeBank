@@ -1,20 +1,22 @@
-package com.example.ecnutimebank.ui.publish;
+package com.example.ecnutimebank.ui.publish.published;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Order;
@@ -24,19 +26,20 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class AcceptedFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener, RequirementAdapter.OnItemClickListener,
-        AcceptedViewModel.OnRequestDoneListener, Observer<List<Order>> {
+public class PublishedFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener,
+        RequirementAdapter.OnItemClickListener, PublishedViewModel.OnRequestDoneListener, Observer<List<Order>> {
 
-    private AcceptedViewModel acceptedViewModel;
-    private List<Order> accepted_requirements = new ArrayList<>();
+    private List<Order> published_requirements = new ArrayList<>();
     private RecyclerView recyclerView;
     private RequirementAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private SmartRefreshLayout refreshLayout;
     private AppCompatActivity activity;
+    private PublishedViewModel publishedViewModel;
 
     public static PublishedFragment newInstance() {
         return new PublishedFragment();
@@ -45,10 +48,10 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_accepted, container, false);
-        acceptedViewModel = ViewModelProviders.of(this).get(AcceptedViewModel.class);
-        acceptedViewModel.setOnRequestDoneListener(this);
-        acceptedViewModel.getRequirementsList().observe(getViewLifecycleOwner(), this);
+        View root = inflater.inflate(R.layout.fragment_published, container, false);
+        publishedViewModel = ViewModelProviders.of(this).get(PublishedViewModel.class);
+        publishedViewModel.getRequirementsList().observe(getViewLifecycleOwner(), this);
+        publishedViewModel.setOnRequestDoneListener(this);
         setHasOptionsMenu(true);
         return root;
     }
@@ -56,8 +59,8 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         activity = (AppCompatActivity) getActivity();
-        recyclerView = view.findViewById(R.id.accepted_requirements_recycler_view);
-        adapter = new RequirementAdapter(accepted_requirements,this);
+        recyclerView = view.findViewById(R.id.published_requirements_recycler_view);
+        adapter = new RequirementAdapter(published_requirements, this);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -65,34 +68,25 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
 
-        acceptedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+//        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
 
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        refreshLayout.finishLoadMore();
+        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        refreshLayout.finishRefresh();
+        publishedViewModel.refresh(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
     }
 
     @Override
     public void onItemClicked(int position) {
-        Intent intent = new Intent(activity, AcceptedDetailActivity.class);
+        Intent intent = new Intent(activity, PublishMoreDetailActivity.class);
         Order order = adapter.getData().get(position);
         intent.putExtra("id", order.getOrderId());
         intent.putExtra("name", order.getOrderTitle());

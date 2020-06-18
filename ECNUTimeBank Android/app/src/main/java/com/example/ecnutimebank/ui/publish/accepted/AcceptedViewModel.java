@@ -1,4 +1,4 @@
-package com.example.ecnutimebank.ui.publish;
+package com.example.ecnutimebank.ui.publish.accepted;
 
 import android.util.Log;
 

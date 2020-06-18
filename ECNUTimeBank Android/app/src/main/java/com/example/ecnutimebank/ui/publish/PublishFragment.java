@@ -1,9 +1,7 @@
 package com.example.ecnutimebank.ui.publish;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.ecnutimebank.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.ecnutimebank.ui.publish.accepted.AcceptedFragment;
+import com.example.ecnutimebank.ui.publish.published.PublishedFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
