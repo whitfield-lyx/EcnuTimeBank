@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Employee;
+import com.example.ecnutimebank.entity.Order;
 import com.example.ecnutimebank.entity.User;
 import com.example.ecnutimebank.helper.AppConst;
 import com.example.ecnutimebank.helper.JsonCallBack;
@@ -28,27 +30,32 @@ import com.example.ecnutimebank.helper.ResultCode;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeDetailActivity extends AppCompatActivity implements EmployeeDetailAdapter.OnItemClickListener {
     private List<User> volunteers = new ArrayList<>();
-    private int curOrderId;
     private EmployeeDetailAdapter adapter;
     private RecyclerView recyclerView;
+    private Intent intent;
+    private Integer curOrderId ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_published_detail);
+        intent = getIntent();
         initView();
         initData();
     }
 
     private void initData() {
-        Intent intent = getIntent();
         curOrderId = intent.getIntExtra("orderId",0);
         Log.d("EmployeeDetailActivity", "initData: "+curOrderId );
         new Thread(new Runnable() {
+
             @Override
             public void run() {
                 OkGo.<Result<List<User>>>get(AppConst.User.get_volunteer+"/"+curOrderId)
@@ -86,7 +93,29 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
 
     @Override
     public void onAccept(Integer id) {
-        Toast.makeText(this, "accepted" + id, Toast.LENGTH_SHORT).show();
+        SharedPreferences userinfo = getSharedPreferences("user_info",MODE_MULTI_PROCESS);
+        int curUserId=userinfo.getInt("userId",0);
+        OkGo.<Result<Order>>put(AppConst.Order.confirm_order)
+                .tag(this)
+                .params("orderId", curOrderId)
+                .params("volunteerId", curUserId)
+                .execute(new JsonCallBack<Result<Order>>() {
+                    @Override
+                    public void onSuccess(Response<Result<Order>> response) {
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            Log.i("AcceptedDetailActivity", "选取志愿者成功");
+                        } else {
+                            Log.e("AcceptedDetailActivity", "选取志愿者失败");
+                        }
+                    }
+                });
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            finish();
+        }
     }
 
     @Override

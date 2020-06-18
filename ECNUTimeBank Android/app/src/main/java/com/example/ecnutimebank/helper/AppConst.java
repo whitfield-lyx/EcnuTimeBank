@@ -21,6 +21,7 @@ public class AppConst {
         String get_10_more_published_order = SERVER_ADDRESS + "/api/order/published/"; // /api/order/published/userId/offset/0
         String[] type_name = new String[]{"全部", "陪聊", "散步", "代买", "打扫", "其他"};
         String update_order = SERVER_ADDRESS+"/api/order";
+        String confirm_order = SERVER_ADDRESS+"/api/order/confirmOrder"; //传入orderId 和 userId
     }
 
 
