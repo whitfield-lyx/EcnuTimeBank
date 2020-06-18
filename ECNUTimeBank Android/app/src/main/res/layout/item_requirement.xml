@@ -60,7 +60,7 @@
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="18sp" />
 
-        </LinearLayout>
+        </LinearLayout>-->
 
 
     </LinearLayout>

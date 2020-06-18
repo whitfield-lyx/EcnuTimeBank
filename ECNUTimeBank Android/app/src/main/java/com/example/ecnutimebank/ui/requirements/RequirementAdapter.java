@@ -13,6 +13,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.ViewHolder> {
     private List<Order> orders;
     private OnItemClickListener onItemClickListener;
@@ -29,7 +31,7 @@ public class RequirementAdapter extends RecyclerView.Adapter<RequirementAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_requirement, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_requirement_more_detail, parent, false);
         return new ViewHolder(view);
     }
 

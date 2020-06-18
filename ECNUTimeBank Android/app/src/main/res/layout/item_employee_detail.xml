@@ -5,86 +5,92 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    android:backgroundTint="@color/colorCardBackGround">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/employee_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            app:civ_border_color="@color/colorStroke"
+            app:civ_border_width="2dp"
+            android:src="@drawable/profile_img"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/linear_employee"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
             android:orientation="horizontal"
-            android:padding="2dp">
+            android:layout_toRightOf="@id/employee_icon">
 
             <TextView
                 android:id="@+id/employee_name"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Name: ZhangSan"
-                android:textSize="24sp" />
+                android:text="ZhangSan"
+                android:textSize="24sp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorContentStatic"/>
 
             <TextView
                 android:id="@+id/employee_gender"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Gender: Male"
-                android:textSize="24sp" />
+                android:text="Male"
+                android:textSize="24sp"
+                android:textColor="@color/colorContentStatic"/>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/employee_phone"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:orientation="horizontal"
-            android:padding="2dp">
+            android:layout_below="@id/linear_employee"
+            android:layout_alignLeft="@id/linear_employee"
+            android:gravity="center"
+            android:text="123456789"
+            android:textSize="20sp"
+            android:textColor="@color/colorSecondaryText"/>
 
-            <TextView
-                android:id="@+id/employee_phone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Phone Number: 123456789"
-                android:textSize="24sp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="2dp"
-            android:layout_margin="2dp">
+            android:layout_margin="2dp"
+            android:layout_centerVertical="true">
 
-            <Button
+            <ImageButton
                 android:id="@+id/refuse_employee_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/refuse"
-                android:textColor="#ffffff"
+                app:srcCompat="@drawable/ic_refuse_icon"
                 android:layout_margin="5dp"
-                android:textSize="24sp"
-                android:background="@drawable/btn_refuse" />
+                android:background="@android:color/transparent"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/accept_employee_btn"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/accept"
-                android:textColor="#ffffff"
-                android:textSize="24sp"
                 android:layout_margin="5dp"
-                android:background="@drawable/btn_accept"
-                tools:ignore="ButtonStyle" />
-        </LinearLayout>
-
-    </LinearLayout>
+                app:srcCompat="@drawable/ic_accept_icon"
+                android:layout_toRightOf="@id/refuse_employee_btn"
+                android:background="@android:color/transparent" />
+        </RelativeLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

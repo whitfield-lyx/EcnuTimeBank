@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:elevation="1dp"
+    android:backgroundTint="@color/colorCardBackGround"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/requirement_name_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="24sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:textColor="@color/colorContentStatic"/>
+            <TextView
+                android:id="@+id/requirement_time_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                android:maxLines="1"
+                android:textColor="@color/colorSecondaryText"
+                android:layout_marginTop="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/requirement_item_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingRight="5dp"
+                    android:text="距离"
+                    android:textSize="16dp"
+                    android:maxLines="1"
+                    android:textColor="@color/colorSecondaryText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="·"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorSecondaryText"/>
+
+                <TextView
+                    android:id="@+id/requirement_item_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XX区"
+                    android:paddingLeft="5dp"
+                    android:maxLines="1"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorSecondaryText"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/requirement_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="type1  type2"
+                android:textSize="24sp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/requirement_bonus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Money: 50"
+                android:textSize="24sp"
+                android:gravity="center"/>
+
+        </LinearLayout>-->
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

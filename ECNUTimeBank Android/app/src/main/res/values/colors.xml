@@ -20,4 +20,5 @@
     <color name="colorError">#FEDFDF</color>
     <color name="colorMangement">#287BDD</color>
     <color name="colorPhoneNumber">#83492D</color>
+    <color name="colorCardBackGround">#FDF8EF</color>
 </resources>
