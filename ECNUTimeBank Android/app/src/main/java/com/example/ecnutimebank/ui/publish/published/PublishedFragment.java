@@ -57,6 +57,12 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
     }
 
     @Override
+    public void onResume() {
+        publishedViewModel.refresh(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+        super.onResume();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         activity = (AppCompatActivity) getActivity();
         recyclerView = view.findViewById(R.id.published_requirements_recycler_view);
@@ -67,9 +73,6 @@ public class PublishedFragment extends Fragment implements OnRefreshListener, On
         refreshLayout = view.findViewById(R.id.requirement_refresh_layout);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
-
-//        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
-        publishedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
 
         super.onViewCreated(view, savedInstanceState);
     }

@@ -64,6 +64,12 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
     }
 
     @Override
+    public void onResume() {
+        requirementsViewModel.refresh();
+        super.onResume();
+    }
+
+    @Override
     public void onDestroyView() {
         currentItem.setEnabled(true);
         super.onDestroyView();
@@ -92,8 +98,6 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         refreshLayout = view.findViewById(R.id.requirement_refresh_layout);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
-
-        requirementsViewModel.load10MoreRequirements();
 
         super.onViewCreated(view, savedInstanceState);
     }
@@ -172,7 +176,6 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
                 .positiveColor(getResources().getColor(R.color.colorPrimaryDark))
                 .itemsCallbackSingleChoice(selectedItem, (dialog, itemView, which, text) -> {
                     selectedItem = which;
-                    Toast.makeText(getContext(), "" + selectedItem, Toast.LENGTH_SHORT).show();
                     requirementsViewModel.clearData();
                     requirementsViewModel.load10MoreRequirementsByFilter(selectedItem);
                     return true;

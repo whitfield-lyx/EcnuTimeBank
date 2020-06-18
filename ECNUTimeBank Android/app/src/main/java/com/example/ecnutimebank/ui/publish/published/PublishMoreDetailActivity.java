@@ -47,7 +47,7 @@ public class PublishMoreDetailActivity extends AppCompatActivity implements View
         name.setText(intent.getStringExtra("name"));
         time.setText(intent.getStringExtra("time"));
         place.setText(intent.getStringExtra("place"));
-        money.setText(intent.getStringExtra("money"));
+        money.setText(intent.getIntExtra("money", 0) + "");
         describe.setText(intent.getStringExtra("describe"));
     }
 

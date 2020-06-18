@@ -39,6 +39,12 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
     private SmartRefreshLayout refreshLayout;
     private AppCompatActivity activity;
 
+    @Override
+    public void onResume() {
+        acceptedViewModel.refresh(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+        super.onResume();
+    }
+
     public static PublishedFragment newInstance() {
         return new PublishedFragment();
     }
@@ -66,30 +72,10 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
 
-        acceptedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
-
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        refreshLayout.finishLoadMore();
-    }
 
-    @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        refreshLayout.finishRefresh();
-    }
 
     @Override
     public void onItemClicked(int position) {
@@ -123,5 +109,16 @@ public class AcceptedFragment extends Fragment implements OnRefreshListener, OnL
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        acceptedViewModel.load10MoreRequirements(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+//        todo 这个userId获取应该抽离出去
+        acceptedViewModel.refresh(getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE).getInt("userId", 1));
     }
 }

@@ -78,10 +78,10 @@ public class RequirementsViewModel extends ViewModel {
                                 List<Order> list = requirementsList.getValue();
                                 list.addAll(response.body().getData());
                                 requirementsList.postValue(list);
-                                onRequestDoneListener.onLoadMoreDone();
                             } else {
                                 Log.e("RequirementsViewModel", "fail to filter requirements");
                             }
+                            onRequestDoneListener.onLoadMoreDone();
                         }
                     });
         }
@@ -101,10 +101,10 @@ public class RequirementsViewModel extends ViewModel {
                                 List<Order> list = requirementsList.getValue();
                                 list.addAll(response.body().getData());
                                 requirementsList.postValue(list);
-                                onRequestDoneListener.onRefreshDone();
                             } else {
                                 Log.e("RequirementsViewModel", "fail to filter requirements");
                             }
+                            onRequestDoneListener.onRefreshDone();
                         }
                     });
         }
