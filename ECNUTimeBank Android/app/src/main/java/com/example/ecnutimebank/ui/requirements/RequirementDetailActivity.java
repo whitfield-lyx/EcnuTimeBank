@@ -78,13 +78,13 @@ public class RequirementDetailActivity extends AppCompatActivity implements View
             params.put("orderId",cueOrderId);
             params.put("volunteerId",curUserId);
             JSONObject jsonObject = new JSONObject(params);
-            OkGo.<Result<VolunteerFor>>post(AppConst.User.register)
+            OkGo.<Result<VolunteerFor>>post(AppConst.Order.add_volunteer_for)
                     .tag(this)
                     .upJson(jsonObject)
                     .execute(new JsonCallBack<Result<VolunteerFor>>() {
                         @Override
                         public void onSuccess(Response<Result<VolunteerFor>> response) {
-                            Log.d("register", response.body().getMessage());
+                            Log.d("add_volunteer_for", response.body().getMessage());
                         }
                     });
         try {

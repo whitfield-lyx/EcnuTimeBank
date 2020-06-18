@@ -2,36 +2,24 @@ package com.example.ecnutimebank.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.ecnutimebank.R;
 import com.example.ecnutimebank.entity.Facility;
-import com.example.ecnutimebank.entity.Requirement;
-import com.example.ecnutimebank.helper.AppConst;
-import com.example.ecnutimebank.ui.requirements.RequirementAdapter;
-import com.example.ecnutimebank.ui.requirements.RequirementDetailActivity;
 import com.ryane.banner.AdPageInfo;
 import com.ryane.banner.AdPlayBanner;
-import com.ryane.banner.transformer.RotateDownTransformer;
 import com.ryane.banner.transformer.ZoomOutPageTransformer;
-import com.ryane.banner.view.TitleView;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.sunfusheng.marqueeview.MarqueeView;
-
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -39,15 +27,8 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import static com.ryane.banner.AdPlayBanner.ImageLoaderType.FRESCO;
 import static com.ryane.banner.AdPlayBanner.ImageLoaderType.GLIDE;
-import static com.ryane.banner.AdPlayBanner.ImageLoaderType.PICASSO;
 import static com.ryane.banner.AdPlayBanner.IndicatorType.POINT_INDICATOR;
-import static com.ryane.banner.view.TitleView.Gravity.PARENT_BOTTOM;
 
 public class HomeFragment extends Fragment implements  OnRefreshListener, OnLoadMoreListener{
 

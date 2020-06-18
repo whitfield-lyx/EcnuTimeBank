@@ -5,13 +5,6 @@
 
 package com.example.ecnutimebank.ui.publish.published.employee;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,10 +12,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ecnutimebank.R;
-import com.example.ecnutimebank.entity.Employee;
 import com.example.ecnutimebank.entity.Order;
 import com.example.ecnutimebank.entity.User;
+import com.example.ecnutimebank.entity.VolunteerFor;
 import com.example.ecnutimebank.helper.AppConst;
 import com.example.ecnutimebank.helper.JsonCallBack;
 import com.example.ecnutimebank.helper.Result;
@@ -30,10 +30,7 @@ import com.example.ecnutimebank.helper.ResultCode;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeDetailActivity extends AppCompatActivity implements EmployeeDetailAdapter.OnItemClickListener {
@@ -55,7 +52,6 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
         curOrderId = intent.getIntExtra("orderId",0);
         Log.d("EmployeeDetailActivity", "initData: "+curOrderId );
         new Thread(new Runnable() {
-
             @Override
             public void run() {
                 OkGo.<Result<List<User>>>get(AppConst.User.get_volunteer+"/"+curOrderId)
@@ -93,17 +89,16 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
 
     @Override
     public void onAccept(Integer id) {
-        SharedPreferences userinfo = getSharedPreferences("user_info",MODE_MULTI_PROCESS);
-        int curUserId=userinfo.getInt("userId",0);
         OkGo.<Result<Order>>put(AppConst.Order.confirm_order)
                 .tag(this)
                 .params("orderId", curOrderId)
-                .params("volunteerId", curUserId)
+                .params("volunteerId", id)
                 .execute(new JsonCallBack<Result<Order>>() {
                     @Override
                     public void onSuccess(Response<Result<Order>> response) {
                         if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
                             Log.i("AcceptedDetailActivity", "选取志愿者成功");
+
                         } else {
                             Log.e("AcceptedDetailActivity", "选取志愿者失败");
                         }
@@ -114,13 +109,37 @@ public class EmployeeDetailActivity extends AppCompatActivity implements Employe
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            Toast.makeText(this, "选取志愿者" + id, Toast.LENGTH_SHORT).show();
+            initData();
             finish();
         }
     }
 
     @Override
     public void onRefuse(Integer id) {
-        Toast.makeText(this, "refused" + id, Toast.LENGTH_SHORT).show();
+        OkGo.<Result<VolunteerFor>>delete(AppConst.Order.delete_volunteer_for)
+                .tag(this)
+                .params("orderId", curOrderId)
+                .params("volunteerId", id)
+                .execute(new JsonCallBack<Result<VolunteerFor>>() {
+                    @Override
+                    public void onSuccess(Response<Result<VolunteerFor>> response) {
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            Log.i("EmployeeDetailActivity", "拒绝志愿者成功" + response.body().getData());
+                        } else {
+                            Log.e("EmployeeDetailActivity", "拒绝志愿者失败");
+                        }
+                    }
+                });
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            Toast.makeText(this, "refused" + id, Toast.LENGTH_SHORT).show();
+            initData();
+            finish();
+        }
     }
 
     @Override

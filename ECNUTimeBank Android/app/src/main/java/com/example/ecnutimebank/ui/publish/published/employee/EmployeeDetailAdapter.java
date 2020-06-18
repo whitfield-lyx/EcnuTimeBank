@@ -4,21 +4,19 @@
 
 package com.example.ecnutimebank.ui.publish.published.employee;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ecnutimebank.R;
-import com.example.ecnutimebank.entity.Employee;
 import com.example.ecnutimebank.entity.User;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class EmployeeDetailAdapter extends RecyclerView.Adapter<EmployeeDetailAdapter.ViewHolder> {
     private List<User> volunteers;
