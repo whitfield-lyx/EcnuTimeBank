@@ -69,7 +69,7 @@ public class RequirementsViewModel extends ViewModel {
         if (type <= 0) {
             load10MoreRequirements();
         } else {
-            OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_type + AppConst.Order.type_name[type] +"/offset/" + requirementsList.getValue().size())
+            OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_type + AppConst.Order.type_name[type] + "/offset/" + requirementsList.getValue().size())
                     .execute(new JsonCallBack<Result<List<Order>>>() {
                         @Override
                         public void onSuccess(Response<Result<List<Order>>> response) {
@@ -92,7 +92,7 @@ public class RequirementsViewModel extends ViewModel {
             refresh();
         } else {
             clearData();
-            OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_type + AppConst.Order.type_name[type] +"/offset/" + requirementsList.getValue().size())
+            OkGo.<Result<List<Order>>>get(AppConst.Order.get_10_more_order_by_type + AppConst.Order.type_name[type] + "/offset/" + requirementsList.getValue().size())
                     .execute(new JsonCallBack<Result<List<Order>>>() {
                         @Override
                         public void onSuccess(Response<Result<List<Order>>> response) {
@@ -145,7 +145,9 @@ public class RequirementsViewModel extends ViewModel {
 
     interface OnRequestDoneListener {
         void onLoadMoreDone();
+
         void onRefreshDone();
+
         void onFilterDone();
     }
 
