@@ -112,12 +112,39 @@ public class RequirementsFragment extends Fragment implements OnRefreshListener,
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.i("Requirements", query);
+                requirementsViewModel.refreshBySearch(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        mSearchView.setOnSearchClickListener(new View.OnClickListener() { // 点击搜索的时候清空数据 禁止刷新和加载更多
+            @Override
+            public void onClick(View v) {
+                requirementsViewModel.clearData();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                refreshLayout.setEnableRefresh(false);
+                refreshLayout.setEnableLoadMore(false);
+            }
+        });
+        mSearchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                if (selectedItem <= 0) {
+                    requirementsViewModel.refresh();
+                } else {
+                    requirementsViewModel.refreshByFilter(selectedItem);
+                }
+                refreshLayout.setEnableLoadMore(true);
+                refreshLayout.setEnableRefresh(true);
                 return false;
             }
         });

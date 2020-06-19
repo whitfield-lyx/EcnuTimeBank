@@ -110,6 +110,23 @@ public class RequirementsViewModel extends ViewModel {
         }
     }
 
+    public void refreshBySearch(String keyword) {
+        clearData();
+        OkGo.<Result<List<Order>>>get(AppConst.Order.get_order_by_search + keyword)
+                .execute(new JsonCallBack<Result<List<Order>>>() {
+                    @Override
+                    public void onSuccess(Response<Result<List<Order>>> response) {
+                        if (response.body().getCode() == ResultCode.SUCCESS.getCode()) {
+                            List<Order> list = requirementsList.getValue();
+                            list.addAll(response.body().getData());
+                            requirementsList.postValue(list);
+                        } else {
+                            Log.e("RequirementsViewModel", "fail to search requirements");
+                        }
+                    }
+                });
+    }
+
     public void clearData() {
         requirementsList.getValue().clear();
     }

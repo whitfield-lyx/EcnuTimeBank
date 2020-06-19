@@ -24,6 +24,7 @@ public class AppConst {
         String confirm_order = SERVER_ADDRESS+"/api/order/confirmOrder"; //传入orderId 和 userId
         String delete_volunteer_for = SERVER_ADDRESS+"/api/volunteerFor"; // + /{vulunteerForId}
         String add_volunteer_for = SERVER_ADDRESS+"/api/volunteerFor";
+        String get_order_by_search = SERVER_ADDRESS + "/api/order/search/";
     }
 
 
